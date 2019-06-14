@@ -33,13 +33,16 @@
 
 *.depend
 
+# Our extra git ignore files
+*.elay
+
 bin/Debug/
 
 *.d
 
 *.ebp
-*.elay
+
 
 cmsis/
 SPL/
-*.elay
+
