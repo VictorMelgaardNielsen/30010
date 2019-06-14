@@ -66,15 +66,15 @@ int main(void) {
 
 //Exercise 4
 
-/*
-int main(void) {
+
+ int main(void) {
     uart_init( 115200 ); //Initialize USB serial emulation at 9600 baud
 
     clrscr();
     counter_t cnt;
     ball_t v;
-    v.x = 3;
-    v.y = 3;
+    v.x = 7;
+    v.y = 4;
     v.vx = 1;
     v.vy = 1;
     cnt.x =0;
@@ -82,16 +82,17 @@ int main(void) {
     //course values
     uint8_t x1 = 1;
     uint8_t y1 = 1;
-    uint8_t x2 = 20;
-    uint8_t y2 = 20;
+    uint8_t x2 = 40;
+    uint8_t y2 = 10;
 
-    for (int i = 0; i < 50; i++) {
+    for (int i = 0; i < 100; i++) {
     int j = 0;
     clrscr();
     course(x1, y1, x2, y2);
+    ballcheck(&v, x1, y1, x2, y2);
     updateposition(&v);
+    counter(&cnt, &v, x1, y1, x2, y2);
     ball(&v);
-    counter(&cnt, v, x1, y1, x2, y2);
     drawCounter(x1, y1, x2, y2, cnt.x);
         while( j < 1000000) {
             j++;
@@ -101,7 +102,7 @@ int main(void) {
     while(1){};
 }
 
-*/
+
 
 /*
 //Exercise 5
@@ -221,6 +222,7 @@ int main(void) {
 }
 
 */
+/*
 //excersise 6.2
 int main(void) {
     uart_init( 9600 );
@@ -238,7 +240,7 @@ int main(void) {
     while(1){};
 
 }
-
+*/
 
 
 /*
