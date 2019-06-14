@@ -15,12 +15,21 @@ void initVector(vector_t *v) {
 }
 
 
-int counter(counter_t *t, ball_t v, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
-    if ((v.x == x1 && v.x == x2) && (v.y == y1 && v.y == y2)) {
-        (*t).x++;
-    }
+int counter(counter_t *t, ball_t *v, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
+    if (v->x == x1 || v->x == x2+1)
+    t->x += 1;
+
+    if (v->y == y1 || v->y == y2+1)
+    t->x += 1;
 }
 
+void ballcheck(ball_t *b, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
+if (b->x == x1 || b->x == x2+1)
+    b->vx *= -1;
+
+if (b->y == y1 || b->y == y2+1)
+    b->vy *= -1;
+}
 
 int32_t expand(int32_t i) {
 // Converts an 18.14 fixed point number to 16.16
