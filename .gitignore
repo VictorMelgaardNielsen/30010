@@ -46,3 +46,4 @@ bin/Debug/
 cmsis/
 SPL/
 
+*.elay
