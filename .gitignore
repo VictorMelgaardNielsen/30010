@@ -39,3 +39,6 @@ bin/Debug/
 
 *.edp
 *.elay
+
+cmsis/
+SPL/
