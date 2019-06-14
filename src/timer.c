@@ -46,6 +46,7 @@ void TIM2_IRQHandler(void) {
     TIM2->SR &= ~(0x0001);
 }
 
+/*
 char * readTerminal(char a[]){
     int i = 0;
     while (i < 10) {
@@ -60,6 +61,29 @@ char * readTerminal(char a[]){
         }
     }
     return a;
+}
+*/
+
+uint8_t command(char s1[]) {
+    uint8_t number = 0;
+    int i = 0;
+    char s2[10] = {'s','t','a','r','t','0','0','0','0','0'};
+    while (i < 10) {
+        if(uart_get_count() > 0) {
+            s1[i] = uart_get_char();
+            printf("%c",s1[i]);
+            if (s1[i] == 0x0D) {
+                if(strcmp(s1, s2) == 0) {
+                    number = 1;
+                    return number;
+                }
+                else {
+                    printf("%s", "no command");
+                }
+            }
+        i++;
+        }
+    }
 }
 
 

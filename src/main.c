@@ -65,7 +65,7 @@ int main(void) {
 */
 
 //Exercise 4
-
+/*
 
  int main(void) {
     uart_init( 115200 ); //Initialize USB serial emulation at 9600 baud
@@ -222,8 +222,9 @@ int main(void) {
 }
 
 */
-/*
+
 //excersise 6.2
+/*
 int main(void) {
     uart_init( 9600 );
     clrscr();
@@ -241,6 +242,45 @@ int main(void) {
 
 }
 */
+//Exercise 6.2 del 2
+int main(void) {
+    uart_init( 9600 );
+    clrscr();
+    uart_clear();
+    char s1[10] = {'0','0','0','0','0','0','0','0','0','0'};
+    char s3[10] = {'0','0','0','0','0','0','0','0','0','0'};
+    char s2[10] = {'s','t','a','r','t','0','0','0','0','0'};
+
+    char a[1] = {'0','1'};
+    char b[1] = {'0','1'};
+
+    if (a == b) {
+        printf("%s", "correct");
+    }
+    else {
+        printf("%s", "not correct");
+    }
+
+    /*
+    //readTerminal(a);
+    if (command(s1) == 1) {
+        printf("%c", '1');
+    }
+    */
+
+    /*
+    char s1[10] ="";
+    char s2[10] ="";
+
+    if (strcmp(s1, s2) == 0) {
+        printf("%s", "correct");
+    }
+    */
+
+    while(1){};
+
+}
+
 
 
 /*
