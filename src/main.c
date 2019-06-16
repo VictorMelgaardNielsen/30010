@@ -244,40 +244,58 @@ int main(void) {
 */
 //Exercise 6.2 del 2
 int main(void) {
+    int number = 0;
     uart_init( 9600 );
     clrscr();
     uart_clear();
+    setuptimer();
+    timerCommandHelp();
+
     char s1[10] = {'0','0','0','0','0','0','0','0','0','0'};
     char s3[10] = {'0','0','0','0','0','0','0','0','0','0'};
     char s2[10] = {'s','t','a','r','t','0','0','0','0','0'};
+    char s4[10] = "start";
+    char s5[10] = "start";
 
-    char a[1] = {'0','1'};
-    char b[1] = {'0','1'};
 
-    if (a == b) {
+
+
+    /*
+    if (strcmp(s2,s4) == 0) {
         printf("%s", "correct");
     }
     else {
         printf("%s", "not correct");
     }
-
-    //test test
-
-    /*
-    //readTerminal(a);
-    if (command(s1) == 1) {
-        printf("%c", '1');
-    }
     */
+    number = timerCommand();
+    printf("%d", number);
 
-    /*
-    char s1[10] ="";
-    char s2[10] ="";
-
-    if (strcmp(s1, s2) == 0) {
-        printf("%s", "correct");
+    if (number == 0) {
+        starttimer();
     }
-    */
+    else if (number == 1) {
+        stoptimer();
+    }
+    else if (number == 2) {
+
+    }
+    else if (number == 3) {
+
+    }
+    else if (number == 4) {
+
+    }
+    else if (number == 5) {
+        timerCommandHelp();
+    }
+    else {
+        timerCommandHelp();
+    }
+
+
+
+
 
     while(1){};
 
