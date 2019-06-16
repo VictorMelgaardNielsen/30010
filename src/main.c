@@ -261,6 +261,8 @@ int main(void) {
         printf("%s", "not correct");
     }
 
+    //test test
+
     /*
     //readTerminal(a);
     if (command(s1) == 1) {
