@@ -10,8 +10,8 @@ void updateposition(ball_t *v) {
 }
 
 void initVector(vector_t *v) {
-    (*v).x = -4;
-    (*v).y = 4;
+    (*v).x = 1;
+    (*v).y = 0;
 }
 
 

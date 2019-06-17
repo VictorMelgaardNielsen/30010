@@ -69,6 +69,18 @@ char * readTerminal(char a[]){
 //Command takes a returns a different number, depending on whether the user inputs
 //"start". "stop", "split", "reset", or "help".
 uint8_t timerCommand() {
+    int flagStartStop = 0;
+    timee_t split1;
+    split1.hour = 0;
+    split1.mint = 0;
+    split1.sec = 0;
+    split1.msec = 0;
+
+    timee_t split2;
+    split2.hour = 0;
+    split2.mint = 0;
+    split2.sec = 0;
+    split2.msec = 0;
     uint8_t number = 0;
     int i = 0;
     char s1[10] = {'0','0','0','0','0','0','0','0','0','0'};
@@ -105,11 +117,12 @@ uint8_t timerCommand() {
             i++;
         }
     }
+
 }
 
 //commandHelp
 void timerCommandHelp() {
-    printf("%s\n%s\n%s\n%s\n%s\n%s\n%s\n","Un-recognized command. The list of commands are:","start","stop","split1","split2","reset","help");
+    printf("%s\n%s\n%s\n%s\n%s\n%s\n%s\n","The list of commands are:","start","stop","split1","split2","reset","help");
 }
 
 

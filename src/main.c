@@ -6,6 +6,7 @@
 #include "timer.h"
 #include "joystick.h"
 #include "lcd.h"
+#include "shipcontrol.h"
 
 
 /*
@@ -241,7 +242,8 @@ int main(void) {
     while(1){};
 
 }
-*/
+
+/*
 //Exercise 6.2 del 2
 int main(void) {
     int number = 0;
@@ -251,56 +253,73 @@ int main(void) {
     setuptimer();
     timerCommandHelp();
 
-    char s1[10] = {'0','0','0','0','0','0','0','0','0','0'};
-    char s3[10] = {'0','0','0','0','0','0','0','0','0','0'};
-    char s2[10] = {'s','t','a','r','t','0','0','0','0','0'};
-    char s4[10] = "start";
-    char s5[10] = "start";
+    int flagStartStop = 0;
+    timee_t split1;
+    split1.hour = 0;
+    split1.mint = 0;
+    split1.sec = 0;
+    split1.msec = 0;
 
+    timee_t split2;
+    split2.hour = 0;
+    split2.mint = 0;
+    split2.sec = 0;
+    split2.msec = 0;
 
+    starttimer();
 
-
-    /*
-    if (strcmp(s2,s4) == 0) {
-        printf("%s", "correct");
-    }
-    else {
-        printf("%s", "not correct");
-    }
-    */
     number = timerCommand();
     printf("%d", number);
 
-    if (number == 0) {
-        starttimer();
+    /*
+    while(1){
+        if (number == 0 && flagStartStop == 0) {
+            starttimer();
+            flagStartStop = 1;
+        } if (number == 1 && flagStartStop == 1) {
+            stoptimer();
+            flagStartStop = 0;
+        } if (number == 2) {
+            stoptimer();
+            timer2.hour = 0;
+            timer2.mint = 0;
+            timer2.sec = 0;
+            timer2.msec = 0;
+            flagStartStop = 0;
+        } if (number == 3) {
+            TIM2->DIER &= ~0x0001;
+            split1.hour = timer2.hour;
+            split1.mint = timer2.mint;
+            split1.sec = timer2.sec;
+            split1.msec = timer2.msec;
+            TIM2->DIER |= 0x0001;
+        } if (number == 4) {
+            TIM2->DIER &= ~0x0001;
+            split2.hour = timer2.hour;
+            split2.mint = timer2.mint;
+            split2.sec = timer2.sec;
+            split2.msec = timer2.msec;
+            TIM2->DIER |= 0x0001;
+        }
+        else if (number == 5) {
+            timerCommandHelp();
+        }
+        else {
+            timerCommandHelp();
+        }
+
+
+        if (timer2.msec == 1) {
+            clrscr();
+            printf("%02d:%02d:%02d\n", timer2.hour, timer2.mint, timer2.sec);
+            printf("%02d:%02d:%02d:%02d\n", split1.hour, split1.mint, split1.sec, split1.msec);
+            printf("%02d:%02d:%02d:%02d\n", split2.hour, split2.mint, split2.sec, split2.msec);
+        }
     }
-    else if (number == 1) {
-        stoptimer();
-    }
-    else if (number == 2) {
-
-    }
-    else if (number == 3) {
-
-    }
-    else if (number == 4) {
-
-    }
-    else if (number == 5) {
-        timerCommandHelp();
-    }
-    else {
-        timerCommandHelp();
-    }
-
-
-
-
-
-    while(1){};
-
+    */
+    /*
 }
-
+*/
 
 
 /*
@@ -323,4 +342,25 @@ int main(void) {
 
 }
 */
+
+//Ship control
+int main(void) {
+    uart_init( 9600 ); //Initialize USB serial emulation at 9600 baud
+    color(1,7);
+    clrscr();
+    windows (1, 1, 60, 20, "DTU Space Invaders 3000", 196, 179);
+    uart_clear();
+    ship_t ship;
+    ball_t bullet;
+    shipSetup(&ship);
+    bulletSetup(&bullet);
+
+
+    while(1){
+        shipControl(&ship, &bullet);
+        printShip(&ship);
+        backwards(1);
+        printf(" ");
+    }
+}
 
