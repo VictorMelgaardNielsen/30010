@@ -82,23 +82,23 @@ uint8_t readJoystick() {
     uint8_t data = 0;
     uint16_t val = 0;
 
-    // PA4 value to bit 0 in data
+    // PA4 value to bit 0 in data (Up)
     val = GPIOA->IDR & (0x0001 << 4);
     data |= val >> 4;
 
-    // PB0 value to bit 1 in data
+    // PB0 value to bit 1 in data (Down)
     val = GPIOB->IDR & (0x0001 << 0);
     data |= val << 1;
 
-    // PC1 value to bit 2 in data
+    // PC1 value to bit 2 in data (Left)
     val = GPIOC->IDR & (0x0001 << 1);
     data |= val << 1;
 
-    // PC0 value to bit 3 in data
+    // PC0 value to bit 3 in data (Right)
     val = GPIOC->IDR & (0x0001 << 0);
     data |= val << 3;
 
-    // PB5 value to bit 4 in data
+    // PB5 value to bit 4 in data (Center)
     val = GPIOB->IDR & (0x0001 << 5);
     data |= val >> 1;
 

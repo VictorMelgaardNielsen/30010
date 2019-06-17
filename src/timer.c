@@ -29,7 +29,7 @@ void stoptimer() {
 }
 
 void TIM2_IRQHandler(void) {
-    flaglcd = 1;
+
     timer2.msec += 1;
     if (timer2.msec == 100) {
         timer2.msec = 0;
@@ -43,6 +43,12 @@ void TIM2_IRQHandler(void) {
         timer2.mint = 0;
         timer2.hour += 1;
     }
+
+    //lcd flag
+    if (timer2.msec%25 == 0) {
+        flaglcd = 1;
+    }
+
     TIM2->SR &= ~(0x0001);
 }
 
