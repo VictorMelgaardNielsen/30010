@@ -9,6 +9,7 @@
 #include "shipcontrol.h"
 
 
+
 /*
 int16_t power(int16_t a, int16_t exp) {
 //Calculates a^exp
@@ -245,6 +246,7 @@ int main(void) {
 
 /*
 //Exercise 6.2 del 2
+/*
 int main(void) {
     int number = 0;
     uart_init( 9600 );
