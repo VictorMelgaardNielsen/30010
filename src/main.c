@@ -6,7 +6,7 @@
 #include "timer.h" //Timer functions and setup
 #include "joystick.h" //Joystick setup and read
 #include "lcd.h" //LCD setup and print
-#include "menu.h" //Menu setup and control functions
+#include "mbedDisplay.h" //Interactions with mbed board
 
 
 /*
@@ -315,10 +315,9 @@ int main(void) {
     starttimer();
     setupjoystick();
     lcd_init();
+    clrscr();
 
-    menu_init();
-
-
-
-    while(1){}
+    while(1){
+        display_stats(1,42);
+    }
 }
