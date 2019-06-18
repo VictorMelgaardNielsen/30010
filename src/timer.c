@@ -20,6 +20,13 @@ void setuptimer() {
     NVIC_EnableIRQ(TIM2_IRQn);
 }
 
+void restarttimer() {
+    timer2.hour = 0;
+    timer2.mint = 0;
+    timer2.sec = 0;
+    timer2.msec = 0;
+}
+
 void starttimer() {
     TIM2->CR1 |= 0x0001;
 }

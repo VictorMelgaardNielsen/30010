@@ -96,7 +96,7 @@ void drawMeteor(int8_t x, int8_t y) {
     gotoxy(x, y + 4);
     printf("  `''''`  ");
 }
-
+/*
 void easy(spaceship_t *s, uint8_t *uv, uint8_t *enemyAmount, uint8_t *highscoreMulti) {
     s->health = 3;
 
@@ -126,3 +126,4 @@ void realShit(spaceship_t *s, uint8_t *uv, uint8_t *enemyAmount, uint8_t *highsc
 
     *highscoreMulti = 4;
 }
+*/

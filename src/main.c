@@ -363,16 +363,18 @@ int main(void) {
 
 }
 */
+/*
 int main(void) {
-    uart_init( 115200 ); //Initialize USB serial emulation at 9600 baud
+    uart_init( 9600 ); //Initialize USB serial emulation at 9600 baud
     clrscr();
     buildCourse();
     while(1);
 }
-
+*/
 
 //Ship control
 int main(void) {
+<<<<<<< refs/remotes/origin/master
     int x1 = 1;
     int y1 = 1;
     int x2 = 60;
@@ -400,15 +402,40 @@ int main(void) {
         flagbullet = 0;
         printBullet(bullet);
 =======
+=======
+    uint8_t health, killcount, highScoreMulti;
+    uart_init( 115200 ); //Initialize USB serial emulation at 9600 baud
+>>>>>>> GameOver() added to mbedDisplay.c
     setuptimer();
     starttimer();
     setupjoystick();
     lcd_init();
     clrscr();
 
+    menu_init();
+    int diff = choose_diff();
+
+    if (diff == 1) {
+        health = 3;
+        killcount = 42;
+        highScoreMulti = 4;
+        buildCourse();
+        restarttimer();
+    }
+
     while(1){
+<<<<<<< refs/remotes/origin/master
         display_stats(1,42);
 >>>>>>> rename af menu.c til mbedDisplay.c og stats funktion
+=======
+        display_stats(health,killcount);
+        if (readJoystick() == 0x08) {
+            break;
+        }
+>>>>>>> GameOver() added to mbedDisplay.c
     }
+
+    gameOver(killcount, highScoreMulti);
+
 }
 
