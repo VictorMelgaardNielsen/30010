@@ -37,7 +37,7 @@ bin/Debug/
 
 *.d
 
-*.edp
+*.ebp
 *.elay
 
 cmsis/

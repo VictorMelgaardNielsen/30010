@@ -1,11 +1,12 @@
 #include "stm32f30x_conf.h" //STM32 config
 #include "30010_io.h" // Indput/output library for this source
-#include "ansi.h"
-#include "Lutfile.h"
-#include "victor.h"
-#include "timer.h"
-#include "joystick.h"
-#include "lcd.h"
+#include "ansi.h" //ansi control functions
+#include "Lutfile.h" //Look up table with sin and cos values
+#include "victor.h" //
+#include "timer.h" //Timer functions and setup
+#include "joystick.h" //Joystick setup and read
+#include "lcd.h" //LCD setup and print
+#include "mbedDisplay.h" //Interactions with mbed board
 #include "variabel.h"
 
 
@@ -66,8 +67,8 @@ int main(void) {
 */
 
 //Exercise 4
-
 /*
+
  int main(void) {
     uart_init( 115200 ); //Initialize USB serial emulation at 9600 baud
 
@@ -223,8 +224,9 @@ int main(void) {
 }
 
 */
-/*
+
 //excersise 6.2
+/*
 int main(void) {
     uart_init( 9600 );
     clrscr();
@@ -239,6 +241,46 @@ int main(void) {
 
 
     while(1){};
+
+}
+*/
+//Exercise 6.2 del 2
+/*
+int main(void) {
+    uart_init( 9600 );
+    clrscr();
+    uart_clear();
+    char s1[10] = {'0','0','0','0','0','0','0','0','0','0'};
+    char s3[10] = {'0','0','0','0','0','0','0','0','0','0'};
+    char s2[10] = {'s','t','a','r','t','0','0','0','0','0'};
+
+    char a[1] = {'0','1'};
+    char b[1] = {'0','1'};
+
+    if (a == b) {
+        printf("%s", "correct");
+    }
+    else {
+        printf("%s", "not correct");
+    }
+
+
+    //readTerminal(a);
+    if (command(s1) == 1) {
+        printf("%c", '1');
+    }
+
+
+
+    char s1[10] ="";
+    char s2[10] ="";
+
+    if (strcmp(s1, s2) == 0) {
+        printf("%s", "correct");
+    }
+
+
+    while(1){}
 
 }
 */
@@ -272,3 +314,17 @@ int main(void) {
 }
 
 
+int main(void) {
+    uint8_t slice = 0; //Start slice for LCD
+    uint8_t line = 0; //Start line for LCD
+    uart_init( 9600 ); //Initialize USB serial emulation at 9600 baud
+    setuptimer();
+    starttimer();
+    setupjoystick();
+    lcd_init();
+    clrscr();
+
+    while(1){
+        display_stats(1,42);
+    }
+}
