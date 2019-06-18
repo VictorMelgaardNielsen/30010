@@ -1,5 +1,6 @@
 #include "stm32f30x_conf.h" //STM32 config
 #include "30010_io.h" // Indput/output library for this source
+<<<<<<< refs/remotes/origin/master
 #include "ansi.h"
 #include "Lutfile.h"
 #include "victor.h"
@@ -12,6 +13,15 @@
 =======
 #include "variabel.h"
 >>>>>>> Design af course og meteor
+=======
+#include "ansi.h" //ansi control functions
+#include "Lutfile.h" //Look up table with sin and cos values
+#include "victor.h" //
+#include "timer.h" //Timer functions and setup
+#include "joystick.h" //Joystick setup and read
+#include "lcd.h" //LCD setup and print
+#include "mbedDisplay.h" //Interactions with mbed board
+>>>>>>> rename af menu.c til mbedDisplay.c og stats funktion
 
 
 /*
@@ -370,6 +380,7 @@ int main(void) {
     int flagbullet = 0;
     bullet_t bullet[4];
     uart_init( 9600 ); //Initialize USB serial emulation at 9600 baud
+<<<<<<< refs/remotes/origin/master
     color(1,7);
     clrscr();
     windows (x1, y1, x2, y2, "DTU Space Invaders 3000", 196, 179);
@@ -388,6 +399,16 @@ int main(void) {
         createBullet(&ship, bullet, flagbullet, x1, y1, x2, y2);
         flagbullet = 0;
         printBullet(bullet);
+=======
+    setuptimer();
+    starttimer();
+    setupjoystick();
+    lcd_init();
+    clrscr();
+
+    while(1){
+        display_stats(1,42);
+>>>>>>> rename af menu.c til mbedDisplay.c og stats funktion
     }
 }
 

@@ -1,7 +1,5 @@
 #include <stdio.h>
 #include <stdint.h>
-#include "stm32f30x_conf.h"
-#include "30010_io.h"
 #include "charset.h"
 #include "timer.h"
 

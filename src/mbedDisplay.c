@@ -1,4 +1,4 @@
-#include "menu.h"
+#include "mbedDisplay.h"
 
 void menu_init() {
     uint8_t slice = 0, line = 1;
@@ -37,6 +37,7 @@ void menu_init() {
 
             //Checks if joystick is pushed right
             if (readJoystick() == 0x08) {
+                while(readJoystick() == 0x08) {}
                 lcd_clear_buffer();
                 lcd_write_string("Choose difficulty:", 0, 0);
                 lcd_write_string("Press left for EASY", 0 , 1);
@@ -44,13 +45,63 @@ void menu_init() {
                 lcd_write_string("Press right for REAL SHIT", 0 , 3);
                 lcd_push_buffer(&buffer);
                 break;
-                //Her kommer choose_diff funktionen
-                //choose_diff();
+                //Her placer choose_diff() efter menu_init i main
             }
         }
-        printf("Der er break\n");
 }
 
-void choose_diff() {
+uint8_t choose_diff() {
+    while(1) {
+        if(readJoystick() == 0x04) { //retruns 1 if easy is selected
+            return 0x01;
+        } if(readJoystick() == 0x01) { //returns 2 if medium is selected
+            return 0x02;
+        } if(readJoystick() == 0x08) { //retruns 3 if hard is selected
+            return 0x03;
+        }
+    }
+}
+
+void display_stats(uint8_t health, uint8_t kills) {
+    char healthStr[24] = "Health points:";
+    char killStr[15] = "Kill count: ";
+    char timeStr[15] = "Time: ";
+    char *heart = " <3";
+    char intnumber[3];
+    sprintf(intnumber, "%d", kills);
+    int i, j;
+
+    for(i = 13; i < 13+health*3; i+=3) {
+        for(j = 0; j < 3; j++) {
+            healthStr[i+j] = heart[j];
+        }
+    }
+
+    for(i = 12; i < 14; i++) {
+        killStr[i] = intnumber[i-12];
+    }
+
+    sprintf(intnumber, "%02d", timer2.mint);
+    i = 6;
+    while(i < 8) {
+        timeStr[i] = intnumber[i-6];
+        i++;
+    }
+
+    timeStr[i] = ':';
+    i++;
+
+    sprintf(intnumber, "%02d", timer2.sec);
+    while(i < 11) {
+        timeStr[i] = intnumber[i-9];
+        i++;
+    }
+
+    lcd_clear_buffer();
+    lcd_write_string("Stats:",0,0);
+    lcd_write_string(healthStr,0,1);
+    lcd_write_string(killStr,0,2);
+    lcd_write_string(timeStr,0,3);
+    lcd_push_buffer(&buffer);
 
 }
