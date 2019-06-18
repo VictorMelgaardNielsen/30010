@@ -306,25 +306,42 @@ int main(void) {
 
 }
 */
+/*
 int main(void) {
-    uart_init( 115200 ); //Initialize USB serial emulation at 9600 baud
+    uart_init( 9600 ); //Initialize USB serial emulation at 9600 baud
     clrscr();
     buildCourse();
     while(1);
 }
-
+*/
 
 int main(void) {
-    uint8_t slice = 0; //Start slice for LCD
-    uint8_t line = 0; //Start line for LCD
-    uart_init( 9600 ); //Initialize USB serial emulation at 9600 baud
+    uint8_t health, killcount, highScoreMulti;
+    uart_init( 115200 ); //Initialize USB serial emulation at 9600 baud
     setuptimer();
     starttimer();
     setupjoystick();
     lcd_init();
     clrscr();
 
-    while(1){
-        display_stats(1,42);
+    menu_init();
+    int diff = choose_diff();
+
+    if (diff == 1) {
+        health = 3;
+        killcount = 42;
+        highScoreMulti = 4;
+        buildCourse();
+        restarttimer();
     }
+
+    while(1){
+        display_stats(health,killcount);
+        if (readJoystick() == 0x08) {
+            break;
+        }
+    }
+
+    gameOver(killcount, highScoreMulti);
+
 }

@@ -20,6 +20,7 @@ int flagenemy;
 int flaglcd;
 
 void setuptimer();
+void restarttimer();
 void starttimer();
 void stoptimer();
 void TIM2_IRQHandler(void);

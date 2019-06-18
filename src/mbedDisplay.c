@@ -105,3 +105,31 @@ void display_stats(uint8_t health, uint8_t kills) {
     lcd_push_buffer(&buffer);
 
 }
+
+void gameOver(uint8_t kills, uint8_t highScoreMulti) {
+    int8_t highscore = 0;
+    char scoreStr[14] = "Highscore: ";
+    char intNumber[4];
+    int i = 11;
+    lcd_clear_buffer();
+    stoptimer();
+
+
+    //highscore = (120 - (timer2.sec + timer2.mint*60)) + (int8_t)(kills*highScoreMulti);
+    highscore = kills*highScoreMulti;
+    /*
+    if (highscore < 0) {
+        highscore = 0;
+    }
+    */
+    sprintf(intNumber, "%03d", highscore);
+    while (i < 14) {
+        scoreStr[i] = intNumber[i - 11];
+        i++;
+    }
+
+    lcd_write_string("GAME OVER", 0, 1);
+    lcd_write_string(scoreStr, 0, 2);
+    lcd_push_buffer(&buffer);
+
+}

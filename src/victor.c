@@ -117,7 +117,7 @@ void rotateVector(vector_t *v, int32_t a) {
     printFix(expand((*v).y));
 }
 
-
+/*
 void updateEnemyPosition(enemyship_t *enemy, uint8_t *uv) {
     if (cnt == *uv) {
         enemy->x += enemy->vx;
@@ -126,4 +126,4 @@ void updateEnemyPosition(enemyship_t *enemy, uint8_t *uv) {
     }
     cnt++;
 }
-
+*/
