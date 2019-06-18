@@ -15,6 +15,8 @@ typedef struct {
 
 volatile timee_t timer2;
 
+
+int flagenemy;
 int flaglcd;
 
 void setuptimer();

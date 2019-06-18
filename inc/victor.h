@@ -8,7 +8,7 @@
 typedef struct {
     int x;
 } counter_t;
-
+int cnt;
 int32_t expand(int32_t i);
 int32_t sine (int32_t a);
 int32_t cose (int32_t a);

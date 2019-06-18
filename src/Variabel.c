@@ -1,73 +1,9 @@
 #include "variabel.h"
-/*
-int8_t shooting() {
-    while(1) {
-        if(s == 1) {
-    return 1;
-        }
-    else{
-    return 0;
-    }
-    }
-
-}
-
-
-void bullet_create(int8_t a, spaceship_t x) {
-    bullet_t b;
-    b.x = x.x;
-    b.y = x.y;
-    b.vx = x.vx;
-    b.vy = x.vy;
-    b.style =
-
-
-    if (shooting() = 1) {
-
-    }
-
-
-
-
-
-
-}
-
-*/
-
-/* include in main
-int i, n;
-   time_t t;
-
-   n = 5;
-
-   Intializes random number generator
-   srand((unsigned) time(&t));
-
-*/
-
-
 
 void coordinatRandomiser(uint8_t x1, uint8_t x2, uint8_t y1, uint8_t y2, meteor_t *m) {
     m->x = (rand() % (x2-x1)) + x1;
     m->y = (rand() % (y2-y1)) + y1;
 
-}
-
-
-
-void drawMeteor(int8_t x, int8_t y) {
-
-    gotoxy(x, y);
-    printf("  .----.  ");
-    gotoxy(x, y + 1);
-    printf(".'%c%c%c%c%c%c'.",178,178,178,178,178,178);
-    gotoxy(x, y + 2);
-    printf(":%c%c%c%c%c%c%c%c:",178,178,178,178,178,178,178,178);
-    gotoxy(x, y + 3);
-    printf("'.%c%c%c%c%c%c.'",178,178,178,178,178,178);
-    gotoxy(x, y + 4);
-    printf("  `''''`  ");
 }
 
 /*
