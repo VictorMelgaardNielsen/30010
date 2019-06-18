@@ -6,8 +6,12 @@
 #include "timer.h"
 #include "joystick.h"
 #include "lcd.h"
+<<<<<<< refs/remotes/origin/master
 #include "shipcontrol.h"
 
+=======
+#include "variabel.h"
+>>>>>>> Design af course og meteor
 
 
 /*
@@ -67,8 +71,13 @@ int main(void) {
 */
 
 //Exercise 4
+<<<<<<< refs/remotes/origin/master
 /*
 
+=======
+
+/*
+>>>>>>> Design af course og meteor
  int main(void) {
     uart_init( 115200 ); //Initialize USB serial emulation at 9600 baud
 
@@ -79,7 +88,7 @@ int main(void) {
     v.y = 4;
     v.vx = 1;
     v.vy = 1;
-    cnt.x =0;
+    cnt.x = 0;
 
     //course values
     uint8_t x1 = 1;
@@ -103,7 +112,7 @@ int main(void) {
 
     while(1){};
 }
-
+*/
 
 
 /*
@@ -344,6 +353,13 @@ int main(void) {
 
 }
 */
+int main(void) {
+    uart_init( 115200 ); //Initialize USB serial emulation at 9600 baud
+    clrscr();
+    buildCourse();
+    while(1);
+}
+
 
 //Ship control
 int main(void) {
