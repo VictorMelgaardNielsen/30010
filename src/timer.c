@@ -30,8 +30,16 @@ void stoptimer() {
 
 //Tells the STM32 what to do whenever the timer interrupt is triggered.
 void TIM2_IRQHandler(void) {
+<<<<<<< refs/remotes/origin/master
 
+=======
+>>>>>>> Min branch åbnes op!
     timer2.msec += 1;
+
+    if (timer2.msec%50 == 0) {
+        flagenemy = 1;
+    }
+
     if (timer2.msec == 100) {
         timer2.msec = 0;
         timer2.sec += 1;
@@ -50,6 +58,12 @@ void TIM2_IRQHandler(void) {
         flaglcd = 1;
     }
 
+<<<<<<< refs/remotes/origin/master
+=======
+
+
+
+>>>>>>> Min branch åbnes op!
     TIM2->SR &= ~(0x0001);
 }
 

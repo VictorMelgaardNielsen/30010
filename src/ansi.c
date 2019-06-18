@@ -180,14 +180,7 @@ void printFix(int32_t i) {
     // Print a maximum of 4 decimal digits to avoid overflow
 }
 
-void rotateVector(vector_t *v, int32_t a) {
-    int32_t xtemp = v->x;
-    (*v).x = (*v).x * cose(a) - (*v).y * sine(a);
-    (*v).y = xtemp * sine(a) + (*v).y * cose(a);
-    printFix(expand((*v).x));
-    printf(",");
-    printFix(expand((*v).y));
-}
+
 
 
 
