@@ -10,15 +10,21 @@ void shipSetup(ship_t * ship) {
     ship->powerup = 0;
 }
 
-void bulletSetup(ball_t * bullet) {
-    bullet->x = 0;
-    bullet->y = 0;
-    bullet->vx = 0;
-    bullet->vy = 0;
+
+void bulletSetup(bullet_t * bullet[4]) {
+    for (int i = 0; i < sizeof(bullet)/sizeof(bullet[0]); i++) {
+        bullet[i]->x = -1;
+        bullet[i]->y = -1;
+        bullet[i]->vx = 0;
+        bullet[i]->vy = 0;
+        bullet[i]->angle = 0;
+    }
 }
 
+
 //Ship control from terminal
-void shipControl(ship_t * ship, ball_t * bullet) {
+int shipControl(ship_t * ship) {
+    int flagbullet = 0;
     if (uart_get_count() > 0) {
         char s[1] = {'0','0'};
         s[0] = uart_get_char();
@@ -65,9 +71,8 @@ void shipControl(ship_t * ship, ball_t * bullet) {
             }
         }
         if (s[0] == 's') {
-            bullet->x = ship->x;
-            bullet->y = ship->y;
-            printBullet(&ship, &bullet);
+            flagbullet = 1;
+            return flagbullet;
         }
     }
 }
@@ -103,23 +108,76 @@ void printShip(ship_t * ship) {
 
 }
 
-void printBullet(ship_t * ship, ball_t * bullet) {
-    bullet->x = ship->x;
-    bullet->y = ship->y;
-    //while (1) {
-        printf("%c", 'a');
-        gotoxy(bullet->x, bullet->y);
-        if (ship->angle == 0) {
-            printf("%c", 'o');
-            bullet->y--;
+void createBullet(ship_t * ship, bullet_t * bullet[4], int flagbullet, int x1, int y1, int x2, int y2) {
+    if (flagbullet == 1) {
+        for (int i = 0; i < sizeof(bullet)/sizeof(bullet[0]); i++) {
+            if (bullet[i]->x == -1) {
+                bullet[i]->x = ship->x;
+                bullet[i]->y = ship->y;
+                bullet[i]->angle = ship->angle;
+            }
         }
-        if (ship->angle == 1) {
-            printf("%c", 'o');
-            bullet->x++;
-            bullet->y--;
-     //   }
+
+    }
+    for (int i = 0; i < sizeof(bullet)/sizeof(bullet[0]); i++) {
+        if ((bullet[i]->x > x1 && bullet[i]->x < x2) && (bullet[i]->y > y1 && bullet[i]->y < y2)) {
+            switch (bullet[i]->angle)
+            {
+                case 0:
+                   bullet[i]->y -= 1;
+                break;
+
+                case 1:
+                   bullet[i]->x += 1;
+                   bullet[i]->y -= 1;
+                break;
+
+                case 2:
+                   bullet[i]->x += 1;
+                break;
+
+                case 3:
+                   bullet[i]->y -= 1;
+                break;
+
+                case 4:
+                   bullet[i]->y += 1;
+                break;
+
+                case 5:
+                    bullet[i]->x -= 1;
+                    bullet[i]->y += 1;
+                break;
+
+                case 6:
+                   bullet[i]->x -= 1;
+                break;
+
+                case 7:
+                    bullet[i]->x -= 1;
+                    bullet[i]->y -= 1;
+                break;
+            }
+
+        }
+        else {
+            bullet[i]->x = -1;
+            bullet[i]->y = -1;
+        }
     }
 }
+
+void printBullet(bullet_t * bullet[4]) {
+    for (int i = 0; i < sizeof(bullet)/sizeof(bullet[0]); i++) {
+        if (bullet[i]->x != 0) {
+            gotoxy(bullet[i]->x, bullet[i]->y);
+            printf("a");
+        }
+    }
+}
+
+
+
 
 
 

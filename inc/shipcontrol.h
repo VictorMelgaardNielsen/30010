@@ -10,14 +10,21 @@ typedef struct {
     int32_t x, y, vx, vy;
     int8_t angle;
     uint8_t powerup;
+    uint8_t healthpoints;
+    uint8_t killcount;
 } ship_t;
 
-void shipSetup(ship_t * ship);
-void shipControl(ship_t * ship, ball_t * bullet);
-void printShip(ship_t * ship);
-void bulletSetup(ball_t * bullet);
-void printBullet(ship_t * ship, ball_t * bullet);
+typedef struct {
+    int32_t x, y, vx, vy;
+    int8_t angle;
+} bullet_t;
 
+void shipSetup(ship_t * ship);
+int shipControl(ship_t * ship);
+void printShip(ship_t * ship);
+void bulletSetup(bullet_t * bullet[4]);
+void createBullet(ship_t * ship, bullet_t * bullet[4], int flagbullet, int x1, int y1, int x2, int y2);
+void printBullet(bullet_t * bullet[4]);
 
 
 #endif

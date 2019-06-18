@@ -345,22 +345,30 @@ int main(void) {
 
 //Ship control
 int main(void) {
+    int x1 = 1;
+    int y1 = 1;
+    int x2 = 60;
+    int y2 = 20;
+    int flagbullet = 0;
+    bullet_t bullet[4];
     uart_init( 9600 ); //Initialize USB serial emulation at 9600 baud
     color(1,7);
     clrscr();
-    windows (1, 1, 60, 20, "DTU Space Invaders 3000", 196, 179);
+    windows (x1, y1, x2, y2, "DTU Space Invaders 3000", 196, 179);
     uart_clear();
     ship_t ship;
-    ball_t bullet;
     shipSetup(&ship);
-    bulletSetup(&bullet);
+    bulletSetup(&bullet[4]);
 
 
     while(1){
-        shipControl(&ship, &bullet);
+        flagbullet = shipControl(&ship);
         printShip(&ship);
         backwards(1);
         printf(" ");
+        createBullet(&ship, &bullet[4], flagbullet, x1, y1, x2, y2);
+        flagbullet = 0;
+        printBullet(&bullet[4]);
     }
 }
 
