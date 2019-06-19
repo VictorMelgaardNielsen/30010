@@ -44,6 +44,17 @@ void TIM2_IRQHandler(void) {
         flagenemy = 1;
     }
 
+    //Flag for bullet speed
+    if (timer2.msec%5 == 0) {
+        flagbullettimer = 1;
+
+    }
+
+    //Flag for game refresh rate.
+    if (timer2.msec%5 == 0) {
+        flagrefreshrate = 1;
+    }
+
     if (timer2.msec == 100) {
         timer2.msec = 0;
         timer2.sec += 1;

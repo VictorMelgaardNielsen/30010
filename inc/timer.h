@@ -17,6 +17,8 @@ volatile timee_t timer2;
 
 int flagenemy;
 int flaglcd;
+int flagbullettimer;
+int flagrefreshrate;
 
 void setuptimer();
 void restarttimer();
