@@ -1,5 +1,6 @@
 #include "stm32f30x_conf.h" //STM32 config
 #include "30010_io.h" // Indput/output library for this source
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/master
 #include "ansi.h"
 #include "Lutfile.h"
@@ -14,6 +15,8 @@
 #include "variabel.h"
 >>>>>>> Design af course og meteor
 =======
+=======
+>>>>>>> menu-branch
 #include "ansi.h" //ansi control functions
 #include "Lutfile.h" //Look up table with sin and cos values
 #include "victor.h" //
@@ -21,7 +24,11 @@
 #include "joystick.h" //Joystick setup and read
 #include "lcd.h" //LCD setup and print
 #include "mbedDisplay.h" //Interactions with mbed board
+<<<<<<< HEAD
 >>>>>>> rename af menu.c til mbedDisplay.c og stats funktion
+=======
+#include "variabel.h"
+>>>>>>> menu-branch
 
 
 /*
@@ -287,6 +294,7 @@ int main(void) {
     split2.sec = 0;
     split2.msec = 0;
 
+<<<<<<< HEAD
     starttimer();
 
     number = timerCommand();
@@ -329,6 +337,18 @@ int main(void) {
             timerCommandHelp();
         }
 
+=======
+
+    //readTerminal(a);
+    if (command(s1) == 1) {
+        printf("%c", '1');
+    }
+
+
+
+    char s1[10] ="";
+    char s2[10] ="";
+>>>>>>> menu-branch
 
         if (timer2.msec == 1) {
             clrscr();
@@ -337,8 +357,15 @@ int main(void) {
             printf("%02d:%02d:%02d:%02d\n", split2.hour, split2.mint, split2.sec, split2.msec);
         }
     }
+<<<<<<< HEAD
     */
     /*
+=======
+
+
+    while(1){}
+
+>>>>>>> menu-branch
 }
 */
 
@@ -371,6 +398,7 @@ int main(void) {
     while(1);
 }
 */
+<<<<<<< HEAD
 
 //Ship control
 int main(void) {
@@ -438,4 +466,36 @@ int main(void) {
     gameOver(killcount, highScoreMulti);
 
 }
+=======
+>>>>>>> menu-branch
 
+int main(void) {
+    uint8_t health, killcount, highScoreMulti;
+    uart_init( 115200 ); //Initialize USB serial emulation at 9600 baud
+    setuptimer();
+    starttimer();
+    setupjoystick();
+    lcd_init();
+    clrscr();
+
+    menu_init();
+    int diff = choose_diff();
+
+    if (diff == 1) {
+        health = 3;
+        killcount = 42;
+        highScoreMulti = 4;
+        buildCourse();
+        restarttimer();
+    }
+
+    while(1){
+        display_stats(health,killcount);
+        if (readJoystick() == 0x08) {
+            break;
+        }
+    }
+
+    gameOver(killcount, highScoreMulti);
+
+}

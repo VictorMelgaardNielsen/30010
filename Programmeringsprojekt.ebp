@@ -96,11 +96,15 @@
 		<Unit filename="inc\joystick.h" />
 		<Unit filename="inc\lcd.h" />
 		<Unit filename="inc\Lutfile.h" />
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/master
 		<Unit filename="inc\shipcontrol.h" />
 =======
 		<Unit filename="inc\menu.h" />
 >>>>>>> Menu.c/h filer, timer og lcd edits
+=======
+		<Unit filename="inc\menu.h" />
+>>>>>>> menu-branch
 		<Unit filename="inc\stm32f30x.h" />
 		<Unit filename="inc\stm32f30x_conf.h" />
 		<Unit filename="inc\system_stm32f30x.h" />
@@ -219,6 +223,7 @@
 		<Unit filename="src\main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/master
 		<Unit filename="src\shipControl" />
 		<Unit filename="src\shipcontrol" />
@@ -226,6 +231,9 @@
 =======
 		<Unit filename="src\menu.c">
 >>>>>>> Menu.c/h filer, timer og lcd edits
+=======
+		<Unit filename="src\menu.c">
+>>>>>>> menu-branch
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src\startup_stm32f30x.S">
