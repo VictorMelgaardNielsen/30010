@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdint.h>
-#include "ansi.h"
 #include "stm32f30x_conf.h"
 
 #ifndef _TIMER_H_
@@ -15,9 +14,12 @@ typedef struct {
 
 volatile timee_t timer2;
 
+
+int flagenemy;
 int flaglcd;
 
 void setuptimer();
+void restarttimer();
 void starttimer();
 void stoptimer();
 void TIM2_IRQHandler(void);

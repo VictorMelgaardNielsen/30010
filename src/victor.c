@@ -3,6 +3,8 @@
 #include "stm32f30x_conf.h"
 #include "ansi.h"
 
+cnt = 0;
+
 
 void updateposition(ball_t *v) {
     (*v).x += (*v).vx;
@@ -106,6 +108,22 @@ void setLed(char colour) {
 
 }
 
+void rotateVector(vector_t *v, int32_t a) {
+    int32_t xtemp = v->x;
+    (*v).x = (*v).x * cose(a) - (*v).y * sine(a);
+    (*v).y = xtemp * sine(a) + (*v).y * cose(a);
+    printFix(expand((*v).x));
+    printf(",");
+    printFix(expand((*v).y));
+}
 
-
-
+/*
+void updateEnemyPosition(enemyship_t *enemy, uint8_t *uv) {
+    if (cnt == *uv) {
+        enemy->x += enemy->vx;
+        enemy->y += enemy->vy;
+        cnt = 0;
+    }
+    cnt++;
+}
+*/

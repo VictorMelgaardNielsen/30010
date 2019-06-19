@@ -20,6 +20,13 @@ void setuptimer() {
     NVIC_EnableIRQ(TIM2_IRQn);
 }
 
+void restarttimer() {
+    timer2.hour = 0;
+    timer2.mint = 0;
+    timer2.sec = 0;
+    timer2.msec = 0;
+}
+
 void starttimer() {
     TIM2->CR1 |= 0x0001;
 }
@@ -30,8 +37,21 @@ void stoptimer() {
 
 //Tells the STM32 what to do whenever the timer interrupt is triggered.
 void TIM2_IRQHandler(void) {
-    flaglcd = 1;
+<<<<<<< HEAD
+<<<<<<< refs/remotes/origin/master
+
+=======
+>>>>>>> Min branch åbnes op!
+=======
+
+>>>>>>> menu-branch
     timer2.msec += 1;
+
+    //Flag for enemy spaceship update
+    if (timer2.msec%50 == 0) {
+        flagenemy = 1;
+    }
+
     if (timer2.msec == 100) {
         timer2.msec = 0;
         timer2.sec += 1;
@@ -44,6 +64,21 @@ void TIM2_IRQHandler(void) {
         timer2.mint = 0;
         timer2.hour += 1;
     }
+
+    //lcd flag
+    if (timer2.msec%25 == 0) {
+        flaglcd = 1;
+    }
+
+<<<<<<< HEAD
+<<<<<<< refs/remotes/origin/master
+=======
+
+
+
+>>>>>>> Min branch åbnes op!
+=======
+>>>>>>> menu-branch
     TIM2->SR &= ~(0x0001);
 }
 

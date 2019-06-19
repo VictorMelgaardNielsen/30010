@@ -90,12 +90,20 @@
 		<Unit filename="cmsis\core_cmFunc.h" />
 		<Unit filename="cmsis\core_cmInstr.h" />
 		<Unit filename="inc\30010_io.h" />
+		<Unit filename="inc\ADC.h" />
 		<Unit filename="inc\ansi.h" />
 		<Unit filename="inc\charset.h" />
 		<Unit filename="inc\joystick.h" />
 		<Unit filename="inc\lcd.h" />
 		<Unit filename="inc\Lutfile.h" />
+
 		<Unit filename="inc\shipcontrol.h" />
+=======
+		<Unit filename="inc\menu.h" />
+>>>>>>> Menu.c/h filer, timer og lcd edits
+=======
+		<Unit filename="inc\menu.h" />
+>>>>>>> menu-branch
 		<Unit filename="inc\stm32f30x.h" />
 		<Unit filename="inc\stm32f30x_conf.h" />
 		<Unit filename="inc\system_stm32f30x.h" />
@@ -193,6 +201,9 @@
 		<Unit filename="src\30010_io.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src\ADC.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="src\ansi.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -211,9 +222,15 @@
 		<Unit filename="src\main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+
 		<Unit filename="src\shipControl" />
 		<Unit filename="src\shipcontrol" />
 		<Unit filename="src\shipcontrol.c">
+
+		<Unit filename="src\menu.c">
+
+		<Unit filename="src\menu.c">
+
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src\startup_stm32f30x.S">
@@ -234,7 +251,7 @@
 			<code_completion />
 			<debugger>
 				<target_debugging_settings target="Debug" active_interface="OpenOCD">
-					<debug_interface interface_id="OpenOCD" ip_address="localhost" ip_port="3333" path="C:\OpenOCD\bin-x64" executable="openocd.exe" description="" dont_start_server="false" backoff_time="100" options="0" reg_filter="0" active_family="All" gdb_before_conn="" gdb_after_conn="">
+					<debug_interface interface_id="OpenOCD" ip_address="localhost" ip_port="3333" path="M:\Documents\OpenOCD\bin-x64" executable="openocd.exe" description="" dont_start_server="false" backoff_time="100" options="0" reg_filter="0" active_family="All" gdb_before_conn="" gdb_after_conn="">
 						<family_options family_id="All">
 							<option opt_id="ID_BOARD_CH" opt_value="" />
 							<option opt_id="ID_INTERFACE_CH" opt_value="stlink-v2-1" />

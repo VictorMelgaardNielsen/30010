@@ -1,5 +1,8 @@
+/*
+
 #include "stm32f30x_conf.h" //STM32 config
 #include "30010_io.h" // Indput/output library for this source
+
 #include "ansi.h"
 #include "Lutfile.h"
 #include "victor.h"
@@ -7,7 +10,10 @@
 #include "joystick.h"
 #include "lcd.h"
 #include "shipcontrol.h"
+#include "variabel.h"
+#include "mbedDisplay.h" //Interactions with mbed board
 
+*/
 
 /*
 int16_t power(int16_t a, int16_t exp) {
@@ -66,8 +72,13 @@ int main(void) {
 */
 
 //Exercise 4
+
 /*
 
+
+
+/*
+Design af course og meteor
  int main(void) {
     uart_init( 115200 ); //Initialize USB serial emulation at 9600 baud
 
@@ -78,7 +89,7 @@ int main(void) {
     v.y = 4;
     v.vx = 1;
     v.vy = 1;
-    cnt.x =0;
+    cnt.x = 0;
 
     //course values
     uint8_t x1 = 1;
@@ -102,7 +113,7 @@ int main(void) {
 
     while(1){};
 }
-
+*/
 
 
 /*
@@ -245,6 +256,7 @@ int main(void) {
 
 /*
 //Exercise 6.2 del 2
+/*
 int main(void) {
     int number = 0;
     uart_init( 9600 );
@@ -265,6 +277,7 @@ int main(void) {
     split2.mint = 0;
     split2.sec = 0;
     split2.msec = 0;
+
 
     starttimer();
 
@@ -309,6 +322,18 @@ int main(void) {
         }
 
 
+
+    //readTerminal(a);
+    if (command(s1) == 1) {
+        printf("%c", '1');
+    }
+
+
+
+    char s1[10] ="";
+    char s2[10] ="";
+
+
         if (timer2.msec == 1) {
             clrscr();
             printf("%02d:%02d:%02d\n", timer2.hour, timer2.mint, timer2.sec);
@@ -316,8 +341,15 @@ int main(void) {
             printf("%02d:%02d:%02d:%02d\n", split2.hour, split2.mint, split2.sec, split2.msec);
         }
     }
+
     */
     /*
+
+
+
+    while(1){}
+
+
 }
 */
 
@@ -343,8 +375,18 @@ int main(void) {
 }
 */
 /*
+
+int main(void) {
+    uart_init( 9600 ); //Initialize USB serial emulation at 9600 baud
+    clrscr();
+    buildCourse();
+    while(1);
+}
+*/
+/*
 //Ship control
 int main(void) {
+
     int x1 = 1;
     int y1 = 1;
     int x2 = 60;
@@ -352,6 +394,7 @@ int main(void) {
     int flagbullet = 0;
     bullet_t bullet[4];
     uart_init( 9600 ); //Initialize USB serial emulation at 9600 baud
+
     color(1,7);
     clrscr();
     windows (x1, y1, x2, y2, "DTU Space Invaders 3000", 196, 179);
@@ -370,6 +413,73 @@ int main(void) {
         createBullet(&ship, bullet, flagbullet, x1, y1, x2, y2);
         flagbullet = 0;
         printBullet(bullet);
+
+    uint8_t health, killcount, highScoreMulti;
+    uart_init( 115200 ); //Initialize USB serial emulation at 9600 baud
+GameOver() added to mbedDisplay.c
+    setuptimer();
+    starttimer();
+    setupjoystick();
+    lcd_init();
+    clrscr();
+
+    menu_init();
+    int diff = choose_diff();
+
+    if (diff == 1) {
+        health = 3;
+        killcount = 42;
+        highScoreMulti = 4;
+        buildCourse();
+        restarttimer();
     }
+
+    while(1){
+
+        display_stats(1,42);
+
+        display_stats(health,killcount);
+        if (readJoystick() == 0x08) {
+            break;
+        }
+ GameOver() added to mbedDisplay.c
+    }
+
+    gameOver(killcount, highScoreMulti);
+
 }
+
+*/
+/*
+int main(void) {
+    uint8_t health, killcount, highScoreMulti;
+    uart_init( 115200 ); //Initialize USB serial emulation at 9600 baud
+    setuptimer();
+    starttimer();
+    setupjoystick();
+    lcd_init();
+    clrscr();
+
+    menu_init();
+    int diff = choose_diff();
+
+    if (diff == 1) {
+        health = 3;
+        killcount = 42;
+        highScoreMulti = 4;
+        buildCourse();
+        restarttimer();
+    }
+
+    while(1){
+        display_stats(health,killcount);
+        if (readJoystick() == 0x08) {
+            break;
+        }
+    }
+
+    gameOver(killcount, highScoreMulti);
+
+}
+
 */
