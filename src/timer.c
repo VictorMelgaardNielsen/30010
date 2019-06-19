@@ -83,6 +83,8 @@ char * readTerminal(char a[]){
 }
 */
 
+//Test kode til victor
+
 //Command takes a returns a different number, depending on whether the user inputs
 //"start". "stop", "split", "reset", or "help".
 uint8_t timerCommand() {
