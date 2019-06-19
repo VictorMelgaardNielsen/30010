@@ -28,6 +28,7 @@ void stoptimer() {
     TIM2->CR1 &= ~(0x0001);
 }
 
+//Tells the STM32 what to do whenever the timer interrupt is triggered.
 void TIM2_IRQHandler(void) {
     flaglcd = 1;
     timer2.msec += 1;
@@ -46,6 +47,7 @@ void TIM2_IRQHandler(void) {
     TIM2->SR &= ~(0x0001);
 }
 
+//Read terminal takes an empty char array and returns the text written in terminal when enter is pressed
 /*
 char * readTerminal(char a[]){
     int i = 0;
@@ -64,28 +66,64 @@ char * readTerminal(char a[]){
 }
 */
 
-uint8_t command(char s1[]) {
+//Command takes a returns a different number, depending on whether the user inputs
+//"start". "stop", "split", "reset", or "help".
+uint8_t timerCommand() {
+    int flagStartStop = 0;
+    timee_t split1;
+    split1.hour = 0;
+    split1.mint = 0;
+    split1.sec = 0;
+    split1.msec = 0;
+
+    timee_t split2;
+    split2.hour = 0;
+    split2.mint = 0;
+    split2.sec = 0;
+    split2.msec = 0;
     uint8_t number = 0;
     int i = 0;
-    char s2[10] = {'s','t','a','r','t','0','0','0','0','0'};
+    char s1[10] = {'0','0','0','0','0','0','0','0','0','0'};
+    char s2[10] = {'s','t','a','r','t','0x0D','0','0','0','0'};
+    char s3[10] = "";
+    char s4[10] = "start";
+
     while (i < 10) {
         if(uart_get_count() > 0) {
             s1[i] = uart_get_char();
             printf("%c",s1[i]);
             if (s1[i] == 0x0D) {
                 if(strcmp(s1, s2) == 0) {
+                    number = 0;
+                    return number;
+                }
+                else if(strcmp(s1, s2) == 0) {
                     number = 1;
                     return number;
                 }
-                else {
-                    printf("%s", "no command");
+                else if(strcmp(s1, s2) == 0) {
+                    number = 2;
+                    return number;
+                }
+                else if(strcmp(s1, s2) == 0) {
+                    number = 3;
+                    return number;
+                }
+                else if(strcmp(s1, s2) == 0) {
+                    number = 4;
+                    return number;
                 }
             }
-        i++;
+            i++;
         }
     }
+
 }
 
+//commandHelp
+void timerCommandHelp() {
+    printf("%s\n%s\n%s\n%s\n%s\n%s\n%s\n","The list of commands are:","start","stop","split1","split2","reset","help");
+}
 
 
 

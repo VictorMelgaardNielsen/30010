@@ -95,6 +95,7 @@
 		<Unit filename="inc\joystick.h" />
 		<Unit filename="inc\lcd.h" />
 		<Unit filename="inc\Lutfile.h" />
+		<Unit filename="inc\shipcontrol.h" />
 		<Unit filename="inc\stm32f30x.h" />
 		<Unit filename="inc\stm32f30x_conf.h" />
 		<Unit filename="inc\system_stm32f30x.h" />
@@ -208,6 +209,11 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src\main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src\shipControl" />
+		<Unit filename="src\shipcontrol" />
+		<Unit filename="src\shipcontrol.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src\startup_stm32f30x.S">
