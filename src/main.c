@@ -342,7 +342,7 @@ int main(void) {
 
 }
 */
-
+/*
 //Ship control
 int main(void) {
     int x1 = 1;
@@ -372,4 +372,4 @@ int main(void) {
         printBullet(bullet);
     }
 }
-
+*/
