@@ -358,7 +358,8 @@ int main(void) {
     uart_clear();
     ship_t ship;
     shipSetup(&ship);
-    bulletSetup(&bullet[4]);
+    bulletSetup(bullet);
+    printf("%d",bullet[3].x);
 
 
     while(1){
@@ -366,9 +367,9 @@ int main(void) {
         printShip(&ship);
         backwards(1);
         printf(" ");
-        createBullet(&ship, &bullet[4], flagbullet, x1, y1, x2, y2);
+        createBullet(&ship, bullet, flagbullet, x1, y1, x2, y2);
         flagbullet = 0;
-        printBullet(&bullet[4]);
+        printBullet(bullet);
     }
 }
 

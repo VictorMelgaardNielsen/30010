@@ -22,9 +22,9 @@ typedef struct {
 void shipSetup(ship_t * ship);
 int shipControl(ship_t * ship);
 void printShip(ship_t * ship);
-void bulletSetup(bullet_t * bullet[4]);
-void createBullet(ship_t * ship, bullet_t * bullet[4], int flagbullet, int x1, int y1, int x2, int y2);
-void printBullet(bullet_t * bullet[4]);
+void bulletSetup(bullet_t bullet[]);
+void createBullet(ship_t * ship, bullet_t * bullet, int flagbullet, int x1, int y1, int x2, int y2);
+void printBullet(bullet_t * bullet);
 
 
 #endif
