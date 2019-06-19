@@ -37,14 +37,6 @@ void stoptimer() {
 
 //Tells the STM32 what to do whenever the timer interrupt is triggered.
 void TIM2_IRQHandler(void) {
-<<<<<<< HEAD
-<<<<<<< refs/remotes/origin/master
-
-=======
->>>>>>> Min branch åbnes op!
-=======
-
->>>>>>> menu-branch
     timer2.msec += 1;
 
     //Flag for enemy spaceship update
@@ -69,16 +61,6 @@ void TIM2_IRQHandler(void) {
     if (timer2.msec%25 == 0) {
         flaglcd = 1;
     }
-
-<<<<<<< HEAD
-<<<<<<< refs/remotes/origin/master
-=======
-
-
-
->>>>>>> Min branch åbnes op!
-=======
->>>>>>> menu-branch
     TIM2->SR &= ~(0x0001);
 }
 
