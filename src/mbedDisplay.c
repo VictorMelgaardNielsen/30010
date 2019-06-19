@@ -107,7 +107,7 @@ void display_stats(uint8_t health, uint8_t kills) {
 }
 
 void gameOver(uint8_t kills, uint8_t highScoreMulti) {
-    int8_t highscore = 0;
+    int highscore = 0;
     char scoreStr[14] = "Highscore: ";
     char intNumber[4];
     int i = 11;
@@ -115,14 +115,14 @@ void gameOver(uint8_t kills, uint8_t highScoreMulti) {
     stoptimer();
 
 
-    //highscore = (120 - (timer2.sec + timer2.mint*60)) + (int8_t)(kills*highScoreMulti);
-    highscore = kills*highScoreMulti;
-    /*
+    highscore = (120 - (int)(timer2.sec + timer2.mint*60)) + (int)(kills*highScoreMulti);
+    //highscore = (int)(kills*highScoreMulti) - 52;
+
     if (highscore < 0) {
         highscore = 0;
     }
-    */
-    sprintf(intNumber, "%03d", highscore);
+
+    sprintf(intNumber, "%3d", highscore);
     while (i < 14) {
         scoreStr[i] = intNumber[i - 11];
         i++;
