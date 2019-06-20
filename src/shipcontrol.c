@@ -148,15 +148,18 @@ void printBullet(bullet_t bullet[]) {
         }
     }
 }
-/*
-void bulletsReady(bullet_t bullet[]) {
-    uint8_t = 0;
-    for (int i = 0; i < 5; i++) {
-        if (bullet[i].x != 0) {
 
+void bulletsReady(bullet_t bullet[], uint8_t x2, uint8_t y2) {
+    uint8_t amountofbullets = 0;
+    for (int i = 0; i < 5; i++) {
+        if (bullet[i].x == -1) {
+        amountofbullets += 1;
+        }
     }
+    gotoxy(x2-15, y2+1);
+    printf("%s%d","Bullets Left: ", amountofbullets);
 }
-*/
+
 
 
 // sizeof(bullet)/sizeof(bullet[0])
