@@ -20,8 +20,8 @@ void bulletSetup(bullet_t bullet[]) {
 }
 
 //Ship control from terminal. The ship can be controlled by flying in eight different directions.
-int shipControl(ship_t * ship) {
-    int flagbullet = 0;
+uint8_t shipControl(ship_t * ship) {
+    uint8_t flagbullet = 0;
     if (uart_get_count() > 0) { // Reads number of characters in the buffer
         char s[0] = {'0'};
         s[0] = uart_get_char(); // Returns the first element of the buffer
@@ -148,6 +148,18 @@ void printBullet(bullet_t bullet[]) {
         }
     }
 }
+
+void bulletsReady(bullet_t bullet[], uint8_t x2, uint8_t y2) {
+    uint8_t amountofbullets = 0;
+    for (int i = 0; i < 5; i++) {
+        if (bullet[i].x == -1) {
+        amountofbullets += 1;
+        }
+    }
+    gotoxy(x2-15, y2+1);
+    printf("%s%d","Bullets Left: ", amountofbullets);
+}
+
 
 
 // sizeof(bullet)/sizeof(bullet[0])

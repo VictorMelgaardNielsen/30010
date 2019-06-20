@@ -22,13 +22,14 @@ typedef struct {
 
 //------------------------------Functions---------------------------
 void shipSetup(ship_t * ship);
-int shipControl(ship_t * ship);
+uint8_t shipControl(ship_t * ship);
 void printShip(ship_t * ship);
 void bulletSetup(bullet_t bullet[]);
 void updateBullet(ship_t * ship, bullet_t * bullet, uint8_t flagbullet, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2);
 void printBullet(bullet_t * bullet);
 void eraseship (ship_t * ship);
 void erasebullet (bullet_t bullet[]);
+void bulletsReady(bullet_t bullet[], uint8_t x2, uint8_t y2);
 
 
 #endif
