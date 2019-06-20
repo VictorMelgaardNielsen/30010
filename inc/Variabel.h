@@ -9,10 +9,10 @@
 #define _VARIABEL_H_
 
 typedef struct {
-    int32_t x, y;
+    uint8_t x, y;
 } meteor_t;
-void gravityCheckBullet(bullet_t *b, meteor_t m);
-void gravityCheckShip(ship_t *ship, meteor_t m);
+void gravityCheckBullet(bullet_t b[], meteor_t m[]);
+void gravityCheckShip(ship_t *ship, meteor_t m[]);
 //void powerUp_Nuke (spaceship_t x);
 //void use_Nuke(int8_t a);
 //void powerUp_Bullets(spaceship_t x);
