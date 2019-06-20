@@ -30,23 +30,20 @@ for (yStart; yStart < y2; yStart++) {
     backwards(1);
 }
 
-printf("%c", 188);
-backwards(2);
-
-for(left; left >= x1; left--) {
-    printf("%c", 205);
-    backwards(2);
-}
+gotoxy(x1,y1+1);
+ for (yStart = y1; yStart < y2; yStart++) {
+    printf("%c", 186);
+    down(1);
+    backwards(1);
+ }
 
 printf("%c", 200);
-backwards(1);
-up(1);
 
-for (y2 - 1; y2 > y1; y2--) {
-    printf("%c", 186);
-    up(1);
-    backwards(1);
-    }
+for (xStart = x1; xStart < x2; xStart++) {
+        printf("%c", 205);
+}
+
+
 }
 
 void drawCounter(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2, int nice) {
