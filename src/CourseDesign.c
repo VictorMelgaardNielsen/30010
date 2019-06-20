@@ -3,11 +3,11 @@
 
 
 
-void buildCourse(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
+void buildCourse(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2, meteor_t m[]) {
     course(x1,y1,x2,y2);
-    drawMeteor(100, 30);
-    drawMeteor(90, 10);
-    drawMeteor(120, 22);
+    drawMeteor(m[0].x,m[0].y);
+    drawMeteor(m[1].x,m[1].y);
+    drawMeteor(m[2].x,m[2].y);
 
 }
 
@@ -93,34 +93,18 @@ void drawMeteor(int8_t x, int8_t y) {
     gotoxy(x, y + 4);
     printf("  `''''`  ");
 }
-/*
-void easy(spaceship_t *s, uint8_t *uv, uint8_t *enemyAmount, uint8_t *highscoreMulti) {
-    s->health = 3;
 
-    *uv = 6;
+void initMeteor(meteor_t m[]) {
+    m[0].x = 100;
+    m[0].y = 30;
+    m[1].x = 90;
+    m[1].y = 10;
+    m[2].x = 120;
+    m[2].y = 22;
 
-    *enemyAmount = 3;
-
-    *highscoreMulti = 1;
 }
 
-void medium(spaceship_t *s, uint8_t *uv, uint8_t *enemyAmount, uint8_t *highscoreMulti) {
-    s->health = 2;
 
-    *uv = 4;
 
-    *enemyAmount = 4;
 
-    *highscoreMulti = 2;
-}
 
-void realShit(spaceship_t *s, uint8_t *uv, uint8_t *enemyAmount, uint8_t *highscoreMulti) {
-    s->health = 1;
-
-    *uv = 2;
-
-    *enemyAmount = 6;
-
-    *highscoreMulti = 4;
-}
-*/
