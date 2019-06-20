@@ -2,45 +2,45 @@
 
 void gravityCheckBullet(bullet_t *b, meteor_t m) {
 
-    if (b.x < m.x && b.x > m.x - 4 && b.y < m.y && b.y > m.y - 2) {
-        b.vx += 1;
-        b.vy += 1;
+    if (b->x < m.x && b->x > m.x - 4 && b->y < m.y && b->y > m.y - 2) {
+        b->vx += 1;
+        b->vy += 1;
     }
 
-    if (b.x >= m.x && b.x <= m.x + 10 && b.y < m.y && b.y > m.y - 2) {
-        b.vy += 1;
+    if (b->x >= m.x && b->x <= m.x + 10 && b->y < m.y && b->y > m.y - 2) {
+        b->vy += 1;
     }
 
-    if (b.x > m.x + 10 && b.x < m.x + 14 && b.y < m.y && b.y > m.y - 2) {
-        b.vx += -1;
-        b.vy += 1;
+    if (b->x > m.x + 10 && b->x < m.x + 14 && b->y < m.y && b->y > m.y - 2) {
+        b->vx += -1;
+        b->vy += 1;
     }
 
-    if (b.x < m.x && b.x > m.x - 4 && b.y >= m.y && b.y <= m.y + 4) {
-        b.vx += 1;
+    if (b->x < m.x && b->x > m.x - 4 && b->y >= m.y && b->y <= m.y + 4) {
+        b->vx += 1;
     }
 
-    if (b.x < m.x && b.x > m.x - 4 && b.y > m.y + 4 && b.y < m.y + 6) {
-        b.vx += 1;
-        b.vy += -1;
+    if (b->x < m.x && b->x > m.x - 4 && b->y > m.y + 4 && b->y < m.y + 6) {
+        b->vx += 1;
+        b->vy += -1;
     }
 
-    if (b.x >= m.x && b.x <= m.x + 10 && b.y > m.y + 4 && b.y < m.y + 6) {
-        b.vy += -1;
+    if (b->x >= m.x && b->x <= m.x + 10 && b->y > m.y + 4 && b->y < m.y + 6) {
+        b->vy += -1;
     }
 
-    if (b.x > m.x + 10 && b.x < m.x + 14 && b.y > m.y + 4 && b.y < m.y + 6) {
-        b.vx += -1;
-        b.vy += -1;
+    if (b->x > m.x + 10 && b->x < m.x + 14 && b->y > m.y + 4 && b->y < m.y + 6) {
+        b->vx += -1;
+        b->vy += -1;
     }
 
-    if (b.x > m.x + 10 && b.x < m.x + 14 && b.y >= m.y && b.y <= m.y + 4) {
-        b.vx += -1;
+    if (b->x > m.x + 10 && b->x < m.x + 14 && b->y >= m.y && b->y <= m.y + 4) {
+        b->vx += -1;
     }
 
-    if (b.x >= m.x && b.x <= m.x + 10 && b.y >= m.y && b.y <= m.y + 4) {
-        b.x = -1;
-        b.y = -1;
+    if (b->x >= m.x && b->x <= m.x + 10 && b->y >= m.y && b->y <= m.y + 4) {
+        b->x = -1;
+        b->y = -1;
     }
 
 }
@@ -83,7 +83,7 @@ void gravityCheckShip(ship_t *ship, meteor_t m) {
         ship->vx += -1;
     }
 
-    if (ship>x >= m.x && ship->x <= m.x + 10 && ship->y >= m.y && ship->y <= m.y + 4) {
+    if (ship->x >= m.x && ship->x <= m.x + 10 && ship->y >= m.y && ship->y <= m.y + 4) {
         ship->healthpoints = 0;
     }
 

@@ -3,6 +3,7 @@
 #include "ansi.h"
 #include "stm32f30x_conf.h"
 #include <stdlib.h>
+#include "shipcontrol.h"
 
 #ifndef _VARIABEL_H_
 #define _VARIABEL_H_

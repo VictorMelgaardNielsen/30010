@@ -57,18 +57,21 @@ void choose_diff(ship_t * ship, uint8_t * highscoreMulti) {
             ship->killcount = 0;
             shipSetup(ship);
             *highscoreMulti = 1;
+            restarttimer();
             break;
         } if(readJoystick() == 0x01) {
             ship->healthpoints = 2;
             ship->killcount = 0;
             shipSetup(ship);
             *highscoreMulti = 2;
+            restarttimer();
             break;
         } if(readJoystick() == 0x08) {
             ship->healthpoints = 1;
             ship->killcount = 0;
             shipSetup(ship);
             *highscoreMulti = 4;
+            restarttimer();
             break;
         }
     }
