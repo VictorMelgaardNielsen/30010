@@ -8,7 +8,7 @@
 #define _SHIPCONTROL_H_
 
 
-//-----------------Structs------------------------
+//------------------------------Structs-----------------------------
 typedef struct {
     int16_t x, y, vx, vy;
     uint8_t powerup;
@@ -20,7 +20,7 @@ typedef struct {
     int16_t x, y, vx, vy;
 } bullet_t;
 
-//------------Functions---------------------------
+//------------------------------Functions---------------------------
 void shipSetup(ship_t * ship);
 int shipControl(ship_t * ship);
 void printShip(ship_t * ship);
