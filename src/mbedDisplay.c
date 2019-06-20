@@ -50,14 +50,26 @@ void menu_init() {
         }
 }
 
-uint8_t choose_diff() {
+void choose_diff(ship_t * ship, uint8_t * highscoreMulti) {
     while(1) {
         if(readJoystick() == 0x04) { //retruns 1 if easy is selected
-            return 0x01;
+            ship->healthpoints = 3;
+            ship->killcount = 0;
+            shipSetup(ship);
+            *highscoreMulti = 1;
+            break;
         } if(readJoystick() == 0x01) { //returns 2 if medium is selected
-            return 0x02;
+            ship->healthpoints = 2;
+            ship->killcount = 0;
+            shipSetup(ship);
+            *highscoreMulti = 2;
+            break;
         } if(readJoystick() == 0x08) { //retruns 3 if hard is selected
-            return 0x03;
+            ship->healthpoints = 1;
+            ship->killcount = 0;
+            shipSetup(ship);
+            *highscoreMulti = 4;
+            break;
         }
     }
 }
