@@ -45,12 +45,12 @@ void TIM2_IRQHandler(void) {
     }
 
     //Flag for bullet speed
-    if (timer2.msec%5 == 0) {
+    if (timer2.msec%10 == 0) {
         flagbullettimer = 1;
 
     }
 
-    if (timer2.msec%20 == 0) {
+    if (timer2.msec%50 == 0) {
         flagravity = 1;
     }
 

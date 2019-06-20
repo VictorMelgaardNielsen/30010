@@ -1,61 +1,84 @@
 #include "variabel.h"
 
 void gravityCheckBullet(bullet_t b[], meteor_t m[]) {
-    int i = 0, j=   0;
+    int i, j;
 
-    while(j < 3){
-        while (i < 5) {
-            if (flagravity == 1) {
+    if (flagravity == 1) {
+        for (j = 0; j < 3; j++){
+            for (i = 0; i < 5; i++) {
                 if (b[i].x < m[j].x && b[i].x > m[j].x - 10 && b[i].y < m[j].y && b[i].y > m[j].y - 5) {
-                    b[i].vx += 1;
-                    b[i].vy += 1;
+                    if (b[i].vx < 3 && b[i].vy < 2) {
+                        b[i].vx += 2;
+                        b[i].vy += 1;
+                    }
                 }
 
                 if (b[i].x >= m[j].x && b[i].x <= m[j].x + 10 && b[i].y < m[j].y && b[i].y > m[j].y - 5) {
-                    b[i].vy += 1;
+                    if (b[i].vy < 2) {
+                        b[i].vy += 1;
+                    }
                 }
 
                 if (b[i].x > m[j].x + 10 && b[i].x < m[j].x + 20 && b[i].y < m[j].y && b[i].y > m[j].y - 5) {
-                    b[i].vx += -1;
-                    b[i].vy += 1;
+                    if (b[i].vx > -3 && b[i].vy < 2) {
+                        b[i].vx += -2;
+                        b[i].vy += 1;
+                    }
                 }
 
                 if (b[i].x < m[j].x && b[i].x > m[j].x - 10 && b[i].y >= m[j].y && b[i].y <= m[j].y + 4) {
-                    b[i].vx += 1;
+                    if (b[i].vx < 3) {
+                        b[i].vx += 2;
+                    }
                 }
 
                 if (b[i].x < m[j].x && b[i].x > m[j].x - 10 && b[i].y > m[j].y + 4 && b[i].y < m[j].y + 9) {
-                    b[i].vx += 1;
-                    b[i].vy += -1;
+                    if (b[i].vx < 3 && b[i].vy > -2) {
+                        b[i].vx += 2;
+                        b[i].vy += -1;
+                    }
                 }
 
                 if (b[i].x >= m[j].x && b[i].x <= m[j].x + 10 && b[i].y > m[j].y + 4 && b[i].y < m[j].y + 9) {
-                    b[i].vy += -1;
+                    if (b[i].vy > -3) {
+                        b[i].vy += -2;
+                    }
                 }
 
                 if (b[i].x > m[j].x + 10 && b[i].x < m[j].x + 20 && b[i].y > m[j].y + 4 && b[i].y < m[j].y + 9) {
-                    b[i].vx += -1;
-                    b[i].vy += -1;
+                    if (b[i].vx > -3 && b[i].vy > -2) {
+                        b[i].vx += -2;
+                        b[i].vy += -1;
+                    }
                 }
 
                 if (b[i].x > m[j].x + 10 && b[i].x < m[j].x + 20 && b[i].y >= m[j].y && b[i].y <= m[j].y + 4) {
-                    b[i].vx += -1;
+                    if (b[i].vx > -3) {
+                        b[i].vx += -2;
+                    }
                 }
-
-
-
-            flagravity = 0;
-            }
-
-             if (b[i].x >= m[j].x && b[i].x <= m[j].x + 10 && b[i].y >= m[j].y && b[i].y <= m[j].y + 4) {
+                /*
+                if (b[i].x >= m[j].x && b[i].x <= m[j].x + 10 && b[i].y >= m[j].y && b[i].y <= m[j].y + 4) {
                     b[i].x = -1;
                     b[i].y = -1;
-
                 }
-                i++;
+                */
+            }
         }
-        j++;
+    flagravity = 0;
+    }
+}
 
+void meteorBulletHit(bullet_t b[], meteor_t m[]) {
+    int i, j;
+
+    for (j = 0; j < 3; j++){
+        for (i = 0; i < 5; i++) {
+            if (b[i].x >= m[j].x && b[i].x <= m[j].x + 10 && b[i].y >= m[j].y && b[i].y <= m[j].y + 4) {
+                    b[i].x = -1;
+                    b[i].y = -1;
+            }
+        }
     }
 }
 
