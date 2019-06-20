@@ -20,7 +20,7 @@ void bulletSetup(bullet_t bullet[]) {
 }
 
 //Ship control from terminal. The ship can be controlled by flying in eight different directions.
-uint8_t shipControl(ship_t * ship) {
+uint8_t shipControl(ship_t * ship, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
     uint8_t flagbullet = 0;
     if (uart_get_count() > 0) { // Reads number of characters in the buffer
         char s[0] = {'0'};
@@ -79,9 +79,31 @@ uint8_t shipControl(ship_t * ship) {
                 ship->vy = -1;
             }
         }
-        if (s[0] == 'w') { // Fly ship forward by updating velocity
-            ship->x += ship->vx;
-            ship->y += ship->vy;
+        if (s[0] == 'w') { // Fly ship forward by updating velocity. If statements limits ship to the boundaries of window size.
+            if (ship->x == x1+1) {
+                if (ship->vx != -1 && ship->vx != 0){
+                    ship->x += ship->vx;
+                    ship->y += ship->vy;
+                }
+            } else if (ship->x == x2-1 ) {
+                if (ship->vx != 1 && ship->vx != 0){
+                    ship->x += ship->vx;
+                    ship->y += ship->vy;
+                }
+            } else if (ship->y == y1+1) {
+                if (ship->vy != -1) {
+                    ship->x += ship->vx;
+                    ship->y += ship->vy;
+                }
+            } else if (ship->y == y2-1) {
+                if (ship->vy != 1) {
+                    ship->x += ship->vx;
+                    ship->y += ship->vy;
+                }
+            } else {
+                ship->x += ship->vx;
+                ship->y += ship->vy;
+              }
         }
         if (s[0] == 's') { // Shoot
             flagbullet = 1;
@@ -161,6 +183,7 @@ void bulletsReady(bullet_t bullet[], uint8_t x2, uint8_t y2) {
 }
 
 
+//I rapport tilføj visuel beskrivelse
 
 // sizeof(bullet)/sizeof(bullet[0])
 
