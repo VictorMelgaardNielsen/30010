@@ -3,8 +3,8 @@
 
 
 
-void buildCourse() {
-    course(1,1,160,40);
+void buildCourse(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
+    course(x1,y1,x2,y2);
     drawMeteor(100, 30);
     drawMeteor(90, 10);
     drawMeteor(120, 22);
