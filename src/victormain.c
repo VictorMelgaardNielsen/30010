@@ -2,7 +2,6 @@
 #include "30010_io.h" // Indput/output library for this source
 #include "ansi.h"
 #include "Lutfile.h"
-#include "victor.h"
 #include "timer.h"
 #include "joystick.h"
 #include "lcd.h"
@@ -345,11 +344,11 @@ int main(void) {
 
 //Ship control
 int main(void) {
-    int x1 = 1;
-    int y1 = 1;
-    int x2 = 60;
-    int y2 = 20;
-    int flagbullet = 0;
+    uint x1 = 1;
+    uint y1 = 1;
+    uint x2 = 60;
+    uint y2 = 20;
+    uint8_t flagbullet = 0;
     bullet_t bullet[5];
     uart_init( 1000000 ); //Initialize USB serial emulation at 9600 baud
     color(1,7);
@@ -360,7 +359,6 @@ int main(void) {
     bulletSetup(bullet);
     setuptimer();
     starttimer();
-
 
     while(1){
         flagbullet = shipControl(&ship);

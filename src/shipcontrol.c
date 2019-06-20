@@ -1,4 +1,4 @@
-#include "shipcontrol.h" //headeren inkluderes i c filen
+#include "shipcontrol.h" //Headeren inkluderes i c filen
 #include <string.h>
 
 void shipSetup(ship_t * ship) {
@@ -6,7 +6,6 @@ void shipSetup(ship_t * ship) {
     ship->y = 10;
     ship->vx = 1;
     ship->vy = 0;
-    ship->angle = 0; // The ship can be controlled in eight different directions.
     ship->powerup = 0;
 }
 
@@ -17,156 +16,127 @@ void bulletSetup(bullet_t bullet[]) {
         bullet[i].y = -1;
         bullet[i].vx = 0;
         bullet[i].vy = 0;
-        bullet[i].angle = 0;
     }
 }
-// sizeof(bullet)/sizeof(bullet[0])
 
-//Ship control from terminal
+//Ship control from terminal. The ship can be controlled by flying in eight different directions.
 int shipControl(ship_t * ship) {
     int flagbullet = 0;
     if (uart_get_count() > 0) { // Reads number of characters in the buffer
-        char s[0] = {'0'}; // char s[0] = {'0','0'};
+        char s[0] = {'0'};
         s[0] = uart_get_char(); // Returns the first element of the buffer
         if (s[0] == 'a') {
-            ship->angle -= 1;
-            if (ship->angle < 0) {
-                ship->angle = 7;
+            if (ship->vx == 0 && ship->vy == -1) { //position 0 out of index 0 to 7
+                ship->vx = -1;
+                ship->vy = -1;
+            } else if (ship->vx == -1 && ship->vy == -1) { // position 7
+                ship->vx = -1;
+                ship->vy = 0;
+            } else if (ship->vx == -1 && ship->vy == 0) { // position 6
+                ship->vx = -1;
+                ship->vy = 1;
+            } else if (ship->vx == -1 && ship->vy == 1) {
+                ship->vx = 0;
+                ship->vy = 1;
+            } else if (ship->vx == 0 && ship->vy == 1) {
+                ship->vx = 1;
+                ship->vy = 1;
+            } else if (ship->vx == 1 && ship->vy == 1) {
+                ship->vx = 1;
+                ship->vy = 0;
+            } else if (ship->vx == 1 && ship->vy == 0) {
+                ship->vx = 1;
+                ship->vy = -1;
+            } else if (ship->vx == 1 && ship->vy == -1) {
+                ship->vx = 0;
+                ship->vy = -1;
             }
         }
         if (s[0] == 'd') {
-            ship->angle += 1;
-            if (ship->angle >= 8) {
-                ship->angle = 0;
+            if (ship->vx == 0 && ship->vy == -1) { //position 0 out of index 0 to 7
+                ship->vx = 1;
+                ship->vy = -1;
+            } else if (ship->vx == 1 && ship->vy == -1) { //position 1
+                ship->vx = 1;
+                ship->vy = 0;
+            } else if (ship->vx == 1 && ship->vy == 0) { //position 2
+                ship->vx = 1;
+                ship->vy = 1;
+            } else if (ship->vx == 1 && ship->vy == 1) {
+                ship->vx = 0;
+                ship->vy = 1;
+            } else if (ship->vx == 0 && ship->vy == 1) {
+                ship->vx = -1;
+                ship->vy = 1;
+            } else if (ship->vx == -1 && ship->vy == 1) {
+                ship->vx = -1;
+                ship->vy = 0;
+            } else if (ship->vx == -1 && ship->vy == 0) {
+                ship->vx = -1;
+                ship->vy = -1;
+            } else if (ship->vx == -1 && ship->vy == -1) {
+                ship->vx = 0;
+                ship->vy = -1;
             }
         }
-        if (s[0] == 'w') {
-            if (ship->angle == 0) {
-                ship->y -= 1;
-            }
-            if (ship->angle == 1) {
-                ship->x += 1;
-                ship->y -= 1;
-            }
-            if (ship->angle == 2) {
-                ship->x += 1;
-            }
-            if (ship->angle == 3) {
-                ship->x += 1;
-                ship->y += 1;
-            }
-            if (ship->angle == 4) {
-                ship->y += 1;
-            }
-            if (ship->angle == 5) {
-                ship->x -= 1;
-                ship->y += 1;
-            }
-            if (ship->angle == 6) {
-                ship->x -= 1;
-            }
-            if (ship->angle == 7) {
-                ship->x -= 1;
-                ship->y -= 1;
-            }
+        if (s[0] == 'w') { // Fly ship forward by updating velocity
+            ship->x += ship->vx;
+            ship->y += ship->vy;
         }
-        if (s[0] == 's') {
+        if (s[0] == 's') { // Shoot
             flagbullet = 1;
             return flagbullet;
         }
     }
 }
 
-//Print ship according to its angle.
+//Prints ship according to its velocity.
 void printShip(ship_t * ship) {
     gotoxy(ship->x, ship->y);
-    if (ship->angle == 0) {
-        printf("^");
-    }
-    if (ship->angle == 1) {
-        printf("/");
-    }
-    if (ship->angle == 2) {
-        printf(">");
-    }
-    if (ship->angle == 3) {
-        printf("\\");
-    }
-    if (ship->angle == 4) {
-        printf("|");
-    }
-    if (ship->angle == 5) {
-        printf("/");
-    }
-    if (ship->angle == 6) {
-        printf("<");
-    }
-    if (ship->angle == 7) {
-        printf("\\");
+    if (ship->vx == 0 && ship->vy == -1) { //position 0 out of 8
+            printf("^");
+    } else if (ship->vx == 1 && ship->vy == -1) { //position 1 out of 8
+            printf("/");
+    } else if (ship->vx == 1 && ship->vy == 0) { //position 2 out of 8
+            printf(">");
+    } else if (ship->vx == 1 && ship->vy == 1) {
+            printf("\\");
+    } else if (ship->vx == 0 && ship->vy == 1) {
+            printf("|");
+    } else if (ship->vx == -1 && ship->vy == 1) {
+            printf("/");
+    } else if (ship->vx == -1 && ship->vy == 0) {
+            printf("<");
+    } else if (ship->vx == -1 && ship->vy == -1) {
+            printf("\\");
     }
 }
 
-void updateBullet(ship_t * ship, bullet_t bullet[], int flagbullet, int x1, int y1, int x2, int y2) {
+void updateBullet(ship_t * ship, bullet_t bullet[], uint8_t flagbullet, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
     if (flagbullet == 1) {
         for (int i = 0; i < 5; i++) {
-            if (bullet[i].x == -1) {
+            if (bullet[i].x == -1) { // Creates new bullet, if bullets are available. Available bullets resides at (-1,-1)
                 bullet[i].x = ship->x;
                 bullet[i].y = ship->y;
-                bullet[i].angle = ship->angle;
+                bullet[i].vx = ship->vx;
+                bullet[i].vy = ship->vy;
                 break;
             }
         }
-
     }
+    //Updates bullet velocity
     if (flagbullettimer == 1) {
         for (int i = 0; i < 5; i++) {
             if ((bullet[i].x > x1 && bullet[i].x < x2) && (bullet[i].y > y1 && bullet[i].y < y2)) {
-                switch (bullet[i].angle)
-                {
-                    case 0:
-                       bullet[i].y -= 1;
-                    break;
-
-                    case 1:
-                       bullet[i].x += 1;
-                       bullet[i].y -= 1;
-                    break;
-
-                    case 2:
-                       bullet[i].x += 1;
-                    break;
-
-                    case 3:
-                        bullet[i].x  += 1;
-                        bullet[i].y += 1;
-                    break;
-
-                    case 4:
-                       bullet[i].y += 1;
-                    break;
-
-                    case 5:
-                        bullet[i].x -= 1;
-                        bullet[i].y += 1;
-                    break;
-
-                    case 6:
-                       bullet[i].x -= 1;
-                    break;
-
-                    case 7:
-                        bullet[i].x -= 1;
-                        bullet[i].y -= 1;
-                    break;
-                }
-
+                bullet[i].x += bullet[i].vx;
+                bullet[i].y += bullet[i].vy;
             }
             else {
                 bullet[i].x = -1;
                 bullet[i].y = -1;
             }
         }
-    flagbullettimer = 0;
+        flagbullettimer = 0;
     }
 }
 
@@ -180,23 +150,9 @@ void printBullet(bullet_t bullet[]) {
 }
 
 
+// sizeof(bullet)/sizeof(bullet[0])
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// lav ship grænser, så ship ikke kan flyve ud af banen.
 
 // omkring bullets, hvis velocity bliver 0, slettes bullet.
 // power up, bouncing balls.

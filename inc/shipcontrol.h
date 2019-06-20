@@ -7,24 +7,25 @@
 #ifndef _SHIPCONTROL_H_
 #define _SHIPCONTROL_H_
 
+
+//-----------------Structs------------------------
 typedef struct {
-    int32_t x, y, vx, vy;
-    int8_t angle;
+    int16_t x, y, vx, vy;
     uint8_t powerup;
     uint8_t healthpoints;
     uint8_t killcount;
 } ship_t;
 
 typedef struct {
-    int32_t x, y, vx, vy;
-    int8_t angle;
+    int16_t x, y, vx, vy;
 } bullet_t;
 
+//------------Functions---------------------------
 void shipSetup(ship_t * ship);
 int shipControl(ship_t * ship);
 void printShip(ship_t * ship);
 void bulletSetup(bullet_t bullet[]);
-void updateBullet(ship_t * ship, bullet_t * bullet, int flagbullet, int x1, int y1, int x2, int y2);
+void updateBullet(ship_t * ship, bullet_t * bullet, uint8_t flagbullet, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2);
 void printBullet(bullet_t * bullet);
 void eraseship (ship_t * ship);
 void erasebullet (bullet_t bullet[]);
