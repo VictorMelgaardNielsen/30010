@@ -4,8 +4,8 @@
 #include "joystick.h"
 #include "shipcontrol.h"
 
-#ifndef _MBEDDISPLAY_H_
-#define _MBEDDISPLAY_H_
+#ifndef _MBEDINTERACT_H_
+#define _MBEDINTERACT_H_
 
 void menu_init();
 void choose_diff(ship_t * ship, uint8_t * highscoreMulti);
