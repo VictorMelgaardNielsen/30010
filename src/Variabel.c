@@ -1,13 +1,6 @@
 #include "variabel.h"
 
-void coordinatRandomiser(uint8_t x1, uint8_t x2, uint8_t y1, uint8_t y2, meteor_t *m) {
-    m->x = (rand() % (x2-x1)) + x1;
-    m->y = (rand() % (y2-y1)) + y1;
-
-}
-
-/*
-void gravityCheck(bullet_t *b, meteor_t *m) {
+void gravityCheckBullet(bullet_t *b, meteor_t m) {
 
     if (b.x < m.x && b.x > m.x - 4 && b.y < m.y && b.y > m.y - 2) {
         b.vx += 1;
@@ -46,11 +39,57 @@ void gravityCheck(bullet_t *b, meteor_t *m) {
     }
 
     if (b.x >= m.x && b.x <= m.x + 10 && b.y >= m.y && b.y <= m.y + 4) {
-        b.vx = 0;
-        b.vy = 0;
+        b.x = -1;
+        b.y = -1;
     }
 
 }
+
+void gravityCheckShip(ship_t *ship, meteor_t m) {
+
+    if (ship->x < m.x && ship->x > m.x - 4 && ship->y < m.y && ship->y > m.y - 2) {
+        ship->vx += 1;
+        ship->vy += 1;
+    }
+
+    if (ship->x >= m.x && ship->x <= m.x + 10 && ship->y < m.y && ship->y > m.y - 2) {
+        ship->vy += 1;
+    }
+
+    if (ship->x > m.x + 10 && ship->x < m.x + 14 && ship->y < m.y && ship->y > m.y - 2) {
+        ship->vx += -1;
+        ship->vy += 1;
+    }
+
+    if (ship->x < m.x && ship->x > m.x - 4 && ship->y >= m.y && ship->y <= m.y + 4) {
+        ship->vx += 1;
+    }
+
+    if (ship->x < m.x && ship->x > m.x - 4 && ship->y > m.y + 4 && ship->y < m.y + 6) {
+        ship->vx += 1;
+        ship->vy += -1;
+    }
+
+    if (ship->x >= m.x && ship->x <= m.x + 10 && ship->y > m.y + 4 && ship->y < m.y + 6) {
+        ship->vy += -1;
+    }
+
+    if (ship->x > m.x + 10 && ship->x < m.x + 14 && ship->y > m.y + 4 && ship->y < m.y + 6) {
+        ship->vx += -1;
+        ship->vy += -1;
+    }
+
+    if (ship->x > m.x + 10 && ship->x < m.x + 14 && ship->y >= m.y && ship->y <= m.y + 4) {
+        ship->vx += -1;
+    }
+
+    if (ship>x >= m.x && ship->x <= m.x + 10 && ship->y >= m.y && ship->y <= m.y + 4) {
+        ship->healthpoints = 0;
+    }
+
+}
+
+/*
 
 void powerUp_Nuke (spaceship_t x) {
     counter_t nuke = 0;
