@@ -51,7 +51,7 @@ void TIM2_IRQHandler(void) {
     }
 
     //Flag for game refresh rate.
-    if (timer2.msec%10 == 0) {
+    if (timer2.msec%5 == 0) {
         flagrefreshrate = 1;
     }
 
