@@ -9,6 +9,6 @@
 void menu_init();
 uint8_t choose_diff();
 void display_stats(uint8_t health, uint8_t kills);
-
+void gameOver(uint8_t kills, uint8_t highScoreMulti);
 
 #endif
