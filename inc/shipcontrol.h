@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include "ansi.h"
 #include "stm32f30x_conf.h"
+#include "timer.h"
 
 #ifndef _SHIPCONTROL_H_
 #define _SHIPCONTROL_H_
@@ -23,8 +24,10 @@ void shipSetup(ship_t * ship);
 int shipControl(ship_t * ship);
 void printShip(ship_t * ship);
 void bulletSetup(bullet_t bullet[]);
-void createBullet(ship_t * ship, bullet_t * bullet, int flagbullet, int x1, int y1, int x2, int y2);
+void updateBullet(ship_t * ship, bullet_t * bullet, int flagbullet, int x1, int y1, int x2, int y2);
 void printBullet(bullet_t * bullet);
+void eraseship (ship_t * ship);
+void erasebullet (bullet_t bullet[]);
 
 
 #endif
