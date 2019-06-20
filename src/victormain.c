@@ -350,27 +350,44 @@ int main(void) {
     int x2 = 60;
     int y2 = 20;
     int flagbullet = 0;
-    bullet_t bullet[4];
-    uart_init( 9600 ); //Initialize USB serial emulation at 9600 baud
+    bullet_t bullet[5];
+    uart_init( 1000000 ); //Initialize USB serial emulation at 9600 baud
     color(1,7);
     clrscr();
-    windows (x1, y1, x2, y2, "DTU Space Invaders 3000", 196, 179);
     uart_clear();
     ship_t ship;
     shipSetup(&ship);
     bulletSetup(bullet);
-    printf("%d",bullet[3].x);
+    setuptimer();
+    starttimer();
 
 
     while(1){
         flagbullet = shipControl(&ship);
-        printShip(&ship);
-        backwards(1);
-        printf(" ");
-        createBullet(&ship, bullet, flagbullet, x1, y1, x2, y2);
-        flagbullet = 0;
-        printBullet(bullet);
+        updateBullet(&ship, bullet, flagbullet, x1, y1, x2, y2);
+
+        if (flagrefreshrate == 1) {
+            clrscr();
+            windows (x1, y1, x2, y2, "DTU Space Invaders 3000", 196, 179);
+            printShip(&ship);
+            printBullet(bullet);
+            flagrefreshrate = 0;
+        }
     }
 }
 
-// tjek
+
+/*
+//tests
+int main(void) {
+    uart_init( 1000000 ); //Initialize USB serial emulation at 9600 baud
+    clrscr();
+    char a = 2;
+
+    if (a == 3)
+        printf("test");
+        printf("test2");
+        printf("test3");
+}
+
+*/

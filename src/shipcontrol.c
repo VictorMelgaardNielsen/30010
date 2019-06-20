@@ -4,7 +4,7 @@
 void shipSetup(ship_t * ship) {
     ship->x = 10;
     ship->y = 10;
-    ship->vx = 0;
+    ship->vx = 1;
     ship->vy = 0;
     ship->angle = 0; // The ship can be controlled in eight different directions.
     ship->powerup = 0;
@@ -25,9 +25,9 @@ void bulletSetup(bullet_t bullet[]) {
 //Ship control from terminal
 int shipControl(ship_t * ship) {
     int flagbullet = 0;
-    if (uart_get_count() > 0) {
-        char s[1] = {'0','0'};
-        s[0] = uart_get_char();
+    if (uart_get_count() > 0) { // Reads number of characters in the buffer
+        char s[0] = {'0'}; // char s[0] = {'0','0'};
+        s[0] = uart_get_char(); // Returns the first element of the buffer
         if (s[0] == 'a') {
             ship->angle -= 1;
             if (ship->angle < 0) {
