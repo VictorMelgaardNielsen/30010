@@ -3,11 +3,18 @@
 #include "ansi.h"
 #include "stm32f30x_conf.h"
 
+#ifndef _RGB_H_
+#define _RGB_H_
 
-#ifndef _JOYSTICK_H_
-#define _JOYSTICK_H_
 
-void setupjoystick();
-uint8_t readJoystick();
+void setupRGB();
+void setRGB(char colour);
+
 
 #endif
+
+
+
+
+
+

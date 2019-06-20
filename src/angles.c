@@ -62,52 +62,6 @@ int32_t cose (int32_t a) {
     }
 
 
-void setLed(char colour) {
-
-    if (colour == 'r') {
-        GPIOB->ODR &= ~(0x0001 << 4);
-        GPIOC->ODR |= (0x0001 << 7);
-        GPIOA->ODR |= (0x0001 << 9);
-
-    } else if (colour == 'g') {
-        GPIOB->ODR |= (0x0001 << 4);
-        GPIOC->ODR &= ~(0x0001 << 7);
-        GPIOA->ODR |= (0x0001 << 9);
-
-    } else if (colour == 'b') {
-        GPIOB->ODR |= (0x0001 << 4);
-        GPIOC->ODR |= (0x0001 << 7);
-        GPIOA->ODR &= ~(0x0001 << 9);
-
-    } else if (colour == 'c') {
-        GPIOB->ODR |= (0x0001 << 4);
-        GPIOC->ODR &= ~(0x0001 << 7);
-        GPIOA->ODR &= ~(0x0001 << 9);
-
-    } else if (colour == 'm') {
-        GPIOB->ODR &= ~(0x0001 << 4);
-        GPIOC->ODR |= (0x0001 << 7);
-        GPIOA->ODR &= ~(0x0001 << 9);
-
-    } else if (colour == 'y') {
-        GPIOB->ODR &= ~(0x0001 << 4);
-        GPIOC->ODR &= ~(0x0001 << 7);
-        GPIOA->ODR |= (0x0001 << 9);
-
-    } else if (colour == 'w') {
-        GPIOB->ODR &= ~(0x0001 << 4);
-        GPIOC->ODR &= ~(0x0001 << 7);
-        GPIOA->ODR &= ~(0x0001 << 9);
-
-    } else if (colour == 's') {
-        GPIOB->ODR |= (0x0001 << 4);
-        GPIOC->ODR |= (0x0001 << 7);
-        GPIOA->ODR |= (0x0001 << 9);
-    }
-
-
-}
-
 void rotateVector(vector_t *v, int32_t a) {
     int32_t xtemp = v->x;
     (*v).x = (*v).x * cose(a) - (*v).y * sine(a);

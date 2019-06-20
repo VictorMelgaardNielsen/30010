@@ -3,11 +3,9 @@
 #include "ansi.h"
 #include "stm32f30x_conf.h"
 
+#ifndef _FINALBOSS_h_
+#define _FINALBOSS_h_
 
-#ifndef _JOYSTICK_H_
-#define _JOYSTICK_H_
-
-void setupjoystick();
-uint8_t readJoystick();
+void drawFinalBoss (int8_t x, int8_t y);
 
 #endif

@@ -37,7 +37,7 @@ void lcd_write_string_line(char s[], uint8_t slice, uint8_t line, uint8_t curren
 }
 
 void lcd_update(uint8_t *slice, uint8_t *line) {
-    if (flaglcd == 1 && *slice<128) {
+    if (flaglcd == 1 && *slice < 128) {
         (*slice) += 5;
         flaglcd = 0;
     } if (flaglcd == 1 && *slice == 128) {
@@ -52,7 +52,7 @@ void lcd_update(uint8_t *slice, uint8_t *line) {
 }
 
 void lcd_update_line(uint8_t *slice, uint8_t *line) {
-    if (flaglcd == 1 && *slice>0) {
+    if (flaglcd == 1 && *slice > 0) {
         (*slice) -= 5;
         flaglcd = 0;
     }
