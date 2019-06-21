@@ -88,7 +88,7 @@ if (flagravityship == 1) {
     for (j = 0; j < 3; j++) {
 
             if (ship->x < m[j].x && ship->x > m[j].x - 10 && ship->y < m[j].y && ship->y > m[j].y - 5) {
-                ship->x += 1;
+                ship->x += 2;
                 ship->y += 1;
             }
 
@@ -97,16 +97,16 @@ if (flagravityship == 1) {
             }
 
             if (ship->x > m[j].x + 10 && ship->x < m[j].x + 20 && ship->y < m[j].y && ship->y > m[j].y - 5) {
-                ship->x += -1;
+                ship->x += -2;
                 ship->y += 1;
             }
 
             if (ship->x < m[j].x && ship->x > m[j].x - 10 && ship->y >= m[j].y && ship->y <= m[j].y + 4) {
-                ship->x += 1;
+                ship->x += 2;
             }
 
             if (ship->x < m[j].x && ship->x > m[j].x - 10 && ship->y > m[j].y + 4 && ship->y < m[j].y + 9) {
-                ship->x += 1;
+                ship->x += 2;
                 ship->y += -1;
             }
 
@@ -115,12 +115,12 @@ if (flagravityship == 1) {
             }
 
             if (ship->x > m[j].x + 10 && ship->x < m[j].x + 20 && ship->y > m[j].y + 4 && ship->y < m[j].y + 9) {
-                ship->x += -1;
+                ship->x += -2;
                 ship->y += -1;
             }
 
             if (ship->x > m[j].x + 10 && ship->x < m[j].x + 20 && ship->y >= m[j].y && ship->y <= m[j].y + 4) {
-                ship->x += -1;
+                ship->x += -2;
             }
             if (ship->x >= m[j].x && ship->x <= m[j].x + 10 && ship->y >= m[j].y && ship->y <= m[j].y + 4) {
                 ship->healthpoints = 0;

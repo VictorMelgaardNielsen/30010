@@ -27,66 +27,66 @@ uint8_t shipControl(ship_t * ship, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y
         s[0] = uart_get_char(); // Returns the first element of the buffer
         if (s[0] == 'a') {
             if (ship->vx == 0 && ship->vy == -1) { //position 0 out of index 0 to 7
-                ship->vx = -1;
+                ship->vx = -2;
                 ship->vy = -1;
-            } else if (ship->vx == -1 && ship->vy == -1) { // position 7
-                ship->vx = -1;
+            } else if (ship->vx == -2 && ship->vy == -1) { // position 7
+                ship->vx = -2;
                 ship->vy = 0;
-            } else if (ship->vx == -1 && ship->vy == 0) { // position 6
-                ship->vx = -1;
+            } else if (ship->vx == -2 && ship->vy == 0) { // position 6
+                ship->vx = -2;
                 ship->vy = 1;
-            } else if (ship->vx == -1 && ship->vy == 1) {
+            } else if (ship->vx == -2 && ship->vy == 1) {
                 ship->vx = 0;
                 ship->vy = 1;
             } else if (ship->vx == 0 && ship->vy == 1) {
-                ship->vx = 1;
+                ship->vx = 2;
                 ship->vy = 1;
-            } else if (ship->vx == 1 && ship->vy == 1) {
-                ship->vx = 1;
+            } else if (ship->vx == 2 && ship->vy == 1) {
+                ship->vx = 2;
                 ship->vy = 0;
-            } else if (ship->vx == 1 && ship->vy == 0) {
-                ship->vx = 1;
+            } else if (ship->vx == 2 && ship->vy == 0) {
+                ship->vx = 2;
                 ship->vy = -1;
-            } else if (ship->vx == 1 && ship->vy == -1) {
+            } else if (ship->vx == 2 && ship->vy == -1) {
                 ship->vx = 0;
                 ship->vy = -1;
             }
         }
         if (s[0] == 'd') {
             if (ship->vx == 0 && ship->vy == -1) { //position 0 out of index 0 to 7
-                ship->vx = 1;
+                ship->vx = 2;
                 ship->vy = -1;
-            } else if (ship->vx == 1 && ship->vy == -1) { //position 1
-                ship->vx = 1;
+            } else if (ship->vx == 2 && ship->vy == -1) { //position 1
+                ship->vx = 2;
                 ship->vy = 0;
-            } else if (ship->vx == 1 && ship->vy == 0) { //position 2
-                ship->vx = 1;
+            } else if (ship->vx == 2 && ship->vy == 0) { //position 2
+                ship->vx = 2;
                 ship->vy = 1;
-            } else if (ship->vx == 1 && ship->vy == 1) {
+            } else if (ship->vx == 2 && ship->vy == 1) {
                 ship->vx = 0;
                 ship->vy = 1;
             } else if (ship->vx == 0 && ship->vy == 1) {
-                ship->vx = -1;
+                ship->vx = -2;
                 ship->vy = 1;
-            } else if (ship->vx == -1 && ship->vy == 1) {
-                ship->vx = -1;
+            } else if (ship->vx == -2 && ship->vy == 1) {
+                ship->vx = -2;
                 ship->vy = 0;
-            } else if (ship->vx == -1 && ship->vy == 0) {
-                ship->vx = -1;
+            } else if (ship->vx == -2 && ship->vy == 0) {
+                ship->vx = -2;
                 ship->vy = -1;
-            } else if (ship->vx == -1 && ship->vy == -1) {
+            } else if (ship->vx == -2 && ship->vy == -1) {
                 ship->vx = 0;
                 ship->vy = -1;
             }
         }
         if (s[0] == 'w') { // Fly ship forward by updating velocity. If statements limits ship to the boundaries of window size.
             if (ship->x == x1+1) {
-                if (ship->vx != -1 && ship->vx != 0){
+                if (ship->vx != -2 && ship->vx != 0){
                     ship->x += ship->vx;
                     ship->y += ship->vy;
                 }
             } else if (ship->x == x2-1 ) {
-                if (ship->vx != 1 && ship->vx != 0){
+                if (ship->vx != 2 && ship->vx != 0){
                     ship->x += ship->vx;
                     ship->y += ship->vy;
                 }
@@ -124,7 +124,7 @@ void printShip(ship_t * ship) {
     } else if (ship->vx == 1 && ship->vy == 1) {
             printf("\\");
     } else if (ship->vx == 0 && ship->vy == 1) {
-            printf("|");
+            printf("v");
     } else if (ship->vx == -1 && ship->vy == 1) {
             printf("/");
     } else if (ship->vx == -1 && ship->vy == 0) {
@@ -140,8 +140,8 @@ void updateBullet(ship_t * ship, bullet_t bullet[], uint8_t flagbullet, uint8_t 
             if (bullet[i].x == -1) { // Creates new bullet, if bullets are available. Available bullets resides at (-1,-1)
                 bullet[i].x = ship->x;
                 bullet[i].y = ship->y;
-                bullet[i].vx = ship->vx;
-                bullet[i].vy = ship->vy;
+                bullet[i].vx = ship->vx*2;
+                bullet[i].vy = ship->vy*2;
                 break;
             }
         }
