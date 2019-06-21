@@ -182,9 +182,9 @@ void printFix(int32_t i) {
 
 void printbuzzscreen() {
     gotoxy(1,1);
-    printf("EXCEL\n");
-    printf("Firm Balance Sheet: (in trillion $):\n\n");
-    printf("Space Invaders Space Industries \n");
+    printf("EXCEL\n\n");
+    printf("Balance Sheet (in trillion $)\n");
+    printf("Space Invaders Space Industries Inc.\n\n");
     printf("%s%s%66s","Current assets:\n", "Cash", "7,314\n");
     printf("Accounts receivable:\n");
     printf("%s%61s","Inventory", "5,560\n");
