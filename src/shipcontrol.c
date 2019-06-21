@@ -218,6 +218,35 @@ void printEnemy(ship_t enemy[]) {
         }
     }
 }
+*/
+
+=======
+
+void enemyShip(ship_t enemy, uint8_t x1, uint8_t x2) {
+    //for (int i = 0; i < 5; i++) {
+        gotoxy(159, bullet[i].y);
+        if (enemy[0].healthpoints == 1) {
+            if (enemy[0].x == -2) {
+
+            }
+            gotoxy(159, bullet[i].y);
+            for(int j = 0; i < )
+            printf("o");
+        }
+   // }
+}
+
+
+
+//I rapport tilfï¿½j visuel beskrivelse af angle, se sketch.
+
+// sizeof(bullet)/sizeof(bullet[0])
+
+
+
+// power up; bouncing balls.
+
+
 
 void updateEnemyPosition(ship_t enemy[]) {
     int i;
@@ -230,29 +259,25 @@ void updateEnemyPosition(ship_t enemy[]) {
         flagenemy = 0;
     }
 }
-
 /*
 void enemyShip(ship_t enemy, uint8_t x1, uint8_t x2,) {
     for (int i = 0; i < 5; i++) {
         gotoxy(159, bullet[i].y);
-        if (enemy[0].healthpoints == 1) {
-            if (enemy[0].x == -2) {
-
-            }
-            gotoxy(159, bullet[i].y);
-            for(int j = 0; i < )
-            printf("o");
-        }
-   // }
-}
 */
 
+void updateEnemyPosition(ship_t enemy[]) {
+    int i;
 
-
-//I rapport tilføj visuel beskrivelse af angle, se sketch.
-
-// sizeof(bullet)/sizeof(bullet[0])
-
-
-
-// power up; bouncing balls.
+    if (flagenemy == 1) {
+        for (i = 0; i < 5; i++) {
+            enemy[i].x += enemy[i].vx;
+            enemy[i].y += enemy[i].vy;
+        }
+        flagenemy = 0;
+    }
+}
+/*
+void enemyShip(ship_t enemy, uint8_t x1, uint8_t x2,) {
+    for (int i = 0; i < 5; i++) {
+        gotoxy(159, bullet[i].y);
+*/
