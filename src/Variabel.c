@@ -140,7 +140,7 @@ void enemyHitCheck(bullet_t bullet[], ship_t enemy[], ship_t * ship) {
 
     for (i = 0; i < 5; i++) {
         for (j = 0; j < 5; j ++) {
-            if (bullet[i].x == enemy[j].x && bullet[i].y == enemy[j].y) {
+            if ((bullet[i].x == enemy[j].x || bullet[i].x == enemy[j].x + 1) && bullet[i].y == enemy[j].y) {
                 enemy[j].healthpoints = 0;
                 enemy[j].x = -2;
                 enemy[j].y = -2;
