@@ -19,6 +19,8 @@ int flagenemy;
 int flaglcd;
 int flagbullettimer;
 int flagrefreshrate;
+int flagravity;
+int flagravityship;
 
 void setuptimer();
 void restarttimer();

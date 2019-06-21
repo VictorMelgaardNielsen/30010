@@ -45,9 +45,18 @@ void TIM2_IRQHandler(void) {
     }
 
     //Flag for bullet speed
-    if (timer2.msec%5 == 0) {
+    if (timer2.msec%10 == 0) {
         flagbullettimer = 1;
+    }
 
+    //Flag for bullet gravity update
+    if (timer2.msec%50 == 0) {
+        flagravity = 1;
+    }
+
+    //Flag for spaceship grity update
+    if (timer2.msec%50 == 0) {
+        flagravityship = 1;
     }
 
     //Flag for game refresh rate.
