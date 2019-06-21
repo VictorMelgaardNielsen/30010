@@ -216,7 +216,7 @@ void printEnemy(ship_t enemy[]) {
         }
     }
 }
-
+/*
 
 void enemyShip(ship_t enemy[], uint8_t x1, uint8_t x2) {
     //for (int i = 0; i < 5; i++) {
@@ -232,7 +232,7 @@ void enemyShip(ship_t enemy[], uint8_t x1, uint8_t x2) {
    // }
 }
 
-
+*/
 
 
 
