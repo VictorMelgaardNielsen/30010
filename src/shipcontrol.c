@@ -198,9 +198,17 @@ void bulletsLeft(bullet_t bullet[], uint8_t x2, uint8_t y2) {
 }
 
 void enemyShip(ship_t enemy, uint8_t x1, uint8_t x2) {
-    for (int i = 0; i < 5; i++) {
+    //for (int i = 0; i < 5; i++) {
+        gotoxy(159, bullet[i].y);
+        if (enemy[0].healthpoints == 1) {
+            if (enemy[0].x == -2) {
 
-    }
+            }
+            gotoxy(159, bullet[i].y);
+            for(int j = 0; i < )
+            printf("o");
+        }
+   // }
 }
 
 
