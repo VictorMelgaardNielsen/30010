@@ -181,13 +181,18 @@ void bulletsReady(bullet_t bullet[], uint8_t x2, uint8_t y2) {
     gotoxy(x2-15, y2+1);
     printf("%s%d","Bullets Left: ", amountofbullets);
 }
+/*
+void enemyShip(ship_t * ship) {
+
+}
+*/
 
 
-//I rapport tilføj visuel beskrivelse
+
+//I rapport tilføj visuel beskrivelse af angle, se sketch.
 
 // sizeof(bullet)/sizeof(bullet[0])
 
-// lav ship grænser, så ship ikke kan flyve ud af banen.
 
-// omkring bullets, hvis velocity bliver 0, slettes bullet.
-// power up, bouncing balls.
+
+// power up; bouncing balls.
