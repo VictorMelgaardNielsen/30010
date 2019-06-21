@@ -55,13 +55,18 @@ printf("%c%c%c%c%c%c%c%c%c    %c%c%c    %c%c%c%c%c %c%c     %c%c%c",219,219,219,
 }
 
 
-/*
-void drawNuke(int8_t x, int8_t y) {
-gotoxy(x,y);
-wprintf(L"\x2622");
 
+void drawNuke(nuke_t nuke) {
+gotoxy(nuke.x,nuke.y);
+/*printf(". \\\"/ .");
+gotoxy(nuke.x,nuke.y+1);
+printf(".-.\".-.");
+gotoxy(nuke.x,nuke.y+2);
+printf(" ` . ` ");
+*/
+printf("O");
 }
 
-*/
+
 
 
