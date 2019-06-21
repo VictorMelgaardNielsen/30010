@@ -9,20 +9,22 @@
 #include "shipcontrol.h"
 #include "variabel.h"
 #include "mbedInteract.h" //Interactions with mbed board
-#include "finalBoss.h"
+#include "asciiArt.h"
 
 /*
 int main(void) {
-    uint8_t highScoreMulti, x1 = 1, y1 = 1, x2 = 160, y2 = 40;
+    uint8_t highScoreMulti, x1 = 1, y1 = 1, x2 = 160, y2 = 40, buzzkey = 0;
+    ship_t enemy[5];
+    initEnemy(enemy);
     meteor_t m[3];
     initMeteor(m);
     bullet_t bullet[5];
     ship_t ship;
+    diff_t difficulty;
     int flagbullet = 0;
 
     //hardware init
-    uart_init( 1000000 ); //Initialize USB serial emulation at 9600 baud
-    printf("\e[?251");
+    uart_init( 2000000 ); //Initialize USB serial emulation at 9600 baud
     setuptimer();
     starttimer();
     setupjoystick();
@@ -31,7 +33,7 @@ int main(void) {
 
     //start up menu and difficulty selection
     menu_init();
-    choose_diff(&ship, &highScoreMulti);
+    choose_diff(&ship, &highScoreMulti, &difficulty);
     bulletSetup(bullet);
 
     while(1){
@@ -40,19 +42,23 @@ int main(void) {
             break;
         }
 
-        flagbullet = shipControl(&ship, x1, y1, x2, y2);
+        flagbullet = shipControl(&ship, x1, y1, x2, y2, &buzzkey);
         updateBullet(&ship, bullet, flagbullet, x1, y1, x2, y2);
+        gravityCheckBullet(bullet, m);
+        meteorBulletHit(bullet, m);
+        gravityCheckShip(&ship, m);
+        enemyHitCheck(bullet, enemy, &ship);
+        updateEnemyPosition(enemy,&difficulty);
 
         if (flagrefreshrate == 1) {
             clrscr();
             buildCourse(x1, y1, x2, y2, m);
             printShip(&ship);
             printBullet(bullet);
-            gravityCheckBullet(bullet, m);
-            meteorBulletHit(bullet, m);
-            gravityCheckShip(&ship, m);
-            flagrefreshrate = 0;
+            printEnemy(enemy);
             bulletsLeft(bullet,x2,y2);
+            flagrefreshrate = 0;
+
         }
 
     }
@@ -63,8 +69,8 @@ int main(void) {
 //    drawFinalBoss(50,25);
 
 }
-
 */
+
 /*
 int main() {
     uart_init( 1000000 ); //Initialize USB serial emulation at 9600 baud

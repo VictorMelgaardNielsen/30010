@@ -8,7 +8,7 @@
 #define _MBEDINTERACT_H_
 
 void menu_init();
-void choose_diff(ship_t * ship, uint8_t * highscoreMulti);
+void choose_diff(ship_t * ship, uint8_t * highscoreMulti, diff_t * difficulty);
 void display_stats(uint8_t health, uint8_t kills);
 void gameOver(uint8_t kills, uint8_t highScoreMulti);
 

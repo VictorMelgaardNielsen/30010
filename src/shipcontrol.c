@@ -218,6 +218,7 @@ void printEnemy(ship_t enemy[]) {
         }
     }
 }
+
 /*
 void enemyShip(ship_t enemy, uint8_t x1, uint8_t x2) {
     //for (int i = 0; i < 5; i++) {
@@ -237,16 +238,28 @@ void enemyShip(ship_t enemy, uint8_t x1, uint8_t x2) {
 
 
 void updateEnemyPosition(ship_t enemy[]) {
+
+
+
+void updateEnemyPosition(ship_t enemy[], diff_t * difficulty) {
+
     int i;
 
     if (flagenemy == 1) {
+        (difficulty->counterValue)++;
+        flagenemy = 0;
+    }
+
+    if (difficulty->diffValue == difficulty->counterValue) {
         for (i = 0; i < 5; i++) {
             enemy[i].x += enemy[i].vx;
             enemy[i].y += enemy[i].vy;
         }
         flagenemy = 0;
+        difficulty->counterValue = 0;
     }
 }
+
 /*
 void enemyShip(ship_t enemy, uint8_t x1, uint8_t x2,) {
     for (int i = 0; i < 5; i++) {
@@ -295,4 +308,3 @@ void updateenemyBullet(ship_t * ship, bullet_t enemybullet[], ship_t enemy[], ui
                 //enemybullet[i].vy = ship->y*2;
                 //break;
 */
-
