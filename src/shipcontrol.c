@@ -4,7 +4,7 @@
 void shipSetup(ship_t * ship) {
     ship->x = 10;
     ship->y = 10;
-    ship->vx = 1;
+    ship->vx = 2;
     ship->vy = 0;
     ship->powerup = 0;
 }

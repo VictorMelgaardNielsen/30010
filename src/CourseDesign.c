@@ -43,6 +43,7 @@ for (xStart = x1; xStart < x2; xStart++) {
         printf("%c", 205);
 }
 
+printf("%c", 188);
 
 }
 

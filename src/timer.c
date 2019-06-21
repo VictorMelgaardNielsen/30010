@@ -50,11 +50,11 @@ void TIM2_IRQHandler(void) {
     }
 
     //Flag for bullet gravity update
-    if (timer2.msec%50 == 0) {
+    if (timer2.msec%25 == 0) {
         flagravity = 1;
     }
 
-    //Flag for spaceship grity update
+    //Flag for spaceship gravity update
     if (timer2.msec%50 == 0) {
         flagravityship = 1;
     }
