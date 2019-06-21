@@ -11,7 +11,7 @@
 #include "mbedInteract.h" //Interactions with mbed board
 #include "asciiArt.h"
 
-/*
+
 int main(void) {
     uint8_t highScoreMulti, x1 = 1, y1 = 1, x2 = 160, y2 = 40, buzzkey = 0;
     ship_t enemy[5];
@@ -19,6 +19,8 @@ int main(void) {
     meteor_t m[3];
     initMeteor(m);
     bullet_t bullet[5];
+    bullet_t enemyBullet[5];
+    bulletSetup(enemyBullet);
     ship_t ship;
     diff_t difficulty;
     int flagbullet = 0;
@@ -49,6 +51,7 @@ int main(void) {
         gravityCheckShip(&ship, m);
         enemyHitCheck(bullet, enemy, &ship);
         updateEnemyPosition(enemy,&difficulty);
+        updateenemyBullet(&ship, enemyBullet, enemy, x1, y1, x2, y2);
 
         if (flagrefreshrate == 1) {
             clrscr();
@@ -58,7 +61,7 @@ int main(void) {
             printEnemy(enemy);
             bulletsLeft(bullet,x2,y2);
             flagrefreshrate = 0;
-
+            printBullet(enemyBullet);
         }
 
     }
@@ -69,7 +72,7 @@ int main(void) {
 //    drawFinalBoss(50,25);
 
 }
-*/
+
 
 /*
 int main() {

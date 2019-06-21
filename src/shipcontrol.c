@@ -219,28 +219,6 @@ void printEnemy(ship_t enemy[]) {
     }
 }
 
-/*
-void enemyShip(ship_t enemy, uint8_t x1, uint8_t x2) {
-    //for (int i = 0; i < 5; i++) {
-        gotoxy(159, bullet[i].y);
-        if (enemy[0].healthpoints == 1) {
-            if (enemy[0].x == -2) {
-
-            }
-            gotoxy(159, bullet[i].y);
-            for(int j = 0; i < )
-            printf("o");
-        }
-   // }
-}
-*/
-
-
-
-void updateEnemyPosition(ship_t enemy[]) {
-
-
-
 void updateEnemyPosition(ship_t enemy[], diff_t * difficulty) {
 
     int i;
@@ -260,30 +238,7 @@ void updateEnemyPosition(ship_t enemy[], diff_t * difficulty) {
     }
 }
 
-/*
-void enemyShip(ship_t enemy, uint8_t x1, uint8_t x2,) {
-    for (int i = 0; i < 5; i++) {
-        gotoxy(159, bullet[i].y);
-*/
-/*
-void updateEnemyPosition(ship_t enemy[]) {
-    int i;
 
-    if (flagenemy == 1) {
-        for (i = 0; i < 5; i++) {
-            enemy[i].x += enemy[i].vx;
-            enemy[i].y += enemy[i].vy;
-        }
-        flagenemy = 0;
-    }
-}
-*/
-/*
-void enemyShip(ship_t enemy, uint8_t x1, uint8_t x2,) {
-    for (int i = 0; i < 5; i++) {
-        gotoxy(159, bullet[i].y);
-*/
-/*
 void updateenemyBullet(ship_t * ship, bullet_t enemybullet[], ship_t enemy[], uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
         for (int i = 0; i < 5; i++) {
             if (enemybullet[i].x == -1) { // Creates new bullet, if bullets are available. Available bullets resides at (-1,-1)
@@ -297,7 +252,11 @@ void updateenemyBullet(ship_t * ship, bullet_t enemybullet[], ship_t enemy[], ui
             int8_t bulletvectorx = ship->x - enemy[i].x;
             int8_t bulletvectory = ship->y - enemy[i].y;
             if (bulletvectorx < 0 && bulletvectory == 0) {
-                enemybullet[i].x += 2
+                enemybullet[i].vx = -2;
+            }
+            else {
+                enemybullet[i].x = -1;
+                enemybullet[i].y = -1;
             }
         }
         flagbullettimer = 0;
@@ -307,4 +266,4 @@ void updateenemyBullet(ship_t * ship, bullet_t enemybullet[], ship_t enemy[], ui
                 //enemybullet[i].vx = ship->x*2;
                 //enemybullet[i].vy = ship->y*2;
                 //break;
-*/
+
