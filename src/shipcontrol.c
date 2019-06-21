@@ -4,7 +4,7 @@
 void shipSetup(ship_t * ship) {
     ship->x = 10;
     ship->y = 10;
-    ship->vx = 1;
+    ship->vx = 2;
     ship->vy = 0;
     ship->powerup = 0;
 }
@@ -80,22 +80,22 @@ uint8_t shipControl(ship_t * ship, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y
             }
         }
         if (s[0] == 'w') { // Fly ship forward by updating velocity. If statements limits ship to the boundaries of window size.
-            if (ship->x == x1+1) {
+            if (ship->x < x1+2) {
                 if (ship->vx != -2 && ship->vx != 0){
                     ship->x += ship->vx;
                     ship->y += ship->vy;
                 }
-            } else if (ship->x == x2-1 ) {
+            } else if (ship->x > x2-3 ) {
                 if (ship->vx != 2 && ship->vx != 0){
                     ship->x += ship->vx;
                     ship->y += ship->vy;
                 }
-            } else if (ship->y == y1+1) {
+            } else if (ship->y < y1+2) {
                 if (ship->vy != -1) {
                     ship->x += ship->vx;
                     ship->y += ship->vy;
                 }
-            } else if (ship->y == y2-1) {
+            } else if (ship->y > y2-2) {
                 if (ship->vy != 1) {
                     ship->x += ship->vx;
                     ship->y += ship->vy;
@@ -171,7 +171,8 @@ void printBullet(bullet_t bullet[]) {
     }
 }
 
-void bulletsReady(bullet_t bullet[], uint8_t x2, uint8_t y2) {
+//Shows bullets left in the bottom of the screen
+void bulletsLeft(bullet_t bullet[], uint8_t x2, uint8_t y2) {
     uint8_t amountofbullets = 0;
     for (int i = 0; i < 5; i++) {
         if (bullet[i].x == -1) {
