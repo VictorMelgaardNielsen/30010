@@ -20,6 +20,12 @@ typedef struct {
     int16_t x, y, vx, vy;
 } bullet_t;
 
+
+typedef struct {
+    uint8_t diffValue, counterValue;
+} diff_t;
+
+
 //------------------------------Functions---------------------------
 void shipSetup(ship_t * ship);
 uint8_t shipControl(ship_t * ship, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2, uint8_t * buzzkey);
@@ -32,5 +38,6 @@ void erasebullet (bullet_t bullet[]);
 void bulletsLeft(bullet_t bullet[], uint8_t x2, uint8_t y2);
 void initEnemy(ship_t enemy[]);
 void printEnemy(ship_t enemy[]);
+void updateEnemyPosition(ship_t enemy[], diff_t * difficulty);
 
 #endif

@@ -50,13 +50,15 @@ void menu_init() {
         }
 }
 
-void choose_diff(ship_t * ship, uint8_t * highscoreMulti) {
+void choose_diff(ship_t * ship, uint8_t * highscoreMulti, diff_t * difficulty) {
     while(1) {
         if(readJoystick() == 0x04) {
             ship->healthpoints = 3;
             ship->killcount = 0;
             shipSetup(ship);
             *highscoreMulti = 1;
+            difficulty->diffValue = 3;
+            difficulty->counterValue = 0;
             restarttimer();
             break;
         } if(readJoystick() == 0x01) {
@@ -64,6 +66,8 @@ void choose_diff(ship_t * ship, uint8_t * highscoreMulti) {
             ship->killcount = 0;
             shipSetup(ship);
             *highscoreMulti = 2;
+            difficulty->diffValue = 2;
+            difficulty->counterValue = 0;
             restarttimer();
             break;
         } if(readJoystick() == 0x08) {
@@ -71,6 +75,8 @@ void choose_diff(ship_t * ship, uint8_t * highscoreMulti) {
             ship->killcount = 0;
             shipSetup(ship);
             *highscoreMulti = 4;
+            difficulty->diffValue = 1;
+            difficulty->counterValue = 0;
             restarttimer();
             break;
         }
