@@ -21,6 +21,7 @@ void meteorBulletHit(bullet_t b[], meteor_t m[]);
 void gravityCheckShip(ship_t *ship, meteor_t m[]);
 void powerUp_Nuke(ship_t * ship, nuke_t nuke);
 void use_Nuke(ship_t * ship, ship_t enemy[]);
+void enemyHitCheck(bullet_t bullet[], ship_t enemy[], ship_t * ship);
 
 #endif
 

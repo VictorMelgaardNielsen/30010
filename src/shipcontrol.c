@@ -196,6 +196,30 @@ void bulletsLeft(bullet_t bullet[], uint8_t x2, uint8_t y2) {
     gotoxy(x2-15, y2+2);
     printf("%s%d","Bullets Left: ", amountofbullets);
 }
+<<<<<<< HEAD
+
+/*
+void initEnemy(ship_t enemy[]) {
+    int i = 0;
+    for (i; i < 5; i++) {
+        enemy[i].x = 100;
+        enemy[i].y = 10 + i*3;
+        enemy[i].healthpoints = 1;
+    }
+}
+
+void printEnemy(ship_t enemy[]) {
+    int i = 0;
+    for (i; i < 5; i++) {
+        if (enemy[i].healthpoints != 0) {
+            gotoxy(enemy[i].x,enemy[i].y);
+            printf("->");
+        }
+    }
+}
+*/
+
+=======
 
 void enemyShip(ship_t enemy, uint8_t x1, uint8_t x2) {
     //for (int i = 0; i < 5; i++) {
@@ -221,3 +245,4 @@ void enemyShip(ship_t enemy, uint8_t x1, uint8_t x2) {
 
 
 // power up; bouncing balls.
+>>>>>>> master
