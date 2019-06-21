@@ -1,5 +1,7 @@
 #include "shipcontrol.h" //Headeren inkluderes i c filen
 #include <string.h>
+#include "timer.h"
+#include "ansi.h"
 
 void shipSetup(ship_t * ship) {
     ship->x = 10;
@@ -19,8 +21,8 @@ void bulletSetup(bullet_t bullet[]) {
     }
 }
 
-//Ship control from terminal. The ship can be controlled by flying in eight different directions.
-uint8_t shipControl(ship_t * ship, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
+//Controls from terminal. The ship can be controlled by flying in eight different directions. Buzzkey at b
+uint8_t shipControl(ship_t * ship, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2, uint8_t * buzzkey) {
     uint8_t flagbullet = 0;
     if (uart_get_count() > 0) { // Reads number of characters in the buffer
         char s[0] = {'0'};
@@ -109,6 +111,18 @@ uint8_t shipControl(ship_t * ship, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y
             flagbullet = 1;
             return flagbullet;
         }
+        if (s[0] == 'b') { //Buzzkey, pauses game, and prints buzz-screen
+            stoptimer();
+            clrscr();
+            printbuzzscreen();
+            while(1) {
+                s[0] = uart_get_char();
+                if (s[0] == 'b') {
+                    break;
+                }
+                starttimer();
+            }
+        }
     }
 }
 
@@ -182,11 +196,13 @@ void bulletsLeft(bullet_t bullet[], uint8_t x2, uint8_t y2) {
     gotoxy(x2-15, y2+2);
     printf("%s%d","Bullets Left: ", amountofbullets);
 }
-/*
-void enemyShip(ship_t * ship) {
 
+void enemyShip(ship_t enemy, uint8_t x1, uint8_t x2) {
+    for (int i = 0; i < 5; i++) {
+
+    }
 }
-*/
+
 
 
 
