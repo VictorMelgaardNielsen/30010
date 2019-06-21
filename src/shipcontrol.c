@@ -21,7 +21,7 @@ void bulletSetup(bullet_t bullet[]) {
     }
 }
 
-//Controls from terminal. The ship can be controlled by flying in eight different directions. Buzzkey at b
+//Reads from terminal. The ship can be controlled by flying in eight different directions. wasd for control and shoot. Buzzkey at b
 uint8_t shipControl(ship_t * ship, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2, uint8_t * buzzkey) {
     uint8_t flagbullet = 0;
     if (uart_get_count() > 0) { // Reads number of characters in the buffer
@@ -120,8 +120,8 @@ uint8_t shipControl(ship_t * ship, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y
                 if (s[0] == 'b') {
                     break;
                 }
-                starttimer();
             }
+            starttimer();
         }
     }
 }
@@ -218,10 +218,7 @@ void printEnemy(ship_t enemy[]) {
         }
     }
 }
-*/
-
-=======
-
+/*
 void enemyShip(ship_t enemy, uint8_t x1, uint8_t x2) {
     //for (int i = 0; i < 5; i++) {
         gotoxy(159, bullet[i].y);
@@ -235,16 +232,7 @@ void enemyShip(ship_t enemy, uint8_t x1, uint8_t x2) {
         }
    // }
 }
-
-
-
-//I rapport tilf�j visuel beskrivelse af angle, se sketch.
-
-// sizeof(bullet)/sizeof(bullet[0])
-
-
-
-// power up; bouncing balls.
+*/
 
 
 
@@ -264,7 +252,7 @@ void enemyShip(ship_t enemy, uint8_t x1, uint8_t x2,) {
     for (int i = 0; i < 5; i++) {
         gotoxy(159, bullet[i].y);
 */
-
+/*
 void updateEnemyPosition(ship_t enemy[]) {
     int i;
 
@@ -276,8 +264,35 @@ void updateEnemyPosition(ship_t enemy[]) {
         flagenemy = 0;
     }
 }
+*/
 /*
 void enemyShip(ship_t enemy, uint8_t x1, uint8_t x2,) {
     for (int i = 0; i < 5; i++) {
         gotoxy(159, bullet[i].y);
 */
+/*
+void updateenemyBullet(ship_t * ship, bullet_t enemybullet[], ship_t enemy[], uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
+        for (int i = 0; i < 5; i++) {
+            if (enemybullet[i].x == -1) { // Creates new bullet, if bullets are available. Available bullets resides at (-1,-1)
+                enemybullet[i].x = enemy[i].x;
+                enemybullet[i].y = enemy[i].y;
+            }
+        }
+    //Updates enemybullet velocity
+    if (flagbullettimer == 1) {
+        for (int i = 0; i < 5; i++) {
+            int8_t bulletvectorx = ship->x - enemy[i].x;
+            int8_t bulletvectory = ship->y - enemy[i].y;
+            if (bulletvectorx < 0 && bulletvectory == 0) {
+                enemybullet[i].x += 2
+            }
+        }
+        flagbullettimer = 0;
+    }
+}
+
+                //enemybullet[i].vx = ship->x*2;
+                //enemybullet[i].vy = ship->y*2;
+                //break;
+*/
+

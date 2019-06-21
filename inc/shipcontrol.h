@@ -32,5 +32,6 @@ void erasebullet (bullet_t bullet[]);
 void bulletsLeft(bullet_t bullet[], uint8_t x2, uint8_t y2);
 void initEnemy(ship_t enemy[]);
 void printEnemy(ship_t enemy[]);
+void updateenemyBullet(ship_t * ship, bullet_t enemybullet[], ship_t enemy[], uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2)
 
 #endif
