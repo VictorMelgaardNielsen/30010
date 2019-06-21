@@ -11,12 +11,16 @@
 typedef struct {
     uint8_t x, y;
 } meteor_t;
+
+typedef struct {
+    uint8_t x, y;
+} nuke_t;
+
 void gravityCheckBullet(bullet_t b[], meteor_t m[]);
 void meteorBulletHit(bullet_t b[], meteor_t m[]);
 void gravityCheckShip(ship_t *ship, meteor_t m[]);
-//void powerUp_Nuke (spaceship_t x);
-//void use_Nuke(int8_t a);
-//void powerUp_Bullets(spaceship_t x);
+void powerUp_Nuke(ship_t * ship, nuke_t nuke);
+void use_Nuke(ship_t * ship, ship_t enemy[]);
 
 #endif
 

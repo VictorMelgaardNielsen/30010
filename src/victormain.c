@@ -342,12 +342,14 @@ int main(void) {
 }
 */
 
+/*
+
 //Ship control
 int main(void) {
-    uint x1 = 1;
-    uint y1 = 1;
-    uint x2 = 60;
-    uint y2 = 20;
+    uint8_t x1 = 1;
+    uint8_t y1 = 1;
+    uint8_t x2 = 60;
+    uint8_t y2 = 20;
     uint8_t flagbullet = 0;
     bullet_t bullet[5];
     uart_init( 1000000 ); //Initialize USB serial emulation at 9600 baud
@@ -361,7 +363,7 @@ int main(void) {
     starttimer();
 
     while(1){
-        flagbullet = shipControl(&ship);
+        flagbullet = shipControl(&ship, x1, y1, x2, y2);
         updateBullet(&ship, bullet, flagbullet, x1, y1, x2, y2);
 
         if (flagrefreshrate == 1) {
@@ -370,10 +372,11 @@ int main(void) {
             printShip(&ship);
             printBullet(bullet);
             flagrefreshrate = 0;
+            bulletsLeft(bullet, x2, y2);
         }
     }
 }
-
+*/
 
 /*
 //tests
@@ -381,11 +384,11 @@ int main(void) {
     uart_init( 1000000 ); //Initialize USB serial emulation at 9600 baud
     clrscr();
     char a = 2;
+    char b = 3;
+    char c;
+    c = a++ + ++b;
 
-    if (a == 3)
-        printf("test");
-        printf("test2");
-        printf("test3");
+        printf("%d",c);
 }
-
 */
+

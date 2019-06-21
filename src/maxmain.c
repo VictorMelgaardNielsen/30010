@@ -10,6 +10,7 @@
 #include "variabel.h"
 #include "mbedInteract.h" //Interactions with mbed board
 #include "finalBoss.h"
+
 /*
 int main(void) {
     uint8_t highScoreMulti, x1 = 1, y1 = 1, x2 = 160, y2 = 40;
@@ -51,6 +52,7 @@ int main(void) {
             meteorBulletHit(bullet, m);
             gravityCheckShip(&ship, m);
             flagrefreshrate = 0;
+            bulletsLeft(bullet,x2,y2);
         }
 
     }
@@ -58,11 +60,11 @@ int main(void) {
     gameOver(ship.killcount, highScoreMulti);
     clrscr();
     gotoxy(10,10);
-    drawFinalBoss(50,25);
+//    drawFinalBoss(50,25);
 
 }
-*/
 
+*/
 /*
 int main() {
     uart_init( 1000000 ); //Initialize USB serial emulation at 9600 baud
