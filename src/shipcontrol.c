@@ -85,7 +85,7 @@ uint8_t shipControl(ship_t * ship, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y
                     ship->x += ship->vx;
                     ship->y += ship->vy;
                 }
-            } else if (ship->x > x2-3 ) {
+            } else if (ship->x > x2-2 ) {
                 if (ship->vx != 2 && ship->vx != 0){
                     ship->x += ship->vx;
                     ship->y += ship->vy;
@@ -95,7 +95,7 @@ uint8_t shipControl(ship_t * ship, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y
                     ship->x += ship->vx;
                     ship->y += ship->vy;
                 }
-            } else if (ship->y > y2-2) {
+            } else if (ship->y > y2-1) {
                 if (ship->vy != 1) {
                     ship->x += ship->vx;
                     ship->y += ship->vy;
@@ -179,7 +179,7 @@ void bulletsLeft(bullet_t bullet[], uint8_t x2, uint8_t y2) {
         amountofbullets += 1;
         }
     }
-    gotoxy(x2-15, y2+1);
+    gotoxy(x2-15, y2+2);
     printf("%s%d","Bullets Left: ", amountofbullets);
 }
 /*
