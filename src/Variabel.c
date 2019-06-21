@@ -134,34 +134,47 @@ if (flagravityship == 1) {
     }
 }
 
-/*
 
-void powerUp_Nuke (spaceship_t x) {
-    counter_t nuke = 0;
+void enemyHitCheck(bullet_t bullet[], ship_t enemy[], ship_t * ship) {
+    int i, j;
 
-    if (x.x == n.x && x.y == n.y) {
-        nuke++;
+    for (i = 0; i < 5; i++) {
+        for (j = 0; j < 5; j ++) {
+            if (bullet[i].x == enemy[j].x && bullet[i].y == enemy[j].y) {
+                enemy[j].healthpoints = 0;
+                bullet[i].x = -1;
+                bullet[i].y = -1;
+                ship->killcount++;
+            }
+        }
+    }
+}
+
+
+
+//Power Ups!
+
+void powerUp_Nuke(ship_t * ship, nuke_t nuke) {
+    if (ship->x == nuke.x && ship->y == nuke.y) {
+        ship->powerup = 1;
+    }
+}
+
+void use_Nuke(ship_t * ship, ship_t enemy[]) {
+    int i;
+
+    if (ship->powerup == 1) {
+        for (i = 0; i < 5; i++) {
+            enemy[i].healthpoints = 0;
+            ship->killcount += 5;
+        }
+        ship->powerup = 0;
     }
 
 }
 
-void use_Nuke(int8_t a) {
-    if (n == 1) {
-    enemyship_t e;
-    e.life--;
-    }
-}
 
-void update_Bullets(spaceship_t x) {
-    if (x.x == laser.x && x.y == laser.y) {
-        bullets.style = 2;
-    }
 
-    if ()
-
-}
-
-*/
 
 
 

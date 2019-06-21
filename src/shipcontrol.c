@@ -164,7 +164,7 @@ void updateBullet(ship_t * ship, bullet_t bullet[], uint8_t flagbullet, uint8_t 
 
 void printBullet(bullet_t bullet[]) {
     for (int i = 0; i < 5; i++) {
-        if (bullet[i].x != 0) {
+        if (bullet[i].x != -1) {
             gotoxy(bullet[i].x, bullet[i].y);
             printf("o");
         }
