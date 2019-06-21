@@ -182,18 +182,25 @@ void bulletsLeft(bullet_t bullet[], uint8_t x2, uint8_t y2) {
     gotoxy(x2-15, y2+2);
     printf("%s%d","Bullets Left: ", amountofbullets);
 }
-/*
-void enemyShip(ship_t * ship) {
 
+/*
+void initEnemy(ship_t enemy[]) {
+    int i = 0;
+    for (i; i < 5; i++) {
+        enemy[i].x = 100;
+        enemy[i].y = 10 + i*3;
+        enemy[i].healthpoints = 1;
+    }
+}
+
+void printEnemy(ship_t enemy[]) {
+    int i = 0;
+    for (i; i < 5; i++) {
+        if (enemy[i].healthpoints != 0) {
+            gotoxy(enemy[i].x,enemy[i].y);
+            printf("->");
+        }
+    }
 }
 */
 
-
-
-//I rapport tilføj visuel beskrivelse af angle, se sketch.
-
-// sizeof(bullet)/sizeof(bullet[0])
-
-
-
-// power up; bouncing balls.
