@@ -180,6 +180,19 @@ void printFix(int32_t i) {
     // Print a maximum of 4 decimal digits to avoid overflow
 }
 
+void printbuzzscreen() {
+    gotoxy(1,1);
+    printf("EXCEL\n");
+    printf("Firm Balance Sheet: (in trillion $):\n\n");
+    printf("Space Invaders Space Industries \n");
+    printf("%s%s%66s","Current assets:\n", "Cash", "7.314\n");
+    printf("Accounts receivable:\n");
+    printf("%s%61s","Inventory", "5,560\n");
+    printf("Prepaid expenses\n");
+    printf("Short-term investments\n");
+    printf("%s%50s","Total current assets", "12,874");
+}
+
 
 
 
