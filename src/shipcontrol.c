@@ -117,19 +117,19 @@ void printShip(ship_t * ship) {
     gotoxy(ship->x, ship->y);
     if (ship->vx == 0 && ship->vy == -1) { //position 0 out of 8
             printf("^");
-    } else if (ship->vx == 1 && ship->vy == -1) { //position 1 out of 8
+    } else if (ship->vx == 2 && ship->vy == -1) { //position 1 out of 8
             printf("/");
-    } else if (ship->vx == 1 && ship->vy == 0) { //position 2 out of 8
+    } else if (ship->vx == 2 && ship->vy == 0) { //position 2 out of 8
             printf(">");
-    } else if (ship->vx == 1 && ship->vy == 1) {
+    } else if (ship->vx == 2 && ship->vy == 1) {
             printf("\\");
     } else if (ship->vx == 0 && ship->vy == 1) {
             printf("v");
-    } else if (ship->vx == -1 && ship->vy == 1) {
+    } else if (ship->vx == -2 && ship->vy == 1) {
             printf("/");
-    } else if (ship->vx == -1 && ship->vy == 0) {
+    } else if (ship->vx == -2 && ship->vy == 0) {
             printf("<");
-    } else if (ship->vx == -1 && ship->vy == -1) {
+    } else if (ship->vx == -2 && ship->vy == -1) {
             printf("\\");
     }
 }
