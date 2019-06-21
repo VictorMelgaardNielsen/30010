@@ -351,7 +351,9 @@ int main(void) {
     uint8_t x2 = 60;
     uint8_t y2 = 20;
     uint8_t flagbullet = 0;
+    uint8_t buzzkey = 1;
     bullet_t bullet[5];
+    ship_t enemyShip[5];
     uart_init( 1000000 ); //Initialize USB serial emulation at 9600 baud
     color(1,7);
     clrscr();
@@ -363,7 +365,7 @@ int main(void) {
     starttimer();
 
     while(1){
-        flagbullet = shipControl(&ship, x1, y1, x2, y2);
+        flagbullet = shipControl(&ship, x1, y1, x2, y2, &buzzkey);
         updateBullet(&ship, bullet, flagbullet, x1, y1, x2, y2);
 
         if (flagrefreshrate == 1) {
