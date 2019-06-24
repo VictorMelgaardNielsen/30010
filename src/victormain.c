@@ -342,8 +342,8 @@ int main(void) {
 }
 */
 
-/*
 
+/*
 //Ship control
 int main(void) {
     uint8_t x1 = 1;
@@ -353,7 +353,9 @@ int main(void) {
     uint8_t flagbullet = 0;
     uint8_t buzzkey = 1;
     bullet_t bullet[5];
+    bullet_t enemyBullet[5];
     ship_t enemyShip[5];
+    //initEnemy(enemyShip);
     uart_init( 1000000 ); //Initialize USB serial emulation at 9600 baud
     color(1,7);
     clrscr();
@@ -375,6 +377,7 @@ int main(void) {
             printBullet(bullet);
             flagrefreshrate = 0;
             bulletsLeft(bullet, x2, y2);
+            //printEnemy(enemyShip);
         }
     }
 }
@@ -393,4 +396,10 @@ int main(void) {
         printf("%d",c);
 }
 */
+
+//I rapport tilf�j visuel beskrivelse af angle, se sketch.
+
+// sizeof(bullet)/sizeof(bullet[0])
+
+// power up; bouncing balls.
 
