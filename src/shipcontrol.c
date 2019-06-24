@@ -198,10 +198,10 @@ void bulletsLeft(bullet_t bullet[], uint8_t x2, uint8_t y2) {
 }
 
 
-void initEnemy(ship_t enemy[]) {
+void initEnemy(ship_t enemy[], uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
     int i = 0;
     for (i; i < 5; i++) {
-        enemy[i].x = 100;
+        enemy[i].x = x2-1;
         enemy[i].y = 10 + i*3;
         enemy[i].vx = -2;
         enemy[i].vy = 0;
@@ -220,7 +220,7 @@ void printEnemy(ship_t enemy[]) {
 }
 
 
-void updateEnemyPosition(ship_t enemy[], diff_t * difficulty) {
+void updateEnemyPosition(ship_t enemy[], diff_t * difficulty, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
     int i;
 
     if (flagenemy == 1) {
@@ -235,6 +235,12 @@ void updateEnemyPosition(ship_t enemy[], diff_t * difficulty) {
         }
         flagenemy = 0;
         difficulty->counterValue = 0;
+    }
+
+    for (i = 0; i < 5; i++) {
+        if (enemy[i].x <= x1 || enemy[i].y <= y1 || enemy[i].x >= x2 || enemy[i].y >= y2) {
+            enemy[i].healthpoints = 0;
+        }
     }
 }
 

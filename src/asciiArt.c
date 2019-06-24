@@ -54,17 +54,14 @@ printf("%c%c%c%c%c%c%c%c%c    %c%c%c    %c%c%c%c%c %c%c     %c%c%c",219,219,219,
 
 }
 
-
-
 void drawNuke(nuke_t nuke) {
 gotoxy(nuke.x,nuke.y);
-/*printf(". \\\"/ .");
+printf(". \\\"/ .");
 gotoxy(nuke.x,nuke.y+1);
 printf(".-.\".-.");
 gotoxy(nuke.x,nuke.y+2);
 printf(" ` . ` ");
-*/
-printf("O");
+
 }
 
 

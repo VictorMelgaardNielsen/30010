@@ -152,7 +152,19 @@ void enemyHitCheck(bullet_t bullet[], ship_t enemy[], ship_t * ship) {
     }
 }
 
+void enemiesDead(ship_t enemy[]) {
+    int i, alive = 0;
 
+    for (i = 0; i < 5; i++) {
+        if (enemy[i].healthpoints == 1) {
+            alive++;
+        }
+    }
+
+    if (alive == 0) {
+        initEnemy(enemy);
+    }
+}
 
 //Power Ups!
 
