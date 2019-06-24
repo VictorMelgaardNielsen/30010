@@ -148,6 +148,7 @@ void printShip(ship_t * ship) {
     }
 }
 
+//Creates and calculate bullet velocity according to the ships angle.
 void updateBullet(ship_t * ship, bullet_t bullet[], uint8_t flagbullet, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
     if (flagbullet == 1) {
         for (int i = 0; i < 5; i++) {
@@ -246,20 +247,31 @@ void updateEnemyPosition(ship_t enemy[], diff_t * difficulty, uint8_t x1, uint8_
 }
 
 
-void updateenemyBullet(ship_t * ship, bullet_t enemybullet[], ship_t enemy[], uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
-        for (int i = 0; i < 5; i++) {
-            if (enemybullet[i].x == -1) { // Creates new bullet, if bullets are available. Available bullets resides at (-1,-1)
-                enemybullet[i].x = enemy[i].x;
-                enemybullet[i].y = enemy[i].y;
-            }
-        }
-    //Updates enemybullet velocity
+void updateEnemyBullet(ship_t * ship, bullet_t enemybullet[], ship_t enemy[], uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
     if (flagbullettimer == 1) {
         for (int i = 0; i < 5; i++) {
-            int8_t bulletvectorx = ship->x - enemy[i].x;
-            int8_t bulletvectory = ship->y - enemy[i].y;
-            if (bulletvectorx < 0 && bulletvectory == 0) {
-                enemybullet[i].vx = -2;
+                int16_t bulletvectorx = ship->x - enemy[i].x;
+                int16_t bulletvectory = ship->y - enemy[i].y;
+                if (bulletvectorx < 0 && bulletvectory == 0 && enemybullet[i].x == -1) { // Creates new bullet, if bullets are available. Available bullets resides at (-1,-1)
+                    enemybullet[i].x = enemy[i].x;
+                    enemybullet[i].y = enemy[i].y;
+                    enemybullet[i].vx = -2;
+                    enemybullet[i].vy = 0;
+                } else if (bulletvectorx > 0 && bulletvectory == 0 && enemybullet[i].x == -1) {
+                enemybullet[i].x = enemy[i].x;
+                enemybullet[i].y = enemy[i].y;
+                enemybullet[i].vx = 2;
+                enemybullet[i].vy = 0;
+                }
+            }
+        }
+
+    //Updates bullet velocity
+    if (flagbullettimer == 1) {
+        for (int i = 0; i < 5; i++) {
+            if ((enemybullet[i].x > x1 && enemybullet[i].x < x2) && (enemybullet[i].y > y1 && enemybullet[i].y < y2)) {
+                enemybullet[i].x += enemybullet[i].vx;
+                enemybullet[i].y += enemybullet[i].vy;
             }
             else {
                 enemybullet[i].x = -1;
@@ -269,8 +281,3 @@ void updateenemyBullet(ship_t * ship, bullet_t enemybullet[], ship_t enemy[], ui
         flagbullettimer = 0;
     }
 }
-
-                //enemybullet[i].vx = ship->x*2;
-                //enemybullet[i].vy = ship->y*2;
-                //break;
-

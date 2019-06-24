@@ -11,7 +11,7 @@
 #include "mbedInteract.h" //Interactions with mbed board
 #include "asciiArt.h"
 
-
+/*
 int main(void) {
     uint8_t highScoreMulti, x1 = 1, y1 = 1, x2 = 160, y2 = 40, buzzkey = 0;
     ship_t enemy[5];
@@ -72,7 +72,7 @@ int main(void) {
 //    drawFinalBoss(50,25);
 
 }
-
+*/
 
 
 /*
