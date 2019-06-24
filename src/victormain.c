@@ -356,7 +356,7 @@ int main(void) {
     bullet_t enemyBullet[5];
     ship_t enemyShip[5];
     //initEnemy(enemyShip);
-    uart_init( 1000000 ); //Initialize USB serial emulation at 9600 baud
+    uart_init( 2000000 ); //Initialize USB serial emulation at 9600 baud
     color(1,7);
     clrscr();
     uart_clear();

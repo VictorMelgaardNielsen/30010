@@ -15,7 +15,7 @@
 int main(void) {
     uint8_t highScoreMulti, x1 = 1, y1 = 1, x2 = 160, y2 = 40, buzzkey = 0;
     ship_t enemy[5];
-    initEnemy(enemy);
+    initEnemy(enemy, x1, y1, x2, y1);
     meteor_t m[3];
     initMeteor(m);
     bullet_t bullet[5];
@@ -50,7 +50,7 @@ int main(void) {
         meteorBulletHit(bullet, m);
         gravityCheckShip(&ship, m);
         enemyHitCheck(bullet, enemy, &ship);
-        updateEnemyPosition(enemy,&difficulty);
+        updateEnemyPosition(enemy,&difficulty, x1, y1, x2, y2);
         updateenemyBullet(&ship, enemyBullet, enemy, x1, y1, x2, y2);
 
         if (flagrefreshrate == 1) {
@@ -72,6 +72,7 @@ int main(void) {
 //    drawFinalBoss(50,25);
 
 }
+
 
 
 /*

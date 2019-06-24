@@ -219,13 +219,9 @@ void printEnemy(ship_t enemy[]) {
     }
 }
 
-<<<<<<< HEAD
+
 
 void updateEnemyPosition(ship_t enemy[], diff_t * difficulty, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
-=======
-void updateEnemyPosition(ship_t enemy[], diff_t * difficulty) {
-
->>>>>>> master
     int i;
 
     if (flagenemy == 1) {

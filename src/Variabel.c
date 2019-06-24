@@ -152,7 +152,7 @@ void enemyHitCheck(bullet_t bullet[], ship_t enemy[], ship_t * ship) {
     }
 }
 
-void enemiesDead(ship_t enemy[]) {
+void enemiesDead(ship_t enemy[], uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
     int i, alive = 0;
 
     for (i = 0; i < 5; i++) {
@@ -162,7 +162,7 @@ void enemiesDead(ship_t enemy[]) {
     }
 
     if (alive == 0) {
-        initEnemy(enemy);
+        initEnemy(enemy, x1, y1, x2, y2);
     }
 }
 
