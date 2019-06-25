@@ -68,16 +68,18 @@ printf(" ` . ` ");
 
 }
 
-/*
+
 void drawHeart(heart_t heart) {
-    gotoxy(79,19);
-  _  _
- ( \/ )
-  \  /
-   \/
-
-
-
+    if (heart.available == 1) {
+    gotoxy(heart.x,heart.y);
+    printf(" _  _ ");
+    gotoxy(heart.x,heart.y+1);
+    printf("( \\/ )");
+    gotoxy(heart.x,heart.y+2);
+    printf(" \\  / ");
+    gotoxy(heart.x,heart.y+3);
+    printf("  \\/  ");
+    }
 
 }
-*/
+
