@@ -1,7 +1,4 @@
 #include "shipcontrol.h" //Headeren inkluderes i c filen
-#include <string.h>
-#include "timer.h"
-#include "ansi.h"
 
 void shipSetup(ship_t * ship) {
     ship->x = 10;

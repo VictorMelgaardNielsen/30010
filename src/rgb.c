@@ -80,8 +80,29 @@ void setRGB(char colour) {
         GPIOC->ODR |= (0x0001 << 7);
         GPIOA->ODR |= (0x0001 << 9);
     }
+}
 
+void RGBStatus(ship_t * ship, uint8_t flagbullet) {
+    if (flagbullet = 1) {
+        setRGB('b');
+    } else {
+        switch (ship->healthpoints) {
+            case 1:
+                setRGB('r');
+            break;
 
+            case 2:
+                setRGB('y');
+            break;
+
+            case 3:
+                setRGB('g');
+            break;
+
+            default:
+                setRGB('w');
+        }
+    }
 }
 
 
