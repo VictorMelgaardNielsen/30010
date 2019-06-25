@@ -344,7 +344,7 @@ int main(void) {
 */
 
 
-/*
+
 //Ship control
 int main(void) {
     uint8_t x1 = 1;
@@ -394,7 +394,7 @@ int main(void) {
     }
 }
 
-*/
+
 
 /*
 //tests
