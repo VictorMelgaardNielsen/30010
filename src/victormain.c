@@ -353,9 +353,8 @@ int main(void) {
     uint8_t flagbullet = 0;
     uint8_t buzzkey = 1;
     bullet_t bullet[5];
-    bullet_t enemyBullet[5];
     ship_t enemyShip[5];
-    //initEnemy(enemyShip);
+    initEnemy(enemyShip, x1, y1, x2, y1);
     uart_init( 2000000 ); //Initialize USB serial emulation at 9600 baud
     color(1,7);
     clrscr();
@@ -363,21 +362,29 @@ int main(void) {
     ship_t ship;
     shipSetup(&ship);
     bulletSetup(bullet);
+    bullet_t enemyBullet[5];
+    bulletSetup(enemyBullet);
     setuptimer();
     starttimer();
+    diff_t difficulty;
+    difficulty.diffValue = 2;
+    difficulty.counterValue = 0;
 
     while(1){
         flagbullet = shipControl(&ship, x1, y1, x2, y2, &buzzkey);
         updateBullet(&ship, bullet, flagbullet, x1, y1, x2, y2);
+        updateEnemyPosition(enemyShip, &difficulty, x1, y1, x2, y2);
+        updateEnemyBullet(&ship, enemyBullet, enemyShip, x1, y1, x2, y2);
 
         if (flagrefreshrate == 1) {
             clrscr();
             windows (x1, y1, x2, y2, "DTU Space Invaders 3000", 196, 179);
             printShip(&ship);
-            printBullet(bullet);
+            printBullet(bullet, 4);
             flagrefreshrate = 0;
             bulletsLeft(bullet, x2, y2);
             printEnemy(enemyShip);
+            printBullet(enemyBullet, 1);
         }
     }
 }
