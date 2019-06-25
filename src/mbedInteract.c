@@ -162,6 +162,7 @@ void gameOver(uint8_t kills, uint8_t highScoreMulti) {
 
     lcd_write_string("GAME OVER", 0, 1);
     lcd_write_string(scoreStr, 0, 2);
+    lcd_write_string("Press center to return", 0, 3);
     lcd_push_buffer(&buffer);
 
 }
