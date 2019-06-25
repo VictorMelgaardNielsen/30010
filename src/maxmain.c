@@ -11,7 +11,7 @@
 #include "mbedInteract.h" //Interactions with mbed board
 #include "asciiArt.h"
 
-/*
+
 int main(void) {
     uint8_t highScoreMulti, x1 = 1, y1 = 1, x2 = 160, y2 = 40, buzzkey = 0;
     ship_t enemy[5];
@@ -57,11 +57,11 @@ int main(void) {
             clrscr();
             buildCourse(x1, y1, x2, y2, m);
             printShip(&ship);
-            printBullet(bullet, 4);
+            printBullet(bullet);
             printEnemy(enemy);
             bulletsLeft(bullet,x2,y2);
             flagrefreshrate = 0;
-            printBullet(enemyBullet, 1);
+            printBullet(enemyBullet);
         }
 
     }
@@ -72,7 +72,7 @@ int main(void) {
 //    drawFinalBoss(50,25);
 
 }
-*/
+
 
 
 /*

@@ -96,12 +96,12 @@ void drawMeteor(int8_t x, int8_t y) {
 }
 
 void initMeteor(meteor_t m[]) {
-    m[0].x = 100;
+    m[0].x = 45;
     m[0].y = 30;
-    m[1].x = 90;
+    m[1].x = 85;
     m[1].y = 10;
     m[2].x = 120;
-    m[2].y = 22;
+    m[2].y = 23;
 
 }
 
