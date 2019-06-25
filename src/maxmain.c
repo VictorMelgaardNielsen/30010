@@ -13,17 +13,21 @@
 
 /*
 int main(void) {
-    uint8_t highScoreMulti, x1 = 1, y1 = 1, x2 = 160, y2 = 40, buzzkey = 0;
+    uint8_t highScoreMulti, x1 = 1, y1 = 1, x2 = 160, y2 = 40, buzzkey = 1;
+    heart_t heart;
+    initHP(&heart);
     ship_t enemy[5];
     initEnemy(enemy, x1, y1, x2, y1);
     meteor_t m[3];
     initMeteor(m);
     bullet_t bullet[5];
+    bulletSetup(bullet);
     bullet_t enemyBullet[5];
     bulletSetup(enemyBullet);
     ship_t ship;
     diff_t difficulty;
     int flagbullet = 0;
+    nuke_t nuke;
 
     //hardware init
     uart_init( 2000000 ); //Initialize USB serial emulation at 9600 baud
@@ -36,7 +40,6 @@ int main(void) {
     //start up menu and difficulty selection
     menu_init();
     choose_diff(&ship, &highScoreMulti, &difficulty);
-    bulletSetup(bullet);
 
     while(1){
         display_stats(ship.healthpoints,ship.killcount);
@@ -48,20 +51,29 @@ int main(void) {
         updateBullet(&ship, bullet, flagbullet, x1, y1, x2, y2);
         gravityCheckBullet(bullet, m);
         meteorBulletHit(bullet, m);
+        meteorBulletHit(enemyBullet, m);
         gravityCheckShip(&ship, m);
-        enemyHitCheck(bullet, enemy, &ship);
+        enemyHitCheck(bullet, enemy, &ship, &nuke);
         updateEnemyPosition(enemy,&difficulty, x1, y1, x2, y2);
-        updateenemyBullet(&ship, enemyBullet, enemy, x1, y1, x2, y2);
+        updateEnemyBullet(&ship, enemyBullet, enemy, x1, y1, x2, y2);
+        collisionDetection(&ship, enemy);
+        shipHitDetection(&ship, enemyBullet);
+        enemiesDead(enemy, x1, y1, x2, y2);
+        getHP(&ship, &heart, timer2);
+        powerUp_Nuke(&ship,&nuke);
+        use_Nuke(&ship, enemy, &nuke);
 
         if (flagrefreshrate == 1) {
             clrscr();
             buildCourse(x1, y1, x2, y2, m);
             printShip(&ship);
-            printBullet(bullet);
+            printBullet(bullet, 10);
             printEnemy(enemy);
             bulletsLeft(bullet,x2,y2);
             flagrefreshrate = 0;
-            printBullet(enemyBullet);
+            printBullet(enemyBullet, 9);
+            drawHeart(heart);
+            drawNuke(nuke);
         }
 
     }
