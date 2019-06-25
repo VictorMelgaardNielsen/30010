@@ -81,7 +81,9 @@ int main(void) {
     gameOver(ship.killcount, highScoreMulti);
     clrscr();
     gotoxy(10,10);
-//    drawFinalBoss(50,25);
+    drawFinalBoss(50,25);
+
+    while(1) {};
 
 }
 */
@@ -89,11 +91,16 @@ int main(void) {
 
 /*
 int main() {
-    uart_init( 1000000 ); //Initialize USB serial emulation at 9600 baud
+    //hardware init
+    uart_init( 2000000 ); //Initialize USB serial emulation at 2000000 baud
+    setuptimer();
+    starttimer();
+    setupjoystick();
+    lcd_init();
+    clrscr();
 
-    buildCourse(1,1,160,40);
+    gameOver(2, 1);
 
     while(1);
 }
-
 */
