@@ -195,6 +195,29 @@ void use_Nuke(ship_t * ship, ship_t enemy[], nuke_t * nuke) {
 
 }
 
+void initHP (heart_t *heart) {
+    heart->x = 79;
+    heart->y = 19;
+}
+
+
+void getHP(ship_t * ship, heart_t * heart, timee_t time) {
+    if (time.sec == 59) {
+        initHP(heart);
+        heart->available = 1;
+
+    }
+    if ((ship->x == heart->x+3 || ship->x == heart->x+4) && ship->y == heart->y+2) {
+        if (ship->healthpoints < 3) {
+        ship->healthpoints += 1;
+        heart->x = -3;
+        heart->y = -3;
+        }
+        heart->available = 0;
+    }
+
+}
+
 
 
 
