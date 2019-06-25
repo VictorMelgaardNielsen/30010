@@ -148,6 +148,7 @@ void printShip(ship_t * ship) {
     }
 }
 
+//Creates and updates user ship bullets according to the user ships velocity.
 void updateBullet(ship_t * ship, bullet_t bullet[], uint8_t flagbullet, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
     if (flagbullet == 1) {
         for (int i = 0; i < 5; i++) {
@@ -199,7 +200,7 @@ void bulletsLeft(bullet_t bullet[], uint8_t x2, uint8_t y2) {
     printf("%s%d","Bullets Left: ", amountofbullets);
 }
 
-
+//Initialize enemy ships
 void initEnemy(ship_t enemy[], uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
     int i = 0;
     for (i; i < 5; i++) {
@@ -221,6 +222,7 @@ void printEnemy(ship_t enemy[]) {
     }
 }
 
+//Updates enemy position according to the difficulty of the game level. Higher level makes the enemy ships fly faster.
 void updateEnemyPosition(ship_t enemy[], diff_t * difficulty, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
     int i;
     if (flagenemy == 1) {
@@ -242,7 +244,7 @@ void updateEnemyPosition(ship_t enemy[], diff_t * difficulty, uint8_t x1, uint8_
     }
 }
 
-
+//Creates and updates enemy bullets according to the user ship placement on the map.
 void updateEnemyBullet(ship_t * ship, bullet_t enemybullet[], ship_t enemy[], uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
     if (flagenemybullettimer == 1) {
         for (int i = 0; i < 5; i++) {
@@ -294,11 +296,11 @@ void updateEnemyBullet(ship_t * ship, bullet_t enemybullet[], ship_t enemy[], ui
             }
         }
     }
-    //Updates enemybullet velocity
+    //Updates enemybullet velocity.
     if (flagenemybullettimer == 1) {
         for (int i = 0; i < 5; i++) {
             if ((enemybullet[i].x > x1 && enemybullet[i].x < x2) && (enemybullet[i].y > y1 && enemybullet[i].y < y2)) {
-                enemybullet[i].x += enemybullet[i].vx;
+                enemybullet[i].x += enemybullet[i].vx; // Adds the calculated velocity calculated above when flagenemybullets goes high.
                 enemybullet[i].y += enemybullet[i].vy;
             } else {
                 enemybullet[i].x = -1;
@@ -309,7 +311,7 @@ void updateEnemyBullet(ship_t * ship, bullet_t enemybullet[], ship_t enemy[], ui
     }
 }
 
-
+//Detects collisions between user ship and enemyships.
 void collisionDetection(ship_t * ship, ship_t enemyShip[]) {
     for (int i = 0; i < 5; i++) {
         if (ship->x == enemyShip[i].x || ship->x == enemyShip[i].x+1 && ship->y == enemyShip[i].y) {
@@ -321,6 +323,7 @@ void collisionDetection(ship_t * ship, ship_t enemyShip[]) {
     }
 }
 
+//Detects if user ship gets hit by enemy bullets.
 void shipHitDetection(ship_t * ship, bullet_t enemybullet[]) {
     for (int i = 0; i < 5; i++) {
         if (ship->x == enemybullet[i].x || ship->x == enemybullet[i].x+1 && ship->y == enemybullet[i].y) {
