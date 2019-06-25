@@ -343,7 +343,7 @@ int main(void) {
 */
 
 
-/*
+
 //Ship control
 int main(void) {
     uint8_t x1 = 1;
@@ -381,15 +381,15 @@ int main(void) {
             clrscr();
             windows (x1, y1, x2, y2, "DTU Space Invaders 3000", 196, 179);
             printShip(&ship);
-            printBullet(bullet);
+            printBullet(bullet, 4);
             flagrefreshrate = 0;
             bulletsLeft(bullet, x2, y2);
             printEnemy(enemyShip);
-            printBullet(enemyBullet);
+            printBullet(enemyBullet, 1);
         }
     }
 }
-*/
+
 
 
 /*

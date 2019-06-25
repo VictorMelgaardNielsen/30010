@@ -177,11 +177,13 @@ void updateBullet(ship_t * ship, bullet_t bullet[], uint8_t flagbullet, uint8_t 
     }
 }
 
-void printBullet(bullet_t bullet[]) {
+void printBullet(bullet_t bullet[], uint8_t color) {
     for (int i = 0; i < 5; i++) {
         if (bullet[i].x != -1) {
             gotoxy(bullet[i].x, bullet[i].y);
+            fgcolor(color);
             printf("o");
+            fgcolor(15);
         }
     }
 }

@@ -57,11 +57,11 @@ int main(void) {
             clrscr();
             buildCourse(x1, y1, x2, y2, m);
             printShip(&ship);
-            printBullet(bullet);
+            printBullet(bullet, 4);
             printEnemy(enemy);
             bulletsLeft(bullet,x2,y2);
             flagrefreshrate = 0;
-            printBullet(enemyBullet);
+            printBullet(enemyBullet, 1);
         }
 
     }
