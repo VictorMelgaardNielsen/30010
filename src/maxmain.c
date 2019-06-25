@@ -83,8 +83,6 @@ int main(void) {
     gotoxy(10,10);
     drawFinalBoss(50,25);
 
-    while(1) {};
-
 }
 */
 
@@ -101,6 +99,6 @@ int main() {
 
     gameOver(2, 1);
 
-    while(1);
+    //while(1);
 }
 */

@@ -1,6 +1,7 @@
 #include "asciiArt.h"
 
 void drawFinalBoss (int8_t x, int8_t y) {
+
 gotoxy(x,y);
 printf("     %c%c%c%c%c                 ",220,223,223,223,220);
 gotoxy(x,y+1);
