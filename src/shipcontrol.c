@@ -314,3 +314,7 @@ void updateEnemyBullet(ship_t * ship, bullet_t enemybullet[], ship_t enemy[], ui
         flagenemybullettimer = 0;
     }
 }
+
+void collisionDetection(ship_t * ship, bullet_t enemybullet[], ship_t enemyShip[]) {
+    if (ship->x == enemyShip->x && ship-y == enemyShip)
+}
