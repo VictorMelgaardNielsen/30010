@@ -309,11 +309,18 @@ void updateEnemyBullet(ship_t * ship, bullet_t enemybullet[], ship_t enemy[], ui
     }
 }
 
-/*
-void collisionDetection(ship_t * ship, bullet_t enemybullet[], ship_t enemyShip[]) {
-    if (ship->x == enemyShip->x && ship-y == enemyShip)
+
+void collisionDetection(ship_t * ship, ship_t enemyShip[]) {
+    for (int i = 0; i < 5; i++) {
+        if (ship->x == enemyShip[i].x || ship->x == enemyShip[i].x+1 && ship->y == enemyShip[i].y) {
+            ship->healthpoints -= 1;
+            enemyShip[i].healthpoints = 0;
+            enemyShip[i].x = -3;
+            enemyShip[i].y = -3;
+        }
+    }
 }
-*/
+
 
 
 
