@@ -83,25 +83,21 @@ void setRGB(char colour) {
 }
 
 void RGBStatus(ship_t * ship, uint8_t flagbullet) {
-    if (flagbullet = 1) {
-        setRGB('b');
-    } else {
-        switch (ship->healthpoints) {
-            case 1:
-                setRGB('r');
-            break;
+    switch (ship->healthpoints) {
+        case 1:
+            setRGB('r');
+        break;
 
-            case 2:
-                setRGB('y');
-            break;
+        case 2:
+            setRGB('y');
+        break;
 
-            case 3:
-                setRGB('g');
-            break;
+        case 3:
+            setRGB('g');
+        break;
 
-            default:
-                setRGB('s');
-        }
+        default:
+            setRGB('s');
     }
 }
 
