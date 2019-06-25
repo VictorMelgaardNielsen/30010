@@ -375,6 +375,7 @@ int main(void) {
         updateBullet(&ship, bullet, flagbullet, x1, y1, x2, y2);
         updateEnemyPosition(enemyShip, &difficulty, x1, y1, x2, y2);
         updateEnemyBullet(&ship, enemyBullet, enemyShip, x1, y1, x2, y2);
+        collisionDetection(&ship, enemyShip);
 
         if (flagrefreshrate == 1) {
             clrscr();
