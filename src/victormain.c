@@ -362,8 +362,8 @@ int main(void) {
     ship_t ship;
     shipSetup(&ship);
     bulletSetup(bullet);
-    bullet_t enemyBullet[5];
-    bulletSetup(enemyBullet);
+    bullet_t enemybullet[5];
+    bulletSetup(enemybullet);
     setuptimer();
     starttimer();
     diff_t difficulty;
@@ -374,18 +374,19 @@ int main(void) {
         flagbullet = shipControl(&ship, x1, y1, x2, y2, &buzzkey);
         updateBullet(&ship, bullet, flagbullet, x1, y1, x2, y2);
         updateEnemyPosition(enemyShip, &difficulty, x1, y1, x2, y2);
-        updateEnemyBullet(&ship, enemyBullet, enemyShip, x1, y1, x2, y2);
+        updateEnemyBullet(&ship, enemybullet, enemyShip, x1, y1, x2, y2);
         collisionDetection(&ship, enemyShip);
+        shipHitDetection(&ship, enemybullet);
 
         if (flagrefreshrate == 1) {
             clrscr();
             windows (x1, y1, x2, y2, "DTU Space Invaders 3000", 196, 179);
             printShip(&ship);
-            printBullet(bullet, 4);
+            printBullet(bullet, 10);
             flagrefreshrate = 0;
             bulletsLeft(bullet, x2, y2);
             printEnemy(enemyShip);
-            printBullet(enemyBullet, 1);
+            printBullet(enemybullet, 9);
         }
     }
 }
