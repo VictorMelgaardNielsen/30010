@@ -11,7 +11,7 @@
 #include "mbedInteract.h" //Interactions with mbed board
 #include "asciiArt.h"
 
-/*
+
 int main(void) {
     uint8_t highScoreMulti, x1 = 1, y1 = 1, x2 = 160, y2 = 40, buzzkey = 1;
     heart_t heart;
@@ -29,6 +29,7 @@ int main(void) {
     uint8_t flagbullet = 0;
     nuke_t nuke;
 
+    restart:
     //hardware init
     uart_init( 2000000 ); //Initialize USB serial emulation at 9600 baud
     setuptimer();
@@ -40,7 +41,6 @@ int main(void) {
     setRGB('s');
 
     //start up menu and difficulty selection
-    restart:
     menu_init();
     choose_diff(&ship, &highScoreMulti, &difficulty);
 
@@ -87,11 +87,11 @@ int main(void) {
     gotoxy(10,10);
     drawFinalBoss(50,25);
 
-    while(readJoystick() != 0x20) {};
+    while(readJoystick() != 0x10) {};
     goto restart;
 
 }
-*/
+
 
 
 /*
