@@ -40,6 +40,7 @@ int main(void) {
     setRGB('s');
 
     //start up menu and difficulty selection
+    restart:
     menu_init();
     choose_diff(&ship, &highScoreMulti, &difficulty);
 
@@ -81,13 +82,13 @@ int main(void) {
 
     }
 
-    gameOver(5, 1);
-    //gameOver(ship.killcount, highScoreMulti);
+    gameOver(ship.killcount, highScoreMulti);
     clrscr();
     gotoxy(10,10);
     drawFinalBoss(50,25);
 
-    while(1) {};
+    while(readJoystick() != 0x20) {};
+    goto restart;
 
 }
 */
