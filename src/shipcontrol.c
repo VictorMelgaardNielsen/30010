@@ -19,7 +19,7 @@ void bulletSetup(bullet_t bullet[]) {
 }
 
 //Reads from terminal. The ship can be controlled by flying in eight different directions. wasd for control and shoot. Buzzkey at b
-uint8_t shipControl(ship_t * ship, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2, uint8_t * buzzkey) {
+uint8_t shipControl(ship_t * ship, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
     uint8_t flagbullet = 0;
     if (uart_get_count() > 0) { // Reads number of characters in the buffer
         char s[0] = {'0'};
@@ -50,6 +50,7 @@ uint8_t shipControl(ship_t * ship, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y
                 ship->vx = 0;
                 ship->vy = -1;
             }
+            return 0;
         }
         if (s[0] == 'd') {
             if (ship->vx == 0 && ship->vy == -1) { //position 0 out of index 0 to 7
@@ -77,6 +78,7 @@ uint8_t shipControl(ship_t * ship, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y
                 ship->vx = 0;
                 ship->vy = -1;
             }
+            return 0;
         }
         if (s[0] == 'w') { // Fly ship forward by updating velocity. If statements limits ship to the boundaries of window size.
             if (ship->x < x1+2) {
@@ -102,7 +104,8 @@ uint8_t shipControl(ship_t * ship, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y
             } else {
                 ship->x += ship->vx;
                 ship->y += ship->vy;
-              }
+            }
+            return 0;
         }
         if (s[0] == 's') { //Shoot
             flagbullet = 1;
@@ -119,6 +122,7 @@ uint8_t shipControl(ship_t * ship, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y
                 }
             }
             starttimer();
+            return 0;
         }
     }
 }

@@ -100,7 +100,7 @@ void RGBStatus(ship_t * ship, uint8_t flagbullet) {
             break;
 
             default:
-                setRGB('w');
+                setRGB('s');
         }
     }
 }
