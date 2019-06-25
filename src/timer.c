@@ -40,7 +40,7 @@ void TIM2_IRQHandler(void) {
     timer2.msec += 1;
 
     //Flag for enemy spaceship update
-    if (timer2.msec%50 == 0) {
+    if (timer2.msec%25 == 0) {
         flagenemy = 1;
     }
 

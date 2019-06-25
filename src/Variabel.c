@@ -135,18 +135,23 @@ if (flagravityship == 1) {
 }
 
 
-void enemyHitCheck(bullet_t bullet[], ship_t enemy[], ship_t * ship) {
+void enemyHitCheck(bullet_t bullet[], ship_t enemy[], ship_t * ship, nuke_t *nuke) {
     int i, j;
 
     for (i = 0; i < 5; i++) {
         for (j = 0; j < 5; j ++) {
             if ((bullet[i].x == enemy[j].x || bullet[i].x == enemy[j].x + 1) && bullet[i].y == enemy[j].y) {
+                ship->killcount++;
+                if (ship->killcount%10 == 0) {
+                    nuke->x = enemy[j].x;
+                    nuke->y = enemy[j].y;
+                    nuke->available = 1;
+                }
                 enemy[j].healthpoints = 0;
                 enemy[j].x = -2;
                 enemy[j].y = -2;
                 bullet[i].x = -1;
                 bullet[i].y = -1;
-                ship->killcount++;
             }
         }
     }
@@ -168,20 +173,23 @@ void enemiesDead(ship_t enemy[], uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2)
 
 //Power Ups!
 
-void powerUp_Nuke(ship_t * ship, nuke_t nuke) {
-    if (ship->x == nuke.x && ship->y == nuke.y) {
+void powerUp_Nuke(ship_t * ship, nuke_t * nuke) {
+    if (ship->x == nuke->x + 3 && ship->y == nuke->y + 1) {
         ship->powerup = 1;
+        nuke->available = 0;
     }
 }
 
-void use_Nuke(ship_t * ship, ship_t enemy[]) {
+void use_Nuke(ship_t * ship, ship_t enemy[], nuke_t * nuke) {
     int i;
 
     if (ship->powerup == 1) {
+        nuke->x = -3;
+        nuke->y = -3;
         for (i = 0; i < 5; i++) {
             enemy[i].healthpoints = 0;
-            ship->killcount += 5;
         }
+        ship->killcount += 5;
         ship->powerup = 0;
     }
 

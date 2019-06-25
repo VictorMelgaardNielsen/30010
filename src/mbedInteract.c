@@ -27,11 +27,22 @@ void menu_init() {
                 slice = 0, line = 1;
                 while(!(readJoystick() == 0x10)) {
                 lcd_clear_buffer();
-                lcd_write_string("HELP HELP HELP!", 0, 0);
-                lcd_write_string_line("Press center too return :)", slice, line, 1);
+                lcd_write_string("'A' & 'D' rotate the ship", 0, 0);
+                lcd_write_string("'W' moves, 'S' shoots", 0, 1);
+                lcd_write_string("Kill enemies, dodge rocks", 0, 2);
+                lcd_write_string("Press center to know more", 0, 3);
                 lcd_push_buffer(&buffer);
-                lcd_update_line(&slice,&line);
+
                 }
+                while(!(readJoystick() == 0x01)) {
+                lcd_clear_buffer();
+                lcd_write_string("If you kill many enemies", 0, 0);
+                lcd_write_string("A nuke will spawn", 0, 1);
+                lcd_write_string("It will kill all enemies", 0, 2);
+                lcd_write_string("Press up to return!", 0, 3);
+                lcd_push_buffer(&buffer);
+                }
+
                 slice = 0, line = 2;
             }
 
@@ -42,7 +53,7 @@ void menu_init() {
                 lcd_write_string("Choose difficulty:", 0, 0);
                 lcd_write_string("Press left for EASY", 0 , 1);
                 lcd_write_string("Press up for MEDIUM", 0 , 2);
-                lcd_write_string("Press right for REAL SHIT", 0 , 3);
+                lcd_write_string("Press right for HARDCORE", 0 , 3);
                 lcd_push_buffer(&buffer);
                 break;
                 //Her placer choose_diff() efter menu_init i main
@@ -136,7 +147,7 @@ void gameOver(uint8_t kills, uint8_t highScoreMulti) {
     stoptimer();
 
 
-    highscore = (120 - (int)(timer2.sec + timer2.mint*60)) + (int)(kills*highScoreMulti);
+    highscore = (180 - (int)(timer2.sec + timer2.mint*60)) + (int)(kills*highScoreMulti);
     //highscore = (int)(kills*highScoreMulti) - 52;
 
     if (highscore < 0) {

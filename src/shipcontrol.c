@@ -219,9 +219,8 @@ void printEnemy(ship_t enemy[]) {
     }
 }
 
-
-
 void updateEnemyPosition(ship_t enemy[], diff_t * difficulty, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
+
     int i;
 
     if (flagenemy == 1) {
@@ -274,3 +273,12 @@ void updateenemyBullet(ship_t * ship, bullet_t enemybullet[], ship_t enemy[], ui
                 //enemybullet[i].vy = ship->y*2;
                 //break;
 
+
+    
+    
+    
+    
+    
+    
+    
+    

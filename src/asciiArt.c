@@ -55,15 +55,29 @@ printf("%c%c%c%c%c%c%c%c%c    %c%c%c    %c%c%c%c%c %c%c     %c%c%c",219,219,219,
 }
 
 void drawNuke(nuke_t nuke) {
+    if (nuke.available == 1) {
 gotoxy(nuke.x,nuke.y);
 printf(". \\\"/ .");
 gotoxy(nuke.x,nuke.y+1);
 printf(".-.\".-.");
 gotoxy(nuke.x,nuke.y+2);
 printf(" ` . ` ");
+    }
+
+
 
 }
 
+/*
+void drawHeart(heart_t heart) {
+    gotoxy(79,19);
+  _  _
+ ( \/ )
+  \  /
+   \/
 
 
 
+
+}
+*/
