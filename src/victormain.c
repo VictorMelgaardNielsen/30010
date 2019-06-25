@@ -6,6 +6,7 @@
 #include "joystick.h"
 #include "lcd.h"
 #include "shipcontrol.h"
+//#include "rgb.h"
 
 
 /*
@@ -342,8 +343,8 @@ int main(void) {
 }
 */
 
-
 /*
+
 //Ship control
 int main(void) {
     uint8_t x1 = 1;
@@ -369,6 +370,7 @@ int main(void) {
     diff_t difficulty;
     difficulty.diffValue = 2;
     difficulty.counterValue = 0;
+    setupRGB();
 
     while(1){
         flagbullet = shipControl(&ship, x1, y1, x2, y2, &buzzkey);
@@ -377,16 +379,17 @@ int main(void) {
         updateEnemyBullet(&ship, enemybullet, enemyShip, x1, y1, x2, y2);
         collisionDetection(&ship, enemyShip);
         shipHitDetection(&ship, enemybullet);
+        RGBStatus(&ship, flagbullet);
 
         if (flagrefreshrate == 1) {
             clrscr();
             windows (x1, y1, x2, y2, "DTU Space Invaders 3000", 196, 179);
             printShip(&ship);
-            printBullet(bullet, 10);
+            printBullet(bullet, 10); //10 Light green
             flagrefreshrate = 0;
             bulletsLeft(bullet, x2, y2);
             printEnemy(enemyShip);
-            printBullet(enemybullet, 9);
+            printBullet(enemybullet, 9); //9 Light red
         }
     }
 }
