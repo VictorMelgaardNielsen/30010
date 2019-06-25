@@ -377,7 +377,7 @@ int main(void) {
             printBullet(bullet);
             flagrefreshrate = 0;
             bulletsLeft(bullet, x2, y2);
-            //printEnemy(enemyShip);
+            printEnemy(enemyShip);
         }
     }
 }

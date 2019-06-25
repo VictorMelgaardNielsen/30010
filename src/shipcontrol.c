@@ -269,20 +269,16 @@ void updateenemyBullet(ship_t * ship, bullet_t enemybullet[], ship_t enemy[], ui
     }
 }
 
+/*
 void collisionDetection(ship_t * ship, bullet_t enemybullet[], ship_t enemyShip[]) {
     if (ship->x == enemyShip->x && ship-y == enemyShip)
 }
-
-                //enemybullet[i].vx = ship->x*2;
-                //enemybullet[i].vy = ship->y*2;
-                //break;
+*/
 
 
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
