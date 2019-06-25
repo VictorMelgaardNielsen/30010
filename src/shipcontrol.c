@@ -250,36 +250,67 @@ void updateEnemyPosition(ship_t enemy[], diff_t * difficulty, uint8_t x1, uint8_
 
 
 void updateEnemyBullet(ship_t * ship, bullet_t enemybullet[], ship_t enemy[], uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
-    if (flagbullettimer == 1) {
+    if (flagenemybullettimer == 1) {
         for (int i = 0; i < 5; i++) {
-                int16_t bulletvectorx = ship->x - enemy[i].x;
-                int16_t bulletvectory = ship->y - enemy[i].y;
-                if (bulletvectorx < 0 && bulletvectory == 0 && enemybullet[i].x == -1) { // Creates new bullet, if bullets are available. Available bullets resides at (-1,-1)
-                    enemybullet[i].x = enemy[i].x;
-                    enemybullet[i].y = enemy[i].y;
-                    enemybullet[i].vx = -2;
-                    enemybullet[i].vy = 0;
-                } else if (bulletvectorx > 0 && bulletvectory == 0 && enemybullet[i].x == -1) {
+            int16_t bulletvectorx = ship->x - enemy[i].x; // Calculates vector between ship and enemy ship.
+            int16_t bulletvectory = ship->y - enemy[i].y;
+            //Calculation for bullet shots; up, down, forward and backwards.
+            if (bulletvectorx < 0 && bulletvectory == 0 && enemybullet[i].x == -1) { // Creates new bullet, if bullets are available. Available bullets resides at (-1,-1)
+                enemybullet[i].x = enemy[i].x;
+                enemybullet[i].y = enemy[i].y;
+                enemybullet[i].vx = -2;
+                enemybullet[i].vy = 0;
+            } else if (bulletvectorx > 0 && bulletvectory == 0 && enemybullet[i].x == -1) {
                 enemybullet[i].x = enemy[i].x;
                 enemybullet[i].y = enemy[i].y;
                 enemybullet[i].vx = 2;
                 enemybullet[i].vy = 0;
-                }
+            } else if (bulletvectorx == 0 || bulletvectorx == 1 && bulletvectory > 0 && enemybullet[i].x == -1) { // Two bulletvectorx values to take into account a ship velocity of two.
+                enemybullet[i].x = enemy[i].x;
+                enemybullet[i].y = enemy[i].y;
+                enemybullet[i].vx = 0;
+                enemybullet[i].vy = 2;
+            } else if (bulletvectorx == 0 || bulletvectorx == 1 && bulletvectory < 0 && enemybullet[i].x == -1) {
+                enemybullet[i].x = enemy[i].x;
+                enemybullet[i].y = enemy[i].y;
+                enemybullet[i].vx = 0;
+                enemybullet[i].vy = -2;
+            }
+            //Calculation for bullet shots at an oblique angle.
+              else if (bulletvectorx < 0 && bulletvectory < 0 && enemybullet[i].x == -1) {
+                enemybullet[i].x = enemy[i].x;
+                enemybullet[i].y = enemy[i].y;
+                enemybullet[i].vx = -2;
+                enemybullet[i].vy = -2;
+            } else if (bulletvectorx > 0 && bulletvectory < 0 && enemybullet[i].x == -1) {
+                enemybullet[i].x = enemy[i].x;
+                enemybullet[i].y = enemy[i].y;
+                enemybullet[i].vx = 2;
+                enemybullet[i].vy = -2;
+            } else if (bulletvectorx < 0 && bulletvectory > 0 && enemybullet[i].x == -1) {
+                enemybullet[i].x = enemy[i].x;
+                enemybullet[i].y = enemy[i].y;
+                enemybullet[i].vx = -2;
+                enemybullet[i].vy = 2;
+            } else if (bulletvectorx > 0 && bulletvectory > 0 && enemybullet[i].x == -1) {
+                enemybullet[i].x = enemy[i].x;
+                enemybullet[i].y = enemy[i].y;
+                enemybullet[i].vx = 2;
+                enemybullet[i].vy = 2;
             }
         }
-
+    }
     //Updates bullet velocity
-    if (flagbullettimer == 1) {
+    if (flagenemybullettimer == 1) {
         for (int i = 0; i < 5; i++) {
             if ((enemybullet[i].x > x1 && enemybullet[i].x < x2) && (enemybullet[i].y > y1 && enemybullet[i].y < y2)) {
                 enemybullet[i].x += enemybullet[i].vx;
                 enemybullet[i].y += enemybullet[i].vy;
-            }
-            else {
+            } else {
                 enemybullet[i].x = -1;
                 enemybullet[i].y = -1;
             }
         }
-        flagbullettimer = 0;
+        flagenemybullettimer = 0;
     }
 }

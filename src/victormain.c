@@ -342,7 +342,7 @@ int main(void) {
 }
 */
 
-/*
+
 
 //Ship control
 int main(void) {
@@ -390,7 +390,7 @@ int main(void) {
     }
 }
 
-*/
+
 
 /*
 //tests
