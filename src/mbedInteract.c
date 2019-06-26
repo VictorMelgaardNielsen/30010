@@ -70,7 +70,7 @@ void choose_diff(ship_t * ship, uint8_t * highscoreMulti, diff_t * difficulty) {
             *highscoreMulti = 1;
             difficulty->diffValue = 3;
             difficulty->counterValue = 0;
-            restarttimer();
+            restartTimer15();
             break;
         } if(readJoystick() == 0x01) {
             ship->healthpoints = 2;
@@ -79,7 +79,7 @@ void choose_diff(ship_t * ship, uint8_t * highscoreMulti, diff_t * difficulty) {
             *highscoreMulti = 2;
             difficulty->diffValue = 2;
             difficulty->counterValue = 0;
-            restarttimer();
+            restartTimer15();
             break;
         } if(readJoystick() == 0x08) {
             ship->healthpoints = 1;
@@ -88,7 +88,7 @@ void choose_diff(ship_t * ship, uint8_t * highscoreMulti, diff_t * difficulty) {
             *highscoreMulti = 4;
             difficulty->diffValue = 1;
             difficulty->counterValue = 0;
-            restarttimer();
+            restartTimer15();
             break;
         }
     }
@@ -113,7 +113,7 @@ void display_stats(uint8_t health, uint8_t kills) {
         killStr[i] = intnumber[i-12];
     }
 
-    sprintf(intnumber, "%02d", timer2.mint);
+    sprintf(intnumber, "%02d", timer15.mint);
     i = 6;
     while(i < 8) {
         timeStr[i] = intnumber[i-6];
@@ -123,7 +123,7 @@ void display_stats(uint8_t health, uint8_t kills) {
     timeStr[i] = ':';
     i++;
 
-    sprintf(intnumber, "%02d", timer2.sec);
+    sprintf(intnumber, "%02d", timer15.sec);
     while(i < 11) {
         timeStr[i] = intnumber[i-9];
         i++;
@@ -144,7 +144,7 @@ void gameOver(uint8_t kills, uint8_t highScoreMulti) {
     char intNumber[5];
     int i = 11;
     lcd_clear_buffer();
-    stoptimer();
+    stopTimer15();
 
     highscore = kills*highScoreMulti << 1;
     /*

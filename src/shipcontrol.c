@@ -112,7 +112,7 @@ uint8_t shipControl(ship_t * ship, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y
             return flagbullet; //Sets flagbullet high, signaling the updatebullet function to update.
         }
         if (s[0] == 'b') { //Buzzkey, pauses game, and prints buzz-screen
-            stoptimer();
+            stopTimer15();
             clrscr();
             printbuzzscreen();
             while(1) {
@@ -121,7 +121,7 @@ uint8_t shipControl(ship_t * ship, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y
                     break;
                 }
             }
-            starttimer();
+            startTimer15();
             return 0;
         }
     }

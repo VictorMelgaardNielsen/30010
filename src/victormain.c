@@ -347,6 +347,10 @@ int main(void) {
 /*
 //Ship control
 int main(void) {
+    setupTimer2();
+    uint8_t flagbuzzer = 0;
+
+
     uint8_t x1 = 1;
     uint8_t y1 = 1;
     uint8_t x2 = 60;
@@ -364,8 +368,8 @@ int main(void) {
     bulletSetup(bullet);
     bullet_t enemybullet[5];
     bulletSetup(enemybullet);
-    setuptimer();
-    starttimer();
+    setupTimer15();
+    startTimer15();
     diff_t difficulty;
     difficulty.diffValue = 2;
     difficulty.counterValue = 0;
@@ -373,6 +377,7 @@ int main(void) {
     ship.healthpoints = 3;
 
     while(1){
+        buzzer(&flagbuzzer);
         flagbullet = shipControl(&ship, x1, y1, x2, y2);
         updateBullet(&ship, bullet, flagbullet, x1, y1, x2, y2);
         updateEnemyPosition(enemyShip, &difficulty, x1, y1, x2, y2);
@@ -396,23 +401,29 @@ int main(void) {
 */
 
 
-/*
 //tests
-int main(void) {
-    uart_init( 1000000 ); //Initialize USB serial emulation at 9600 baud
-    clrscr();
-    char a = 2;
-    char b = 3;
-    char c;
-    c = a++ + ++b;
 
-        printf("%d",c);
+/*
+int main(void) {
+    uart_init( 2000000 ); //Initialize USB serial emulation at 9600 baud
+    clrscr();
+    setupTimer15();
+    startTimer15();
+    setupTimer2();
+    //startTimer2();
+    //setFreq(50);
+    //melody();
+
+
+    //int x = 0;
+    //while(x < 10000000) {
+    //    x++;
+    //}
+    //stopTimer2();
+
+
+    while(1) {
+
+    }
 }
 */
-
-//I rapport tilf�j visuel beskrivelse af angle, se sketch.
-
-// sizeof(bullet)/sizeof(bullet[0])
-
-// power up; bouncing balls.
-

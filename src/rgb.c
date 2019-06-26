@@ -82,6 +82,7 @@ void setRGB(char colour) {
     }
 }
 
+// Sets RGB status based on ship healthpoints
 void RGBStatus(ship_t * ship, uint8_t flagbullet) {
     switch (ship->healthpoints) {
         case 1:

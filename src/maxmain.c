@@ -13,6 +13,9 @@
 
 
 int main(void) {
+    setupTimer2();
+    uint8_t flagbuzzer = 0;
+
     uint8_t highScoreMulti, x1 = 1, y1 = 1, x2 = 160, y2 = 40, buzzkey = 1;
     heart_t heart;
     initHP(&heart);
@@ -29,11 +32,11 @@ int main(void) {
     uint8_t flagbullet = 0;
     nuke_t nuke;
 
-    restart:
     //hardware init
     uart_init( 2000000 ); //Initialize USB serial emulation at 9600 baud
-    setuptimer();
-    starttimer();
+    restart:
+    setupTimer15();
+    startTimer15();
     setupjoystick();
     lcd_init();
     clrscr();
@@ -43,8 +46,16 @@ int main(void) {
     //start up menu and difficulty selection
     menu_init();
     choose_diff(&ship, &highScoreMulti, &difficulty);
+    lcd_clear_buffer();
+    lcd_write_string("Get ready! Look at Putty", 0, 0);
+    lcd_push_buffer(&buffer);
+    while(flagbuzzer != 5) {
+    buzzer(&flagbuzzer);
+    }
+    restartTimer15();
 
     while(1){
+
         display_stats(ship.healthpoints,ship.killcount);
         if (readJoystick() == 0x02 || ship.healthpoints == 0) { //press down to end game
             break;
@@ -62,7 +73,7 @@ int main(void) {
         collisionDetection(&ship, enemy);
         shipHitDetection(&ship, enemyBullet);
         enemiesDead(enemy, x1, y1, x2, y2);
-        getHP(&ship, &heart, timer2);
+        getHP(&ship, &heart, timer15);
         powerUp_Nuke(&ship,&nuke);
         use_Nuke(&ship, enemy, &nuke);
         RGBStatus(&ship, flagbullet);
@@ -85,7 +96,7 @@ int main(void) {
     gameOver(ship.killcount, highScoreMulti);
     clrscr();
     gotoxy(10,10);
-    drawFinalBoss(50,25);
+    drawGameOver(50,25);
 
     while(readJoystick() != 0x10) {};
     goto restart;

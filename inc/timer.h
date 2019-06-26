@@ -12,8 +12,7 @@ typedef struct {
     uint8_t msec;
 } timee_t;
 
-volatile timee_t timer2;
-
+volatile timee_t timer15;
 
 int flagenemy;
 int flaglcd;
@@ -23,11 +22,16 @@ int flagravity;
 int flagravityship;
 int flagenemybullettimer;
 
-void setuptimer();
-void restarttimer();
-void starttimer();
-void stoptimer();
-void TIM2_IRQHandler(void);
-char * readTerminal(char a[]);
+void setupTimer2();
+void startTimer2();
+void stopTimer2();
+void setFreq(uint16_t freq);
+void buzzer(uint8_t * flagbuzzer);
+
+void setupTimer15();
+void restartTimer15();
+void startTimer15();
+void stopTimer15();
+void TIM1_BRK_TIM15_IRQHandler();
 
 #endif
