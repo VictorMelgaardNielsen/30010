@@ -2,7 +2,7 @@
 #include <string.h>
 
 
-//Setup for timer 2 to generate square waves for various pitches.
+//Setup for timer 2 to generate PWM, square waves for various pitches.
 void setupTimer2() {
     RCC->APB1ENR |= 0x00000001; // Enable clock line to timer 2;
     TIM2->CR1 = 0x0000; // Disable timer
@@ -10,6 +10,7 @@ void setupTimer2() {
     TIM2->PSC = 0; // Set pre-scaler value
     TIM2->CR1 |= 0x0001; // Enable timer
 
+    //Configuration of the counter compare registers of the timer
     TIM2->CCER &= ~TIM_CCER_CC3P; // Clear CCER register
     TIM2->CCER |= 0x00000001 << 8; // Enable OC3 output
     TIM2->CCMR2 &= ~TIM_CCMR2_OC3M; // Clear CCMR2 register
@@ -24,7 +25,7 @@ void setupTimer2() {
     GPIOB->MODER &= ~(0x00000003 << (10 * 2)); // Clear mode register
     GPIOB->MODER |= (0x00000002 << (10 * 2)); // Set mode register
 
-    //Specify alternative function 1, PWM. output.
+    //Specify alternative function 1, PWM output.
     GPIO_PinAFConfig(GPIOB, GPIO_PinSource10, GPIO_AF_1);
 }
 
@@ -63,12 +64,12 @@ void stopTimer2() {
 //The input value freq sets the frequency of the piezo buzzer.
 void setFreq(uint16_t freq) {
     uint32_t reload = 64e6 / freq / (0 + 1) - 1;
-    TIM2->ARR = reload; // Set auto reload value
-    TIM2->CCR3 = reload/2; // Set compare register
+    TIM2->ARR = reload; // Set auto reload value. To set the the frequency according to input value.
+    TIM2->CCR3 = reload/2; // Set compare register. Set to half the reload value, resulting in a duty cycle of 50%.
     TIM2->EGR |= 0x01; // Write to EGR register, to inform timer that the values have been changed.
  }
 
-//Setup of timer 15
+//Setup of timer 15.
 void setupTimer15() {
     timer15.hour = 0;
     timer15.mint = 0;
@@ -78,7 +79,7 @@ void setupTimer15() {
     RCC->APB2ENR |= RCC_APB2Periph_TIM15; // Enable clock line to timer 2;
     TIM15->CR1 = 0x0000;
     TIM15->ARR = 63999; // Set auto reload value
-    TIM15->PSC = 9; // Set pre-scaler value
+    TIM15->PSC = 9; // Set pre-scaler value. Since the ARR register is only 16-bit, this has a maximum reload value of 65535. Therefore the prescalar is set to 9, which sets timer 15 to 100 Hz.
     TIM15->DIER |= 0x0001; // Enable timer interrupt
 
     NVIC_SetPriority(TIM1_BRK_TIM15_IRQn, 0);
