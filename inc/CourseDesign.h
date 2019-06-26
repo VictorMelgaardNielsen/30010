@@ -9,7 +9,5 @@
 
 void buildCourse(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2, meteor_t m[]);
 void course(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2);
-void drawCounter(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2, int nice);
-void drawMeteor(int8_t x, int8_t y);
 void initMeteor(meteor_t m[]);
 #end if

@@ -47,48 +47,6 @@ printf("%c", 188);
 
 }
 
-void drawCounter(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2, int nice) {
-
-
-gotoxy((x1 + x2)/2, (y1 + y2)/2);
-up(1);
-backwards(4);
-printf("%c", 218);
-for (int i = 0; i < 8; i++) {
-    printf("%c",196);
-}
-printf("%c", 191);
-down(1);
-backwards(1);
-printf("%c", 179);
-down(1);
-backwards(1);
-printf("%c",217);
-backwards(2);
-for (int j = 0; j < 8; j++) {
-    printf("%c", 196);
-    backwards(2);
-}
-printf("%c",192);
-backwards(1);
-up(1);
-printf("%cHits:%2d", 179, nice);
-}
-
-void drawMeteor(int8_t x, int8_t y) {
-
-    gotoxy(x, y);
-    printf("  .----.  ");
-    gotoxy(x, y + 1);
-    printf(".'%c%c%c%c%c%c'.",178,178,178,178,178,178);
-    gotoxy(x, y + 2);
-    printf(":%c%c%c%c%c%c%c%c:",178,178,178,178,178,178,178,178);
-    gotoxy(x, y + 3);
-    printf("'.%c%c%c%c%c%c.'",178,178,178,178,178,178);
-    gotoxy(x, y + 4);
-    printf("  `''''`  ");
-}
-
 void initMeteor(meteor_t m[]) {
     m[0].x = 45;
     m[0].y = 30;
