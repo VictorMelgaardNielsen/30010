@@ -31,23 +31,23 @@ void setupTimer2() {
 
 // Buzzer jingle melody indicating game started, A Major.
 void buzzer(uint8_t * flagbuzzer) {
-    if (timer15.sec == 1 && *flagbuzzer == 0) {// Use of timer 15 to play a new frequency every one second.
+    if (timer15.sec == 0 && *flagbuzzer == 0) {// Use of timer 15 to play a new frequency every one second.
         setFreq(440);
         *flagbuzzer = 1;
     }
-    if (timer15.sec == 2 && *flagbuzzer == 1) {
+    if (timer15.sec == 1 && *flagbuzzer == 1) {
         setFreq(554);
         *flagbuzzer = 2;
     }
-    if (timer15.sec == 3 && *flagbuzzer == 2) {
+    if (timer15.sec == 2 && *flagbuzzer == 2) {
         setFreq(659);
         *flagbuzzer = 3;
     }
-    if (timer15.sec == 4 && *flagbuzzer == 3) {
+    if (timer15.sec == 3 && *flagbuzzer == 3) {
         setFreq(880);
         *flagbuzzer = 4;
     }
-    if (timer15.sec == 5 && *flagbuzzer == 4) {
+    if (timer15.sec == 4 && *flagbuzzer == 4) {
         stopTimer2();
         *flagbuzzer = 5;
     }
