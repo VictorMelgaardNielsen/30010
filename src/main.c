@@ -65,12 +65,13 @@ int main(void) {
 
         while(1){
 
-            display_stats(ship.healthpoints,ship.killcount);
+            display_stats(ship.healthpoints,ship.killcount); // Displays kills, health point and time on LCD
+
             if (readJoystick() == 0x02 || ship.healthpoints == 0) { //press down to end game
                 break;
             }
 
-            // Creates bullets if user shoots. Updates position of the bullets
+            // Updates user ship and creates bullets depending on keyboard inputs
             flagbullet = shipControl(&ship, x1, y1, x2, y2);
             updateBullet(&ship, bullet, flagbullet, x1, y1, x2, y2);
 
@@ -80,6 +81,7 @@ int main(void) {
             meteorBulletHit(bullet, m);
             meteorBulletHit(enemyBullet, m);
 
+            // Enemy update functions - movement, bullet generation and hit detection
             enemyHitCheck(bullet, enemy, &ship, &nuke); // Checks if user bullet hits enemy ship
             updateEnemyPosition(enemy,&difficulty, x1, y1, x2, y2); // Updates enemy ship position depending on difficulty selected
             updateEnemyBullet(&ship, enemyBullet, enemy, x1, y1, x2, y2); // Creates enemy bullet and updates position of bullets
@@ -103,10 +105,10 @@ int main(void) {
                 printBullet(bullet, 12);
                 printEnemy(enemy);
                 bulletsLeft(bullet,x2,y2);
-                flagrefreshrate = 0;
                 printBullet(enemyBullet, 9);
                 drawHeart(heart);
                 drawNuke(nuke);
+                flagrefreshrate = 0;
             }
 
         }
