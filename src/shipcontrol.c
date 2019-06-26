@@ -1,3 +1,5 @@
+//shipcontrol.c
+
 #include "shipcontrol.h" // Headeren inkluderes i c filen
 
 void shipSetup(ship_t * ship) {

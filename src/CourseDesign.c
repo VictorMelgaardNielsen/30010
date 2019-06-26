@@ -1,3 +1,5 @@
+//CourseDesign.c
+
 #include "ansi.h"
 #include "Variabel.h"
 
@@ -56,8 +58,3 @@ void initMeteor(meteor_t m[]) {
     m[2].y = 23;
 
 }
-
-
-
-
-

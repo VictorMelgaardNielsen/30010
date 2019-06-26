@@ -1,3 +1,5 @@
+// Variabel.h
+
 #include <stdio.h>
 #include <stdint.h>
 #include "ansi.h"
@@ -31,4 +33,3 @@ void initHP (heart_t *heart);
 void getHP(ship_t * ship, heart_t * heart, timee_t time);
 
 #endif
-

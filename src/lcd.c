@@ -1,3 +1,5 @@
+// lcd.c
+
 #include "lcd.h"
 
 void lcd_clear_buffer() {

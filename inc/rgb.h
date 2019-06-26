@@ -1,3 +1,5 @@
+// rgb.h
+
 #include <stdio.h>
 #include <stdint.h>
 #include "stm32f30x_conf.h"
@@ -11,9 +13,3 @@ void setRGB(char colour);
 void RGBStatus(ship_t * ship);
 
 #endif
-
-
-
-
-
-

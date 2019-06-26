@@ -113,63 +113,6 @@ void backwards(uint8_t x) {
     printf("%c[%dD", ESC, x);
 }
 
-void windows (uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2, char title[], char a, char b) {
-    //Upper black square
-    color(1,0);
-    gotoxy(x1+2,y1);
-    for (int i = x1; i < x2-2; i++) {
-        printf("%c", 32);
-
-    }
-    //Right line
-    color(1,7);
-    gotoxy(x2,y1);
-    for (int j = y1; j < y2; j++) {
-        down(1);
-        printf("%c", b);
-        backwards(1);
-
-    }
-    //Title
-    gotoxy(x1+6,y1);
-    color(15,0);
-    printf("%s", title);
-
-
-    //Left line
-    color(1,7);
-    gotoxy(x1,y1);
-    for (int k = y1; k < y2; k++) {
-        down(1);
-        printf("%c", b);
-        backwards(1);
-    }
-    //Bottom line
-    gotoxy(x1,y2);
-    for (int l = x1; l < x2; l++) {
-        printf("%c", a);
-    }
-    //Corner upper left
-    gotoxy(x1,y1);
-    printf("%c", 218);
-    gotoxy(x1+1,y1);
-    printf("%c", 180);
-
-    //Corner bottom left
-    gotoxy(x1,y2);
-    printf("%c", 192);
-
-    //Corner upper right
-    gotoxy(x2-1,y1);
-    printf("%c", 195);
-    gotoxy(x2,y1);
-    printf("%c", 191);
-
-    //Corner bottom right
-    gotoxy(x2,y2);
-    printf("%c", 217);
-}
-
 void printFix(int32_t i) {
     // Prints a signed 16.16 fixed point number
     if ((i & 0x80000000) != 0) { // Handle negative numbers

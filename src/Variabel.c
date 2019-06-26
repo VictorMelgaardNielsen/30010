@@ -1,3 +1,5 @@
+// variabel.c
+
 #include "variabel.h"
 
 void gravityCheckBullet(bullet_t b[], meteor_t m[]) {
