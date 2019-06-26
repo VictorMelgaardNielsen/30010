@@ -206,7 +206,7 @@ void initEnemy(ship_t enemy[], uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
     int i = 0;
     for (i; i < 5; i++) {
         enemy[i].x = x2-1;
-        enemy[i].y = 10 + i*3;
+        enemy[i].y = 8 + i*7;
         enemy[i].vx = -2;
         enemy[i].vy = 0;
         enemy[i].healthpoints = 1;
