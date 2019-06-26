@@ -5,6 +5,7 @@
 #ifndef _TIMER_H_
 #define _TIMER_H_
 
+//------------------------------Structs-----------------------------
 typedef struct {
     uint8_t hour;
     uint8_t mint;
@@ -14,6 +15,7 @@ typedef struct {
 
 volatile timee_t timer15;
 
+//------------------------------Global variables--------------------
 int flagenemy;
 int flaglcd;
 int flagbullettimer;
@@ -22,6 +24,7 @@ int flagravity;
 int flagravityship;
 int flagenemybullettimer;
 
+//------------------------------Functions---------------------------
 void setupTimer2();
 void startTimer2();
 void stopTimer2();
