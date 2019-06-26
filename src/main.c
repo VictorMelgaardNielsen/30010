@@ -63,13 +63,10 @@ int main(void) {
         flagbuzzer = 0;
         restartTimer15();
 
-        while(1){
+        // Terminates game if health points is 0 or down is press on joystick
+        while(!(readJoystick() == 0x02 || ship.healthpoints == 0)){
 
             display_stats(ship.healthpoints,ship.killcount); // Displays kills, health point and time on LCD
-
-            if (readJoystick() == 0x02 || ship.healthpoints == 0) { //press down to end game
-                break;
-            }
 
             // Updates user ship and creates bullets depending on keyboard inputs
             flagbullet = shipControl(&ship, x1, y1, x2, y2);
