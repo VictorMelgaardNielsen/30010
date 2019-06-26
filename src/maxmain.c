@@ -11,6 +11,7 @@
 
 
 int main(void) {
+    while(1) {
     //Define variables and structs
     uint8_t highScoreMulti; //Used to calculate high depending on which difficulty user selects
     uint8_t x1 = 1, y1 = 1, x2 = 160, y2 = 40; //x1 and y1 defines the north western corner of the course, x2 and y2 the south eastern
@@ -44,76 +45,78 @@ int main(void) {
     setRGB('s');
 
     //Main game loop
-    while(1) {
-        //start up menu and difficulty selection
-        menu_init();
-        choose_diff(&ship, &highScoreMulti, &difficulty);
-        lcd_clear_buffer();
-        lcd_write_string("Get ready! Look at Putty", 0, 0);
-        lcd_push_buffer(&buffer);
-        startTimer2();
-        startTimer15();
-        while(flagbuzzer != 5) {
-        buzzer(&flagbuzzer);
-        }
-        flagbuzzer = 0;
-        restartTimer15();
 
-        while(1){
+    //start up menu and difficulty selection
+    menu_init();
+    choose_diff(&ship, &highScoreMulti, &difficulty);
 
-            display_stats(ship.healthpoints,ship.killcount);
-            if (readJoystick() == 0x02 || ship.healthpoints == 0) { //press down to end game
-                break;
-            }
+    // Prints get ready to LCD
+    lcd_clear_buffer();
+    lcd_write_string("Get ready! Look at Putty", 0, 0);
+    lcd_push_buffer(&buffer);
 
-            // Creates bullets if user shoots. Updates position of the bullets
-            flagbullet = shipControl(&ship, x1, y1, x2, y2);
-            updateBullet(&ship, bullet, flagbullet, x1, y1, x2, y2);
+    // Plays start up melody
+    while(flagbuzzer != 5) {
+    buzzer(&flagbuzzer);
+    }
+    flagbuzzer = 0;
+    restartTimer15();
 
-            // Meteor gravity and bullet hit update functions
-            gravityCheckBullet(bullet, m);
-            gravityCheckShip(&ship, m);
-            meteorBulletHit(bullet, m);
-            meteorBulletHit(enemyBullet, m);
+    while(1){
 
-            enemyHitCheck(bullet, enemy, &ship, &nuke); // Checks if user bullet hits enemy ship
-            updateEnemyPosition(enemy,&difficulty, x1, y1, x2, y2); // Updates enemy ship position depending on difficulty selected
-            updateEnemyBullet(&ship, enemyBullet, enemy, x1, y1, x2, y2); // Creates enemy bullet and updates position of bullets
-            collisionDetection(&ship, enemy); // Checks if there is a collision between user and enemy ship
-            shipHitDetection(&ship, enemyBullet); // Checks if user ship is hit by enemy bullet
-            enemiesDead(enemy, x1, y1, x2, y2); // Respawns enemy if all are dead
-
-            //Power Ups update functions
-            getHP(&ship, &heart, timer15);
-            powerUp_Nuke(&ship,&nuke);
-            use_Nuke(&ship, enemy, &nuke);
-
-            // RGB light showing health points. green 3 lives, yellow 2 lives, red one life
-            RGBStatus(&ship, flagbullet);
-
-            // Prints graphics with a rate controlled by the flagrefreshrate selected in the timer15 interrupt handler
-            if (flagrefreshrate == 1) {
-                clrscr();
-                buildCourse(x1, y1, x2, y2, m);
-                printShip(&ship);
-                printBullet(bullet, 12);
-                printEnemy(enemy);
-                bulletsLeft(bullet,x2,y2);
-                flagrefreshrate = 0;
-                printBullet(enemyBullet, 9);
-                drawHeart(heart);
-                drawNuke(nuke);
-            }
-
+        display_stats(ship.healthpoints,ship.killcount);
+        if (readJoystick() == 0x02 || ship.healthpoints == 0) { //press down to end game
+            break;
         }
 
-        // Game Over screen on Putty and LCD.
-        gameOver(ship.killcount, highScoreMulti);
-        clrscr();
-        gotoxy(10,10);
-        drawGameOver(50,25);
+        // Creates bullets if user shoots. Updates position of the bullets
+        flagbullet = shipControl(&ship, x1, y1, x2, y2);
+        updateBullet(&ship, bullet, flagbullet, x1, y1, x2, y2);
 
-        while(readJoystick() != 0x10) {};
+        // Meteor gravity and bullet hit update functions
+        gravityCheckBullet(bullet, m);
+        gravityCheckShip(&ship, m);
+        meteorBulletHit(bullet, m);
+        meteorBulletHit(enemyBullet, m);
+
+        enemyHitCheck(bullet, enemy, &ship, &nuke); // Checks if user bullet hits enemy ship
+        updateEnemyPosition(enemy,&difficulty, x1, y1, x2, y2); // Updates enemy ship position depending on difficulty selected
+        updateEnemyBullet(&ship, enemyBullet, enemy, x1, y1, x2, y2); // Creates enemy bullet and updates position of bullets
+        collisionDetection(&ship, enemy); // Checks if there is a collision between user and enemy ship
+        shipHitDetection(&ship, enemyBullet); // Checks if user ship is hit by enemy bullet
+        enemiesDead(enemy, x1, y1, x2, y2); // Respawns enemy if all are dead
+
+        //Power Ups update functions
+        getHP(&ship, &heart, timer15);
+        powerUp_Nuke(&ship,&nuke);
+        use_Nuke(&ship, enemy, &nuke);
+
+        // RGB light showing health points. green 3 lives, yellow 2 lives, red one life
+        RGBStatus(&ship, flagbullet);
+
+        // Prints graphics with a rate controlled by the flagrefreshrate selected in the timer15 interrupt handler
+        if (flagrefreshrate == 1) {
+            clrscr();
+            buildCourse(x1, y1, x2, y2, m);
+            printShip(&ship);
+            printBullet(bullet, 12);
+            printEnemy(enemy);
+            bulletsLeft(bullet,x2,y2);
+            flagrefreshrate = 0;
+            printBullet(enemyBullet, 9);
+            drawHeart(heart);
+            drawNuke(nuke);
+        }
+
+    }
+
+    // Game Over screen on Putty and LCD.
+    gameOver(ship.killcount, highScoreMulti);
+    clrscr();
+    gotoxy(10,10);
+    drawGameOver(50,25);
+
+    while(readJoystick() != 0x10) {};
     }
 }
 
