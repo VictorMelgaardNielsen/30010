@@ -9,7 +9,6 @@
 #include "mbedInteract.h" //Interactions with mbed board
 #include "asciiArt.h" // Different animations used in graphics in Putty
 
-
 int main(void) {
     //Define variables and structs
     uint8_t highScoreMulti; //Used to calculate high depending on which difficulty user selects
@@ -111,10 +110,9 @@ int main(void) {
         }
 
         // Game Over screen on Putty and LCD.
-        gameOver(ship.killcount, highScoreMulti);
         clrscr();
-        gotoxy(10,10);
         drawGameOver(50,25);
+        gameOver(ship.killcount, highScoreMulti);
 
         // Returns to the start menu
         while(readJoystick() != 0x10) {};
