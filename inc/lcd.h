@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include "charset.h"
 #include "timer.h"
+#include "30010_io.h"
 
 #ifndef _LCD_H_
 #define _LCD_H_

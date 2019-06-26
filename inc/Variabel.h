@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdint.h>
 #include "ansi.h"
-#include "stm32f30x_conf.h"
 #include <stdlib.h>
 #include "shipcontrol.h"
 #include "timer.h"

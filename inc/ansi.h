@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdint.h>
-#include "stm32f30x_conf.h"
 #include "Lutfile.h"
 
 #ifndef _ANSI_H_
