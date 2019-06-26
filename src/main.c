@@ -1,485 +1,125 @@
-/*
-
 #include "stm32f30x_conf.h" //STM32 config
 #include "30010_io.h" // Indput/output library for this source
-
-#include "ansi.h"
-#include "Lutfile.h"
-#include "victor.h"
-#include "timer.h"
-#include "joystick.h"
-#include "lcd.h"
-#include "shipcontrol.h"
-#include "variabel.h"
-#include "mbedDisplay.h" //Interactions with mbed board
-
-*/
-
-/*
-int16_t power(int16_t a, int16_t exp) {
-//Calculates a^exp
-    int16_t i, r = a;
-    for (i = 1; i < exp; i++) {
-        r*= a;
-    }
-    return(r);
-}
-
-int main(void)
-{
-    int16_t a;
-    uart_init( 9600 ); //Initialize USB serial emulation at 9600 baud
-    clreol();
-    color(1,7);
-    printf("\n\n x x^2 x^3 x^4\n");
-    for (a = 0; a < 10; a++)
-        printf("%8d%8d%8d%8d\n",a, power(a, 2), power(a, 3), power (a, 4));
-    while(1){}
+#include "ansi.h" // ansi commands used to control Putty
+#include "timer.h" // Control of the on board timer on the ARM Cortex
+#include "joystick.h" // Joystick control on the Mbed Extension
+#include "lcd.h" // Printing functions for the LCD on the Mbed Extension
+#include "shipcontrol.h" //Control of user ship, enemy ship and bullets
+#include "variabel.h" // Update functions and Power Up functions
+#include "mbedInteract.h" //Interactions with mbed board
+#include "asciiArt.h" // Different animations used in graphics in Putty
 
 
-}
-*/
-/*
 int main(void) {
-    uart_init( 9600 ); //Initialize USB serial emulation at 9600 baud
-    color(1,7);
-    clrscr();
-    windows (5, 5, 60, 20, "Window title", 196, 179);
+    //Define variables and structs
+    uint8_t highScoreMulti; //Used to calculate high depending on which difficulty user selects
+    uint8_t x1 , y1, x2, y2; //x1 and y1 defines the north western corner of the course, x2 and y2 the south eastern
+    uint8_t flagbullet, flagbuzzer; //flagbullet checks if user fires bullet and flagbuzzer is used to sequence the buzzer melody
+    heart_t heart; // Hearth Power Up struct
+    nuke_t nuke; // Nuke Power Up struct
+    ship_t ship; // User Ship struct
+    ship_t enemy[5]; // Enemy ships struct
+    meteor_t m[3]; // Meteor struct
+    bullet_t bullet[5]; // User bullet struct
+    bullet_t enemyBullet[5]; // Enemy bullet struct
+    diff_t difficulty; // Difficulty struct
 
-    while(1){};
-}
-*/
-/*
-//Exercise 3
-int main(void) {
-    uart_init( 9600 ); //Initialize USB serial emulation at 9600 baud
-    clrscr();
-   // sine(923); // Calculate sin (in degrees)
-   // cose(800); // Calculate cos in degrees
-
-   // printFix(expand(b));
-   vector_t vec;
-   initVector(&vec);
-  // vec.x=6;
-  // vec.y=4;
-   rotateVector(&vec, 1280);
-
-
-
-    while(1){};
-}
-
-*/
-
-//Exercise 4
-
-/*
-
-
-
-/*
-Design af course og meteor
- int main(void) {
-    uart_init( 115200 ); //Initialize USB serial emulation at 9600 baud
-
-    clrscr();
-    counter_t cnt;
-    ball_t v;
-    v.x = 7;
-    v.y = 4;
-    v.vx = 1;
-    v.vy = 1;
-    cnt.x = 0;
-
-    //course values
-    uint8_t x1 = 1;
-    uint8_t y1 = 1;
-    uint8_t x2 = 40;
-    uint8_t y2 = 10;
-
-    for (int i = 0; i < 100; i++) {
-    int j = 0;
-    clrscr();
-    course(x1, y1, x2, y2);
-    ballcheck(&v, x1, y1, x2, y2);
-    updateposition(&v);
-    counter(&cnt, &v, x1, y1, x2, y2);
-    ball(&v);
-    drawCounter(x1, y1, x2, y2, cnt.x);
-        while( j < 1000000) {
-            j++;
-        }
-    }
-
-    while(1){};
-}
-*/
-
-
-/*
-//Exercise 5
-int main(void) {
-    uart_init( 9600 ); //Initialize USB serial emulation at 9600 baud
-
-    clrscr();
-
-    while(1) {
-
-        if(readJoystick() == 0x01) {
-            printf("UP!\n");
-            setLed('r');
-            while(readJoystick() == 0x01) {
-            }
-        }
-
-        if(readJoystick() == 0x02) {
-            printf("DOWN!\n");
-            setLed('g');
-            while(readJoystick() == 0x02) {
-            }
-        }
-
-        if(readJoystick() == 0x04) {
-            printf("LEFT!\n");
-            setLed('b');
-            while(readJoystick() == 0x04) {
-            }
-        }
-
-        if(readJoystick() == 0x08) {
-            printf("RIGHT!\n");
-            setLed('c');
-            while(readJoystick() == 0x08) {
-            }
-        }
-
-        if(readJoystick() == 0x10) {
-            printf("CENTER!\n");
-            setLed('m');
-            while(readJoystick() == 0x10) {
-            }
-        } else {
-            setLed('s');
-        }
-    }
-}
-*/
-
-// Exercise 6
-/*
-int main(void) {
-    int flagStartStop = 0;
-    timee_t split1;
-    split1.hour = 0;
-    split1.mint = 0;
-    split1.sec = 0;
-    split1.msec = 0;
-
-    timee_t split2;
-    split2.hour = 0;
-    split2.mint = 0;
-    split2.sec = 0;
-    split2.msec = 0;
-
-    uart_init( 9600 );//Initialize USB serial emulation at 9600 baud
-
-    setuptimer();
+    //hardware init
+    uart_init( 2000000 ); //Initialize USB serial emulation at 2000000 baud
+    setupTimer2();
+    setupTimer15();
+    startTimer15();
     setupjoystick();
-
-    while(1){
-
-        if (readJoystick() == 0x10 && flagStartStop == 0) {
-            starttimer();
-            flagStartStop = 1;
-            while(readJoystick() == 0x10) {
-            }
-        } if (readJoystick() == 0x10 && flagStartStop == 1) {
-            stoptimer();
-            flagStartStop = 0;
-            while(readJoystick() == 0x10) {
-            }
-        } if (readJoystick() == 0x02) {
-            stoptimer();
-            timer2.hour = 0;
-            timer2.mint = 0;
-            timer2.sec = 0;
-            timer2.msec = 0;
-            flagStartStop = 0;
-        } if (readJoystick() == 0x04) {
-            TIM2->DIER &= ~0x0001;
-            split1.hour = timer2.hour;
-            split1.mint = timer2.mint;
-            split1.sec = timer2.sec;
-            split1.msec = timer2.msec;
-            TIM2->DIER |= 0x0001;
-        } if (readJoystick() == 0x08) {
-            TIM2->DIER &= ~0x0001;
-            split2.hour = timer2.hour;
-            split2.mint = timer2.mint;
-            split2.sec = timer2.sec;
-            split2.msec = timer2.msec;
-            TIM2->DIER |= 0x0001;
-        }
-
-
-        if (timer2.msec == 1) {
-            clrscr();
-            printf("%02d:%02d:%02d\n", timer2.hour, timer2.mint, timer2.sec);
-            printf("%02d:%02d:%02d:%02d\n", split1.hour, split1.mint, split1.sec, split1.msec);
-            printf("%02d:%02d:%02d:%02d\n", split2.hour, split2.mint, split2.sec, split2.msec);
-        }
-
-
-    }
-}
-
-*/
-
-//excersise 6.2
-/*
-int main(void) {
-    uart_init( 9600 );
-    clrscr();
-    uart_clear();
-    char a[10] = "";
-
-    //readTerminal(a);
-
-    printf("%s", readTerminal(a));
-
-
-
-
-    while(1){};
-
-}
-
-/*
-//Exercise 6.2 del 2
-/*
-int main(void) {
-    int number = 0;
-    uart_init( 9600 );
-    clrscr();
-    uart_clear();
-    setuptimer();
-    timerCommandHelp();
-
-    int flagStartStop = 0;
-    timee_t split1;
-    split1.hour = 0;
-    split1.mint = 0;
-    split1.sec = 0;
-    split1.msec = 0;
-
-    timee_t split2;
-    split2.hour = 0;
-    split2.mint = 0;
-    split2.sec = 0;
-    split2.msec = 0;
-
-
-    starttimer();
-
-    number = timerCommand();
-    printf("%d", number);
-
-    /*
-    while(1){
-        if (number == 0 && flagStartStop == 0) {
-            starttimer();
-            flagStartStop = 1;
-        } if (number == 1 && flagStartStop == 1) {
-            stoptimer();
-            flagStartStop = 0;
-        } if (number == 2) {
-            stoptimer();
-            timer2.hour = 0;
-            timer2.mint = 0;
-            timer2.sec = 0;
-            timer2.msec = 0;
-            flagStartStop = 0;
-        } if (number == 3) {
-            TIM2->DIER &= ~0x0001;
-            split1.hour = timer2.hour;
-            split1.mint = timer2.mint;
-            split1.sec = timer2.sec;
-            split1.msec = timer2.msec;
-            TIM2->DIER |= 0x0001;
-        } if (number == 4) {
-            TIM2->DIER &= ~0x0001;
-            split2.hour = timer2.hour;
-            split2.mint = timer2.mint;
-            split2.sec = timer2.sec;
-            split2.msec = timer2.msec;
-            TIM2->DIER |= 0x0001;
-        }
-        else if (number == 5) {
-            timerCommandHelp();
-        }
-        else {
-            timerCommandHelp();
-        }
-
-
-
-    //readTerminal(a);
-    if (command(s1) == 1) {
-        printf("%c", '1');
-    }
-
-
-
-    char s1[10] ="";
-    char s2[10] ="";
-
-
-        if (timer2.msec == 1) {
-            clrscr();
-            printf("%02d:%02d:%02d\n", timer2.hour, timer2.mint, timer2.sec);
-            printf("%02d:%02d:%02d:%02d\n", split1.hour, split1.mint, split1.sec, split1.msec);
-            printf("%02d:%02d:%02d:%02d\n", split2.hour, split2.mint, split2.sec, split2.msec);
-        }
-    }
-
-    */
-    /*
-
-
-
-    while(1){}
-
-
-}
-*/
-
-
-/*
-//Exercise 7
-int main(void) {
-    uint8_t slice = 0;
-    uint8_t line = 0;
-    uart_init(9600);//Initialize USB serial emulation at 9600 baud
-
-    setuptimer();
-    starttimer();
-
     lcd_init();
+    clrscr();
+    setupRGB();
 
+    //Main game loop
     while(1) {
-        lcd_write_string("hej",slice,line);
+        //Initialize structs and variables
+        x1 = 1, y1 = 1, x2 = 160, y2 = 40;
+        flagbullet = 0, flagbuzzer = 0;
+        initHP(&heart);
+        initEnemy(enemy, x1, y1, x2, y1);
+        initMeteor(m);
+        bulletSetup(bullet);
+        bulletSetup(enemyBullet);
+        setRGB('s');
+
+        //start up menu and difficulty selection
+        menu_init();
+        choose_diff(&ship, &highScoreMulti, &difficulty);
+
+        // Prints get ready to LCD
+        lcd_clear_buffer();
+        lcd_write_string("Get ready! Look at Putty", 0, 0);
         lcd_push_buffer(&buffer);
-        lcd_update(&slice,&line);
-    }
 
-}
-*/
-/*
-
-int main(void) {
-    uart_init( 9600 ); //Initialize USB serial emulation at 9600 baud
-    clrscr();
-    buildCourse();
-    while(1);
-}
-*/
-/*
-//Ship control
-int main(void) {
-
-    int x1 = 1;
-    int y1 = 1;
-    int x2 = 60;
-    int y2 = 20;
-    int flagbullet = 0;
-    bullet_t bullet[4];
-    uart_init( 9600 ); //Initialize USB serial emulation at 9600 baud
-
-    color(1,7);
-    clrscr();
-    windows (x1, y1, x2, y2, "DTU Space Invaders 3000", 196, 179);
-    uart_clear();
-    ship_t ship;
-    shipSetup(&ship);
-    bulletSetup(bullet);
-    printf("%d",bullet[3].x);
-
-
-    while(1){
-        flagbullet = shipControl(&ship);
-        printShip(&ship);
-        backwards(1);
-        printf(" ");
-        createBullet(&ship, bullet, flagbullet, x1, y1, x2, y2);
-        flagbullet = 0;
-        printBullet(bullet);
-
-    uint8_t health, killcount, highScoreMulti;
-    uart_init( 115200 ); //Initialize USB serial emulation at 9600 baud
-GameOver() added to mbedDisplay.c
-    setuptimer();
-    starttimer();
-    setupjoystick();
-    lcd_init();
-    clrscr();
-
-    menu_init();
-    int diff = choose_diff();
-
-    if (diff == 1) {
-        health = 3;
-        killcount = 42;
-        highScoreMulti = 4;
-        buildCourse();
-        restarttimer();
-    }
-
-    while(1){
-
-        display_stats(1,42);
-
-        display_stats(health,killcount);
-        if (readJoystick() == 0x08) {
-            break;
+        // Plays start up melody
+        startTimer2();
+        while(flagbuzzer != 5) {
+        buzzer(&flagbuzzer);
         }
- GameOver() added to mbedDisplay.c
-    }
+        flagbuzzer = 0;
+        restartTimer15();
 
-    gameOver(killcount, highScoreMulti);
+        while(1){
 
-}
+            display_stats(ship.healthpoints,ship.killcount);
+            if (readJoystick() == 0x02 || ship.healthpoints == 0) { //press down to end game
+                break;
+            }
 
-*/
-/*
-int main(void) {
-    uint8_t health, killcount, highScoreMulti;
-    uart_init( 115200 ); //Initialize USB serial emulation at 9600 baud
-    setuptimer();
-    starttimer();
-    setupjoystick();
-    lcd_init();
-    clrscr();
+            // Creates bullets if user shoots. Updates position of the bullets
+            flagbullet = shipControl(&ship, x1, y1, x2, y2);
+            updateBullet(&ship, bullet, flagbullet, x1, y1, x2, y2);
 
-    menu_init();
-    int diff = choose_diff();
+            // Meteor gravity and bullet hit update functions
+            gravityCheckBullet(bullet, m);
+            gravityCheckShip(&ship, m);
+            meteorBulletHit(bullet, m);
+            meteorBulletHit(enemyBullet, m);
 
-    if (diff == 1) {
-        health = 3;
-        killcount = 42;
-        highScoreMulti = 4;
-        buildCourse();
-        restarttimer();
-    }
+            enemyHitCheck(bullet, enemy, &ship, &nuke); // Checks if user bullet hits enemy ship
+            updateEnemyPosition(enemy,&difficulty, x1, y1, x2, y2); // Updates enemy ship position depending on difficulty selected
+            updateEnemyBullet(&ship, enemyBullet, enemy, x1, y1, x2, y2); // Creates enemy bullet and updates position of bullets
+            collisionDetection(&ship, enemy); // Checks if there is a collision between user and enemy ship
+            shipHitDetection(&ship, enemyBullet); // Checks if user ship is hit by enemy bullet
+            enemiesDead(enemy, x1, y1, x2, y2); // Respawns enemy if all are dead
 
-    while(1){
-        display_stats(health,killcount);
-        if (readJoystick() == 0x08) {
-            break;
+            //Power Ups update functions
+            getHP(&ship, &heart, timer15);
+            powerUp_Nuke(&ship,&nuke);
+            use_Nuke(&ship, enemy, &nuke);
+
+            // RGB light showing health points. green 3 lives, yellow 2 lives, red one life
+            RGBStatus(&ship, flagbullet);
+
+            // Prints graphics with a rate controlled by the flagrefreshrate selected in the timer15 interrupt handler
+            if (flagrefreshrate == 1) {
+                clrscr();
+                buildCourse(x1, y1, x2, y2, m);
+                printShip(&ship);
+                printBullet(bullet, 12);
+                printEnemy(enemy);
+                bulletsLeft(bullet,x2,y2);
+                flagrefreshrate = 0;
+                printBullet(enemyBullet, 9);
+                drawHeart(heart);
+                drawNuke(nuke);
+            }
+
         }
+
+        // Game Over screen on Putty and LCD.
+        gameOver(ship.killcount, highScoreMulti);
+        clrscr();
+        gotoxy(10,10);
+        drawGameOver(50,25);
+
+        // Returns to the start menu
+        while(readJoystick() != 0x10) {};
+        restartTimer15();
+        startTimer15();
     }
-
-    gameOver(killcount, highScoreMulti);
-
 }
-
-*/

@@ -1,3 +1,4 @@
+/*
 #include "stm32f30x_conf.h" //STM32 config
 #include "30010_io.h" // Indput/output library for this source
 #include "ansi.h" // ansi commands used to control Putty
@@ -123,7 +124,7 @@ int main(void) {
         startTimer15();
     }
 }
-
+*/
 
 
 /*
