@@ -2,7 +2,7 @@
 #include <string.h>
 
 
-//Setup for timer 2 to generate PWM, square waves for various pitches.
+// Setup for timer 2 to generate PWM, square waves for various pitches.
 void setupTimer2() {
     RCC->APB1ENR |= 0x00000001; // Enable clock line to timer 2;
     TIM2->CR1 = 0x0000; // Disable timer
@@ -10,7 +10,7 @@ void setupTimer2() {
     TIM2->PSC = 0; // Set pre-scaler value
     TIM2->CR1 |= 0x0001; // Enable timer
 
-    //Configuration of the counter compare registers of the timer
+    // Configuration of the counter compare registers of the timer
     TIM2->CCER &= ~TIM_CCER_CC3P; // Clear CCER register
     TIM2->CCER |= 0x00000001 << 8; // Enable OC3 output
     TIM2->CCMR2 &= ~TIM_CCMR2_OC3M; // Clear CCMR2 register
@@ -20,18 +20,18 @@ void setupTimer2() {
     TIM2->CCMR2 |= TIM_OCPreload_Enable;
     TIM2->CCR3 = 500; // Set duty cycle to 50 %
 
-    //Configuration for alternate function
+    // Configuration for alternate function
     RCC->AHBENR |= RCC_AHBENR_GPIOBEN; // Enable clock line for GPIO bank B
     GPIOB->MODER &= ~(0x00000003 << (10 * 2)); // Clear mode register
     GPIOB->MODER |= (0x00000002 << (10 * 2)); // Set mode register
 
-    //Specify alternative function 1, PWM output.
+    // Specify alternative function 1, PWM output.
     GPIO_PinAFConfig(GPIOB, GPIO_PinSource10, GPIO_AF_1);
 }
 
-//Buzzer jingle melody indicating game started, A Major.
+// Buzzer jingle melody indicating game started, A Major.
 void buzzer(uint8_t * flagbuzzer) {
-    if (timer15.sec == 1 && *flagbuzzer == 0) {//Use of timer 15 to play a new frequency every one second.
+    if (timer15.sec == 1 && *flagbuzzer == 0) {// Use of timer 15 to play a new frequency every one second.
         setFreq(440);
         *flagbuzzer = 1;
     }
@@ -61,7 +61,7 @@ void stopTimer2() {
     TIM2->CR1 &= ~(0x0001);
 }
 
-//The input value freq sets the frequency of the piezo buzzer.
+// The input value freq sets the frequency of the piezo buzzer.
 void setFreq(uint16_t freq) {
     uint32_t reload = 64e6 / freq / (0 + 1) - 1;
     TIM2->ARR = reload; // Set auto reload value. To set the the frequency according to input value.
@@ -69,7 +69,7 @@ void setFreq(uint16_t freq) {
     TIM2->EGR |= 0x01; // Write to EGR register, to inform timer that the values have been changed.
  }
 
-//Setup of timer 15.
+// Setup of timer 15.
 void setupTimer15() {
     timer15.hour = 0;
     timer15.mint = 0;
@@ -103,21 +103,21 @@ void stopTimer15() {
     TIM15->CR1 &= ~(0x0001);
 }
 
-//Tells the STM32 what to do whenever the timer interrupt is triggered.
+// Tells the STM32 what to do whenever the timer interrupt is triggered.
 void TIM1_BRK_TIM15_IRQHandler() {
     timer15.msec += 1;
 
-    //Flag for enemy spaceship update
+    // Flag for enemy spaceship update
     if (timer15.msec%25 == 0) {
         flagenemy = 1;
     }
 
-    //Flag for ship bullet speed
+    // Flag for ship bullet speed
     if (timer15.msec%10 == 0) {
         flagbullettimer = 1;
     }
 
-    //Flag for bullet gravity update
+    // Flag for bullet gravity update
     if (timer15.msec%25 == 0) {
         flagravity = 1;
     }
@@ -127,12 +127,12 @@ void TIM1_BRK_TIM15_IRQHandler() {
         flagravityship = 1;
     }
 
-    //Flag for enemy ship bullet speed
+    // Flag for enemy ship bullet speed
     if (timer15.msec%10 == 0) {
         flagenemybullettimer = 1;
     }
 
-    //Flag for game refresh rate.
+    // Flag for game refresh rate.
     if (timer15.msec%10 == 0) {
         flagrefreshrate = 1;
     }
@@ -150,7 +150,7 @@ void TIM1_BRK_TIM15_IRQHandler() {
         timer15.hour += 1;
     }
 
-    //lcd flag
+    // Lcd flag
     if (timer15.msec%25 == 0) {
         flaglcd = 1;
     }

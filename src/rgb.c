@@ -2,20 +2,20 @@
 
 
 void setupRGB(){
-    RCC->AHBENR |= RCC_AHBPeriph_GPIOA;
+    RCC->AHBENR |= RCC_AHBPeriph_GPIOA; // Enable clock for GPIO Port A
     RCC->AHBENR |= RCC_AHBPeriph_GPIOB;
     RCC->AHBENR |= RCC_AHBPeriph_GPIOC;
 
-   //OUTPUTS
+    // OUTPUTS
     // Set pin PB4 to output red LED
-    GPIOB->OSPEEDR &= ~(0x00000003 << (4 * 2));
-    GPIOB->OSPEEDR |=  (0x00000002 << (4 * 2));
+    GPIOB->OSPEEDR &= ~(0x00000003 << (4 * 2)); // Clear speed register
+    GPIOB->OSPEEDR |=  (0x00000002 << (4 * 2)); // Set speed register
 
-    GPIOB->OTYPER &= ~(0x0001 << (4));
-    GPIOB->OTYPER &= ~(0x0000 << (4));
+    GPIOB->OTYPER &= ~(0x0001 << (4)); // Clear output type register
+    GPIOB->OTYPER &= ~(0x0000 << (4)); // Set output type register
 
-    GPIOB->MODER &= ~(0x00000003 << (4 * 2));
-    GPIOB->MODER |=  (0x00000001 << (4 * 2));
+    GPIOB->MODER &= ~(0x00000003 << (4 * 2)); // Clear mode register
+    GPIOB->MODER |=  (0x00000001 << (4 * 2)); // Set mode register
 
      // Set pin PC7 to output green LED
     GPIOC->OSPEEDR &= ~(0x00000003 << (7 * 2));
@@ -38,6 +38,7 @@ void setupRGB(){
     GPIOA->MODER |=  (0x00000001 << (9 * 2));
 }
 
+// Sets output data registers according to a character input.
 void setRGB(char colour) {
 
     if (colour == 'r') {
