@@ -18,7 +18,7 @@ void bulletSetup(bullet_t bullet[]) {
     }
 }
 
-//Reads from terminal. The ship can be controlled by flying in eight different directions. wasd for control and shoot. Buzzkey at b
+//Reads from terminal. The ship can be controlled by flying in eight different directions. Wasd for control and shoot. Buzzkey at b.
 uint8_t shipControl(ship_t * ship, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
     uint8_t flagbullet = 0;
     if (uart_get_count() > 0) { // Reads number of characters in the buffer
@@ -28,10 +28,10 @@ uint8_t shipControl(ship_t * ship, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y
             if (ship->vx == 0 && ship->vy == -1) { //position 0 out of index 0 to 7
                 ship->vx = -2;
                 ship->vy = -1;
-            } else if (ship->vx == -2 && ship->vy == -1) { // position 7
+            } else if (ship->vx == -2 && ship->vy == -1) { //Position 7
                 ship->vx = -2;
                 ship->vy = 0;
-            } else if (ship->vx == -2 && ship->vy == 0) { // position 6
+            } else if (ship->vx == -2 && ship->vy == 0) { //Position 6
                 ship->vx = -2;
                 ship->vy = 1;
             } else if (ship->vx == -2 && ship->vy == 1) {
@@ -53,13 +53,13 @@ uint8_t shipControl(ship_t * ship, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y
             return 0;
         }
         if (s[0] == 'd') {
-            if (ship->vx == 0 && ship->vy == -1) { //position 0 out of index 0 to 7
+            if (ship->vx == 0 && ship->vy == -1) { //Position 0 out of index 0 to 7
                 ship->vx = 2;
                 ship->vy = -1;
-            } else if (ship->vx == 2 && ship->vy == -1) { //position 1
+            } else if (ship->vx == 2 && ship->vy == -1) { //Position 1
                 ship->vx = 2;
                 ship->vy = 0;
-            } else if (ship->vx == 2 && ship->vy == 0) { //position 2
+            } else if (ship->vx == 2 && ship->vy == 0) { //Position 2
                 ship->vx = 2;
                 ship->vy = 1;
             } else if (ship->vx == 2 && ship->vy == 1) {
@@ -109,9 +109,9 @@ uint8_t shipControl(ship_t * ship, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y
         }
         if (s[0] == 's') { //Shoot
             flagbullet = 1;
-            return flagbullet; //Sets flagbullet high, signaling the updatebullet function to update.
+            return flagbullet; //Sets flagbullet high, signaling the updateBullet function to update.
         }
-        if (s[0] == 'b') { //Buzzkey, pauses game, and prints buzz-screen
+        if (s[0] == 'b') { //Buzzkey, pauses game and prints buzz-screen until unpaused.
             stopTimer15();
             clrscr();
             printbuzzscreen();
@@ -165,7 +165,7 @@ void updateBullet(ship_t * ship, bullet_t bullet[], uint8_t flagbullet, uint8_t 
     //Updates bullet velocity
     if (flagbullettimer == 1) {
         for (int i = 0; i < 5; i++) {
-            if ((bullet[i].x > x1 && bullet[i].x < x2) && (bullet[i].y > y1 && bullet[i].y < y2)) {
+            if ((bullet[i].x > x1 && bullet[i].x < x2) && (bullet[i].y > y1 && bullet[i].y < y2)) { // Checks if bullets are within the boundaries of the window.
                 bullet[i].x += bullet[i].vx;
                 bullet[i].y += bullet[i].vy;
             }
@@ -189,7 +189,7 @@ void printBullet(bullet_t bullet[], uint8_t color) {
     }
 }
 
-//Shows bullets left in the bottom of the screen
+//Shows amount of bullets left in the bottom right side of the screen
 void bulletsLeft(bullet_t bullet[], uint8_t x2, uint8_t y2) {
     uint8_t amountofbullets = 0;
     for (int i = 0; i < 5; i++) {
@@ -201,7 +201,7 @@ void bulletsLeft(bullet_t bullet[], uint8_t x2, uint8_t y2) {
     printf("%s%d","Bullets Left: ", amountofbullets);
 }
 
-//Initialize enemy ships
+//Initialize enemy ships, a total of 5.
 void initEnemy(ship_t enemy[], uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
     int i = 0;
     for (i; i < 5; i++) {
@@ -226,11 +226,11 @@ void printEnemy(ship_t enemy[]) {
 //Updates enemy position according to the difficulty of the game level. Higher level makes the enemy ships fly faster.
 void updateEnemyPosition(ship_t enemy[], diff_t * difficulty, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
     int i;
-    if (flagenemy == 1) {
+    if (flagenemy == 1) { //Increments counter value in difficulty struct.
         (difficulty->counterValue)++;
         flagenemy = 0;
     }
-    if (difficulty->diffValue == difficulty->counterValue) {
+    if (difficulty->diffValue == difficulty->counterValue) { //Updates enemy position if when counter value matches difficulty.
         for (i = 0; i < 5; i++) {
             enemy[i].x += enemy[i].vx;
             enemy[i].y += enemy[i].vy;
@@ -238,7 +238,7 @@ void updateEnemyPosition(ship_t enemy[], diff_t * difficulty, uint8_t x1, uint8_
         flagenemy = 0;
         difficulty->counterValue = 0;
     }
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < 5; i++) { //Kills ship enemies, if they reside at enemy border.
         if (enemy[i].x <= x1 || enemy[i].y <= y1 || enemy[i].x >= x2 || enemy[i].y >= y2) {
             enemy[i].healthpoints = 0;
         }
@@ -334,15 +334,3 @@ void shipHitDetection(ship_t * ship, bullet_t enemybullet[]) {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
