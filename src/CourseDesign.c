@@ -75,12 +75,6 @@ up(1);
 printf("%cHits:%2d", 179, nice);
 }
 
-void ball(ball_t *b) {
-   // if (!(b.vy == 0 && b.vx == 0)) {
-    gotoxy(b->x,b->y);
-    printf("%c", 111);
-    }
-
 void drawMeteor(int8_t x, int8_t y) {
 
     gotoxy(x, y);
