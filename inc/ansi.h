@@ -32,6 +32,6 @@ void course(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2);
 void ball(ball_t *b);
 void rotateVector(vector_t (*v),int32_t a);
 void drawCounter(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2, int nice);
-void printbuzzscreen();
+
 
 #endif

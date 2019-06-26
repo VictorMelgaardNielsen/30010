@@ -12,5 +12,6 @@ void drawFinalBoss (int8_t x, int8_t y);
 void drawGameOver(int8_t x, int8_t y);
 void drawNuke(nuke_t nuke);
 void drawHeart(heart_t heart);
+void printbuzzscreen();
 
 #endif
