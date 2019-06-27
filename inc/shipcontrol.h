@@ -41,6 +41,6 @@ void initEnemy(ship_t enemy[], uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2);
 void updateenemyBullet(ship_t * ship, bullet_t enemybullet[], ship_t enemy[], uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2);
 void updateEnemyPosition(ship_t enemy[], diff_t * difficulty, uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2);
 void collisionDetection(ship_t * ship, ship_t enemyShip[]);
-
+void shipHitDetection(ship_t * ship, bullet_t enemybullet[]);
 
 #endif

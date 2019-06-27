@@ -15,7 +15,7 @@ typedef struct {
     uint8_t msec;
 } timee_t;
 
-volatile timee_t timer15; // Resets timer15 struct when hardware resets?????????????????????
+volatile timee_t timer15; // Resets timer15 struct when hardware resets
 
 //------------------------------Global variables--------------------
 int flagenemy;

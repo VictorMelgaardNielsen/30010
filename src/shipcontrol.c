@@ -317,7 +317,7 @@ void updateEnemyBullet(ship_t * ship, bullet_t enemybullet[], ship_t enemy[], ui
 // Detects collisions between user ship and enemyships.
 void collisionDetection(ship_t * ship, ship_t enemyShip[]) {
     for (int i = 0; i < 5; i++) {
-        if (ship->x == enemyShip[i].x || ship->x == enemyShip[i].x+1 && ship->y == enemyShip[i].y) {
+        if (ship->x == enemyShip[i].x || ship->x == enemyShip[i].x+1 && ship->y == enemyShip[i].y) { //Two enemyShip values to take into account a velocity of two, otherwise the ships might not be able to collide.
             ship->healthpoints -= 1;
             enemyShip[i].healthpoints = 0;
             enemyShip[i].x = -3;
